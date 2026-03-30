@@ -4340,14 +4340,7 @@ function exportForGitHub() {
   const encoded = btoa(unescape(encodeURIComponent(pw.trim())));
   const data = JSON.stringify(matches);
 
-  // Grab outerHTML then immediately fix the one known issue:
-  // We handle this by replacing our sentinel patterns.
   let out = document.documentElement.outerHTML;
-
-  // The export function itself contains '<' + '/script>' — after outerHTML
-  // serialises the page, this may appear literally. Replace it in the output
-  // so the viewer file's script block stays intact.
-  // We use a unique sentinel we control.
 
   // 1. Bake in current match data
   const s1 = out.indexOf('const _SEED=');
@@ -4359,12 +4352,11 @@ function exportForGitHub() {
   out = out.split('const _saved=localStorage.getItem(STORAGE_KEY);\nlet matches=_saved?JSON.parse(_saved):_SEED;\nif(!_saved)localStorage.setItem(STORAGE_KEY,JSON.stringify(_SEED));')
            .join('const _saved=null;\nlet matches=JSON.parse(JSON.stringify(_SEED));');
 
-  // 3. Hide entry and export button
+  // 3. Hide entry section and export button
   out = out.split('id="section-entry" style="display:none!important"').join('id="section-entry" style="display:none!important" style="display:none!important"');
   out = out.split('onclick="" style="display:none"').join('onclick="" style="display:none"');
 
-  // 4. Build and inject gate
-  const K = encoded;
+  // 4. Inject gate HTML
   const gateHtml = '<div id="pw-gate" style="position:fixed;inset:0;background:#0e1525;z-index:9999;display:flex;align-items:center;justify-content:center;">'
     + '<div style="background:#162035;border:1px solid #2e4070;border-radius:16px;padding:40px 36px;text-align:center;max-width:360px;width:90%;">'
     + '<div style="font-size:22px;letter-spacing:3px;color:#00f0ff;margin-bottom:6px;font-weight:700;">MYS TT TRACKER</div>'
@@ -4375,23 +4367,37 @@ function exportForGitHub() {
     + '</div></div>'
     + '<div id="view-banner" style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;display:none;">VIEW ONLY</div>';
 
-  const gateJs = '(function(){var K="' + K + '";'
-    + 'function u(){var v=document.getElementById("pw-inp").value;'
-    + 'var e=btoa(unescape(encodeURIComponent(v)));'
-    + 'if(e===K){document.getElementById("pw-gate").style.display="none";document.getElementById("view-banner").style.display="";document.body.style.overflow="";}'
-    + 'else{document.getElementById("pw-err").style.display="block";document.getElementById("pw-inp").value="";document.getElementById("pw-inp").focus();}}'
+  // 5. Inject gate script using base64-encoded blob to avoid any serialisation issues
+  const gateLogic = '(function(){'
+    + 'var K="' + encoded + '";'
+    + 'function u(){'
+      + 'var v=document.getElementById("pw-inp").value;'
+      + 'var e=btoa(unescape(encodeURIComponent(v)));'
+      + 'if(e===K){'
+        + 'document.getElementById("pw-gate").style.display="none";'
+        + 'document.getElementById("view-banner").style.display="";'
+        + 'document.body.style.overflow="";'
+      + '}else{'
+        + 'document.getElementById("pw-err").style.display="block";'
+        + 'document.getElementById("pw-inp").value="";'
+        + 'document.getElementById("pw-inp").focus();'
+      + '}'
+    + '}'
     + 'document.addEventListener("DOMContentLoaded",function(){'
-    + 'document.body.style.overflow="hidden";document.getElementById("pw-inp").focus();'
-    + 'document.getElementById("pw-btn").addEventListener("click",u);'
-    + 'document.getElementById("pw-inp").addEventListener("keydown",function(e){if(e.key==="Enter")u();});});})();';
+      + 'document.body.style.overflow="hidden";'
+      + 'document.getElementById("pw-inp").focus();'
+      + 'document.getElementById("pw-btn").addEventListener("click",u);'
+      + 'document.getElementById("pw-inp").addEventListener("keydown",function(e){if(e.key==="Enter")u();});'
+    + '});'
+    + '})();';
 
-  // Use sentinel for the closing script tag so outerHTML doesn't break it
-  const openTag = ['<','script>'].join('');
-  const gateBlock = openTag + gateJs + 'XSCRIPTCLSEX';
+  // Encode the script as base64 and use a data URI src attribute
+  const b64 = btoa(unescape(encodeURIComponent(gateLogic)));
+  const scriptTag = ['<scr','ipt src="data:text/javascript;base64,', b64, '">', '<', '/scr','ipt>'].join('');
 
   out = out.replace('<div id="pw-gate" style="position:fixed;inset:0;background:#0e1525;z-index:9999;display:flex;align-items:center;justify-content:center;"><div style="background:#162035;border:1px solid #2e4070;border-radius:16px;padding:40px 36px;text-align:center;max-width:360px;width:90%;"><div style="font-size:22px;letter-spacing:3px;color:#00f0ff;margin-bottom:6px;font-weight:700;">MYS TT TRACKER</div><div style="font-size:12px;color:#94afd4;margin-bottom:24px;">Malaysia Table Tennis Performance Tracker<br>Enter password to continue</div><input id="pw-inp" type="password" placeholder="Password" style="width:100%;box-sizing:border-box;background:#0e1525;border:1px solid #2e4070;border-radius:8px;color:#fff;padding:10px 14px;font-size:15px;text-align:center;letter-spacing:4px;margin-bottom:14px;outline:none;"><button id="pw-btn" style="width:100%;padding:11px;background:#00f0ff;color:#000;border:none;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;">UNLOCK</button><div id="pw-err" style="color:#ff3d3d;font-size:12px;margin-top:10px;display:none;">Incorrect password. Please try again.</div></div></div><div id="view-banner" style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;display:none;">VIEW ONLY</div>
-<script>(function(){var K="MTIzNDU=";function u(){var v=document.getElementById("pw-inp").value;var e=btoa(unescape(encodeURIComponent(v)));if(e===K){document.getElementById("pw-gate").style.display="none";document.getElementById("view-banner").style.display="";document.body.style.overflow="";}else{document.getElementById("pw-err").style.display="block";document.getElementById("pw-inp").value="";document.getElementById("pw-inp").focus();}}document.addEventListener("DOMContentLoaded",function(){document.body.style.overflow="hidden";document.getElementById("pw-inp").focus();document.getElementById("pw-btn").addEventListener("click",u);document.getElementById("pw-inp").addEventListener("keydown",function(e){if(e.key==="Enter")u();});});})();XSCRIPTCLSEX
-</body>', gateHtml + '\n' + gateBlock + '\n</body>');
+<script src="data:text/javascript;base64,KGZ1bmN0aW9uKCl7dmFyIEs9Ik1USXpORFU9IjtmdW5jdGlvbiB1KCl7dmFyIHY9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWlucCIpLnZhbHVlO3ZhciBlPWJ0b2EodW5lc2NhcGUoZW5jb2RlVVJJQ29tcG9uZW50KHYpKSk7aWYoZT09PUspe2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1nYXRlIikuc3R5bGUuZGlzcGxheT0ibm9uZSI7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInZpZXctYmFubmVyIikuc3R5bGUuZGlzcGxheT0iIjtkb2N1bWVudC5ib2R5LnN0eWxlLm92ZXJmbG93PSIiO31lbHNle2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1lcnIiKS5zdHlsZS5kaXNwbGF5PSJibG9jayI7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWlucCIpLnZhbHVlPSIiO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1pbnAiKS5mb2N1cygpO319ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigiRE9NQ29udGVudExvYWRlZCIsZnVuY3Rpb24oKXtkb2N1bWVudC5ib2R5LnN0eWxlLm92ZXJmbG93PSJoaWRkZW4iO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1pbnAiKS5mb2N1cygpO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1idG4iKS5hZGRFdmVudExpc3RlbmVyKCJjbGljayIsdSk7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWlucCIpLmFkZEV2ZW50TGlzdGVuZXIoImtleWRvd24iLGZ1bmN0aW9uKGUpe2lmKGUua2V5PT09IkVudGVyIil1KCk7fSk7fSk7fSkoKTs="></script>
+</body>', gateHtml + '\n' + scriptTag + '\n</body>');
 
   const blob = new Blob([out], {type:'text/html'});
   const a = document.createElement('a');
