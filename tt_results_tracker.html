@@ -1,4 +1,4 @@
-<html lang="en"><head>
+<html lang="en"><head><meta name="x-pw" content="ruxir">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Malaysia TT · Competition Tracker</title>
@@ -4344,54 +4344,92 @@ function exportForGitHub() {
   }
   const pwHash = hashStr(pw.trim());
 
-  // Build the output by reading the current page script tag content
-  // We reconstruct from known markers rather than outerHTML (which mangles JS)
-  const fullHtml = document.documentElement.outerHTML;
+  let out = document.documentElement.outerHTML;
 
-  // 1. Bake in current match data by replacing _SEED
+  // 1. Bake in current match data
   const data = JSON.stringify(matches);
-  let out = fullHtml;
   const s1 = out.indexOf('const _SEED=');
   const s2 = out.indexOf(';\nconst _saved=');
   if (s1 === -1 || s2 === -1) { alert('Could not locate data block.'); return; }
   out = out.slice(0, s1) + 'const _SEED=' + data + out.slice(s2);
 
-  // 2. Force viewer to load from _SEED, not localStorage
+  // 2. Force load from _SEED
   out = out.split('const _saved=localStorage.getItem(STORAGE_KEY);\nlet matches=_saved?JSON.parse(_saved):_SEED;\nif(!_saved)localStorage.setItem(STORAGE_KEY,JSON.stringify(_SEED));')
            .join('const _saved=null;\nlet matches=JSON.parse(JSON.stringify(_SEED));');
 
-  // 3. Hide entry section
+  // 3. Hide entry section and export button
   out = out.split('id="section-entry" style="display:none!important"').join('id="section-entry" style="display:none!important" style="display:none!important"');
-
-  // 4. Remove Export for GitHub button from viewer
   out = out.split('onclick="" style="display:none"').join('onclick="" style="display:none"');
 
-  // 5. Inject password gate + view-only banner just before <script>var _H="1knssww";function _hsh(s){var h=0;for(var i=0;i<s.length;i++){h=Math.imul(31,h)+s.charCodeAt(i)|0;}return(h>>>0).toString(36);}function checkPW(){var v=document.getElementById("pw-inp").value;if(_hsh(v)===_H){document.getElementById("pw-gate").style.display="none";document.body.style.overflow="";}else{document.getElementById("pw-err").style.display="block";document.getElementById("pw-inp").value="";}}document.addEventListener("DOMContentLoaded",function(){document.getElementById("pw-inp").focus();document.body.style.overflow="hidden";});</script><div id="pw-gate" style="position:fixed;inset:0;background:#0e1525;z-index:9999;display:flex;align-items:center;justify-content:center;"><div style="background:#162035;border:1px solid #2e4070;border-radius:16px;padding:40px 36px;text-align:center;max-width:360px;width:90%;"><div style="font-size:22px;letter-spacing:3px;color:#00f0ff;margin-bottom:6px;font-weight:700;">MYS TT TRACKER</div><div style="font-size:12px;color:#94afd4;margin-bottom:24px;line-height:1.6;">Malaysia Table Tennis Performance Tracker<br>Enter password to continue</div><input id="pw-inp" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')checkPW()" style="width:100%;box-sizing:border-box;background:#0e1525;border:1px solid #2e4070;border-radius:8px;color:#fff;padding:10px 14px;font-size:15px;text-align:center;letter-spacing:4px;margin-bottom:14px;"><button onclick="checkPW()" style="width:100%;padding:11px;background:#00f0ff;color:#000;border:none;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;">UNLOCK</button><div id="pw-err" style="color:#ff3d3d;font-size:12px;margin-top:10px;display:none;">Incorrect password. Please try again.</div></div></div><div style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;">VIEW ONLY — Malaysia Table Tennis Performance Tracker</div></body>
-  const pwScript = '<script>'
-    + 'var _H="' + pwHash + '";'
-    + 'function _hsh(s){var h=0;for(var i=0;i<s.length;i++){h=Math.imul(31,h)+s.charCodeAt(i)|0;}return(h>>>0).toString(36);}'
-    + 'function checkPW(){'
-    +   'var v=document.getElementById("pw-inp").value;'
-    +   'if(_hsh(v)===_H){document.getElementById("pw-gate").style.display="none";document.body.style.overflow="";}' 
-    +   'else{document.getElementById("pw-err").style.display="block";document.getElementById("pw-inp").value="";}'
-    + '}'
-    + 'document.addEventListener("DOMContentLoaded",function(){document.getElementById("pw-inp").focus();document.body.style.overflow="hidden";});'
-    + '<\/script>';
+  // 4. Inject password gate using a dedicated init script that runs on DOMContentLoaded
+  //    We embed the hash as a meta tag so the gate script can read it without needing
+  //    to be inside a script block that might get mangled
+  const metaTag = '<meta name="x-pw" content="' + pwHash + '">';
+  out = out.replace('<head>', '<head>' + metaTag);
 
-  const pwGateHtml = '<div id="pw-gate" style="position:fixed;inset:0;background:#0e1525;z-index:9999;display:flex;align-items:center;justify-content:center;">'
+  // 5. Inject gate HTML + inline handler using event attributes (no script tag needed)
+  const gate = '<div id="pw-gate" style="position:fixed;inset:0;background:#0e1525;z-index:9999;display:flex;align-items:center;justify-content:center;">'
     + '<div style="background:#162035;border:1px solid #2e4070;border-radius:16px;padding:40px 36px;text-align:center;max-width:360px;width:90%;">'
     + '<div style="font-size:22px;letter-spacing:3px;color:#00f0ff;margin-bottom:6px;font-weight:700;">MYS TT TRACKER</div>'
     + '<div style="font-size:12px;color:#94afd4;margin-bottom:24px;line-height:1.6;">Malaysia Table Tennis Performance Tracker<br>Enter password to continue</div>'
-    + '<input id="pw-inp" type="password" placeholder="Password" onkeydown="if(event.key===\'Enter\')checkPW()" style="width:100%;box-sizing:border-box;background:#0e1525;border:1px solid #2e4070;border-radius:8px;color:#fff;padding:10px 14px;font-size:15px;text-align:center;letter-spacing:4px;margin-bottom:14px;">'
-    + '<button onclick="checkPW()" style="width:100%;padding:11px;background:#00f0ff;color:#000;border:none;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;">UNLOCK</button>'
+    + '<input id="pw-inp" type="password" placeholder="Password" style="width:100%;box-sizing:border-box;background:#0e1525;border:1px solid #2e4070;border-radius:8px;color:#fff;padding:10px 14px;font-size:15px;text-align:center;letter-spacing:4px;margin-bottom:14px;outline:none;">'
+    + '<button id="pw-btn" style="width:100%;padding:11px;background:#00f0ff;color:#000;border:none;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;">UNLOCK</button>'
     + '<div id="pw-err" style="color:#ff3d3d;font-size:12px;margin-top:10px;display:none;">Incorrect password. Please try again.</div>'
-    + '</div></div>';
+    + '</div></div>'
+    + '<div style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;position:relative;z-index:1;">VIEW ONLY — Malaysia Table Tennis Performance Tracker</div>';
 
-  const banner = '<div style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;">VIEW ONLY — Malaysia Table Tennis Performance Tracker</div>';
+  // 6. Inject the gate init as the very last script before <div id="pw-gate" style="position:fixed;inset:0;background:#0e1525;z-index:9999;display:flex;align-items:center;justify-content:center;"><div style="background:#162035;border:1px solid #2e4070;border-radius:16px;padding:40px 36px;text-align:center;max-width:360px;width:90%;"><div style="font-size:22px;letter-spacing:3px;color:#00f0ff;margin-bottom:6px;font-weight:700;">MYS TT TRACKER</div><div style="font-size:12px;color:#94afd4;margin-bottom:24px;line-height:1.6;">Malaysia Table Tennis Performance Tracker<br>Enter password to continue</div><input id="pw-inp" type="password" placeholder="Password" style="width:100%;box-sizing:border-box;background:#0e1525;border:1px solid #2e4070;border-radius:8px;color:#fff;padding:10px 14px;font-size:15px;text-align:center;letter-spacing:4px;margin-bottom:14px;outline:none;"><button id="pw-btn" style="width:100%;padding:11px;background:#00f0ff;color:#000;border:none;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;">UNLOCK</button><div id="pw-err" style="color:#ff3d3d;font-size:12px;margin-top:10px;display:none;">Incorrect password. Please try again.</div></div></div><div style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;position:relative;z-index:1;">VIEW ONLY — Malaysia Table Tennis Performance Tracker</div><script>
+(function(){
+  function hsh(s){var h=0;for(var i=0;i<s.length;i++){h=Math.imul(31,h)+s.charCodeAt(i)|0;}return(h>>>0).toString(36);}
+  function tryUnlock(){
+    var v=document.getElementById("pw-inp").value;
+    var stored=document.querySelector("meta[name=x-pw]").getAttribute("content");
+    if(hsh(v)===stored){
+      document.getElementById("pw-gate").style.display="none";
+      document.body.style.overflow="";
+    } else {
+      document.getElementById("pw-err").style.display="block";
+      document.getElementById("pw-inp").value="";
+      document.getElementById("pw-inp").focus();
+    }
+  }
+  document.addEventListener("DOMContentLoaded",function(){
+    document.body.style.overflow="hidden";
+    document.getElementById("pw-inp").focus();
+    document.getElementById("pw-btn").addEventListener("click",tryUnlock);
+    document.getElementById("pw-inp").addEventListener("keydown",function(e){if(e.key==="Enter")tryUnlock();});
+  });
+})();
+</script></body>
+  //    Using a raw string so it won't get mangled - reads hash from meta tag at runtime
+  const gateInit = [
+    '<scr' + 'ipt>',
+    '(function(){',
+    '  function hsh(s){var h=0;for(var i=0;i<s.length;i++){h=Math.imul(31,h)+s.charCodeAt(i)|0;}return(h>>>0).toString(36);}',
+    '  function tryUnlock(){',
+    '    var v=document.getElementById("pw-inp").value;',
+    '    var stored=document.querySelector("meta[name=x-pw]").getAttribute("content");',
+    '    if(hsh(v)===stored){',
+    '      document.getElementById("pw-gate").style.display="none";',
+    '      document.body.style.overflow="";',
+    '    } else {',
+    '      document.getElementById("pw-err").style.display="block";',
+    '      document.getElementById("pw-inp").value="";',
+    '      document.getElementById("pw-inp").focus();',
+    '    }',
+    '  }',
+    '  document.addEventListener("DOMContentLoaded",function(){',
+    '    document.body.style.overflow="hidden";',
+    '    document.getElementById("pw-inp").focus();',
+    '    document.getElementById("pw-btn").addEventListener("click",tryUnlock);',
+    '    document.getElementById("pw-inp").addEventListener("keydown",function(e){if(e.key==="Enter")tryUnlock();});',
+    '  });',
+    '})();',
+    '</' + 'script>'
+  ].join('\n');
 
-  out = out.replace('</body>', pwScript + pwGateHtml + banner + '</body>');
+  out = out.replace('</body>', gate + gateInit + '</body>');
 
-  // 6. Download
   const blob = new Blob([out], {type:'text/html'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
