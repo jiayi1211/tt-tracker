@@ -185,7 +185,7 @@
  </div>
  </div>
  <div class="tabs">
- <button class="tab active" onclick="showSection('entry')"> Enter Result</button>
+ <button class="tab active" onclick="showSection('entry')" style="display:none"> Enter Result</button>
  <button class="tab" onclick="showSection('results')"> All Results</button>
  <button class="tab" onclick="showSection('dashboard')"> Dashboard</button>
  <button class="tab" onclick="showSection('analytics')"> Analytics</button>
@@ -979,7 +979,7 @@ function renderRecentList() {
  ${setHtml}
  <div style="font-size:9px;color:var(--muted);margin-top:3px">${m.date?`${m.date} · `:''}<span>${m.ev}</span> · ${m.round}${m.year?` · ${m.year}`:''}</div>
  </div>
- <button class="btn btn-danger" onclick="deleteMatch(${m.id})"></button>
+ <button class="btn btn-danger" style="display:none" onclick="deleteMatch(${m.id})"></button>
  </div>`;
  }).join('');
 }
@@ -1009,7 +1009,7 @@ function renderResultsTable() {
  <td style="font-family:var(--font-m);color:var(--accent3)">${n(m.consec)?m.consec:'—'}</td>
  <td><span class="badge ${m.result==='W'?'badge-win':'badge-loss'}">${m.result==='W'?'WIN ':'LOSS '}</span></td>
  <td style="color:var(--muted);font-size:10px;max-width:110px">${m.notes||''}</td>
- <td style="white-space:nowrap"><button class="btn btn-edit" onclick="editMatch(${m.id})">Edit</button> <button class="btn btn-danger" onclick="deleteMatch(${m.id})"></button></td>
+ <td style="white-space:nowrap"><button class="btn btn-edit" style="display:none" onclick="editMatch(${m.id})">Edit</button> <button class="btn btn-danger" style="display:none" onclick="deleteMatch(${m.id})"></button></td>
  </tr>`;
  }).join('');
 }
@@ -1806,6 +1806,6 @@ renderAll();
   </div>
 </div>
 <div id="pw-gate" style="position:fixed;inset:0;background:#0e1525;z-index:9999;display:flex;align-items:center;justify-content:center;"><div style="background:#162035;border:1px solid #2e4070;border-radius:16px;padding:40px 36px;text-align:center;max-width:360px;width:90%;"><div style="font-size:22px;letter-spacing:3px;color:#00f0ff;margin-bottom:6px;font-weight:700;">MYS TT TRACKER</div><div style="font-size:12px;color:#94afd4;margin-bottom:24px;">Malaysia Table Tennis Performance Tracker<br>Enter password to continue</div><input id="pw-inp" type="password" placeholder="Password" style="width:100%;box-sizing:border-box;background:#0e1525;border:1px solid #2e4070;border-radius:8px;color:#fff;padding:10px 14px;font-size:15px;text-align:center;letter-spacing:4px;margin-bottom:14px;outline:none;"><button id="pw-btn" style="width:100%;padding:11px;background:#00f0ff;color:#000;border:none;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;">UNLOCK</button><div id="pw-err" style="color:#ff3d3d;font-size:12px;margin-top:10px;display:none;">Incorrect password. Please try again.</div></div></div><div id="view-banner" style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;display:none;">VIEW ONLY</div>
-<script src="data:text/javascript;base64,KGZ1bmN0aW9uKCl7dmFyIEs9Ik1USXpORFU9IjtmdW5jdGlvbiB1KCl7dmFyIHY9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWlucCIpLnZhbHVlO3ZhciBlPWJ0b2EodW5lc2NhcGUoZW5jb2RlVVJJQ29tcG9uZW50KHYpKSk7aWYoZT09PUspe2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1nYXRlIikuc3R5bGUuZGlzcGxheT0ibm9uZSI7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInZpZXctYmFubmVyIikuc3R5bGUuZGlzcGxheT0iIjtkb2N1bWVudC5ib2R5LnN0eWxlLm92ZXJmbG93PSIiO31lbHNle2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1lcnIiKS5zdHlsZS5kaXNwbGF5PSJibG9jayI7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWlucCIpLnZhbHVlPSIiO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1pbnAiKS5mb2N1cygpO319ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigiRE9NQ29udGVudExvYWRlZCIsZnVuY3Rpb24oKXtkb2N1bWVudC5ib2R5LnN0eWxlLm92ZXJmbG93PSJoaWRkZW4iO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1pbnAiKS5mb2N1cygpO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1idG4iKS5hZGRFdmVudExpc3RlbmVyKCJjbGljayIsdSk7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWlucCIpLmFkZEV2ZW50TGlzdGVuZXIoImtleWRvd24iLGZ1bmN0aW9uKGUpe2lmKGUua2V5PT09IkVudGVyIil1KCk7fSk7fSk7fSkoKTs="></script>
+<script src="data:text/javascript;base64,KGZ1bmN0aW9uKCl7dmFyIEs9ImFYTnVMVEF3TURBdGFYTnUiO2Z1bmN0aW9uIHUoKXt2YXIgdj1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgicHctaW5wIikudmFsdWU7dmFyIGU9YnRvYSh1bmVzY2FwZShlbmNvZGVVUklDb21wb25lbnQodikpKTtpZihlPT09Syl7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWdhdGUiKS5zdHlsZS5kaXNwbGF5PSJub25lIjtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgidmlldy1iYW5uZXIiKS5zdHlsZS5kaXNwbGF5PSIiO2RvY3VtZW50LmJvZHkuc3R5bGUub3ZlcmZsb3c9IiI7fWVsc2V7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWVyciIpLnN0eWxlLmRpc3BsYXk9ImJsb2NrIjtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgicHctaW5wIikudmFsdWU9IiI7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWlucCIpLmZvY3VzKCk7fX1kb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCJET01Db250ZW50TG9hZGVkIixmdW5jdGlvbigpe2RvY3VtZW50LmJvZHkuc3R5bGUub3ZlcmZsb3c9ImhpZGRlbiI7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWlucCIpLmZvY3VzKCk7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWJ0biIpLmFkZEV2ZW50TGlzdGVuZXIoImNsaWNrIix1KTtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgicHctaW5wIikuYWRkRXZlbnRMaXN0ZW5lcigia2V5ZG93biIsZnVuY3Rpb24oZSl7aWYoZS5rZXk9PT0iRW50ZXIiKXUoKTt9KTt9KTt9KSgpOw=="></script>
 </body>
 </html>
