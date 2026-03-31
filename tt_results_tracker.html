@@ -1995,8 +1995,8 @@ function exportForGitHub() {
   out = out.split(savedBlock).join(viewerJS);
 
   // 4. Fix active section — entry is hidden, results should be default
-  out = out.replace('id="section-entry" class="section active"', 'id="section-entry" class="section"');
-  out = out.replace('id="section-results" class="section">', 'id="section-results" class="section active">');
+  out = out.replace(' id="section-entry" class="section active">', ' id="section-entry" class="section">');
+  out = out.replace(' id="section-results" class="section">', ' id="section-results" class="section active">');
 
   // 5. Hide entry/export/edit/delete/sync buttons
   out = out.split('id="section-entry"').join('id="section-entry" style="display:none!important"');
