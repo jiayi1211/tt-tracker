@@ -1962,7 +1962,7 @@ function exportForGitHub() {
   const s1 = out.indexOf('const _SEED=');
   const s2 = out.indexOf('];\nconst GITHUB_USER = ');
   if (s1 === -1 || s2 === -1) { alert('Data block not found. s1=' + s1 + ' s2=' + s2); return; }
-  out = out.slice(0, s1) + 'const _SEED=[]' + out.slice(s2);
+  out = out.slice(0, s1) + 'const _SEED=[]' + out.slice(s2 + 1);
 
   // 2. Inject baked-in match data before </head>
   out = out.replace('</head>', '<' + 'script>window._SD=' + data + ';</' + 'script>\n</head>');
