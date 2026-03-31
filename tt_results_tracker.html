@@ -1953,53 +1953,51 @@ function exportForGitHub() {
   const encoded = btoa(unescape(encodeURIComponent(pw.trim())));
   const data = JSON.stringify(matches);
 
-  // Decode the clean template stored at build time
+  // Decode clean template
   let out;
-  try {
-    out = decodeURIComponent(escape(atob(window._TPL)));
-  } catch(e) {
-    alert('Export failed: ' + e); return;
-  }
+  try { out = decodeURIComponent(escape(atob(window._TPL))); }
+  catch(e) { alert('Export failed: ' + e); return; }
 
-  // 1. Bake current match data as _SEED_DATA so viewer shows instantly
+  // 1. Replace _SEED array content with current match data
   const s1 = out.indexOf('const _SEED=');
-  const s2 = out.indexOf('];\nconst GITHUB_USER');
-  if (s1 === -1 || s2 === -1) { alert('Could not locate data block.'); return; }
-  out = out.slice(0, s1) + 'const _SEED=[]' + out.slice(s2);
-  // Inject baked-in data as window._SEED_DATA for instant first load
-  out = out.replace('</head>', '<' + 'script>window._SEED_DATA=' + data + ';</' + 'script>\n</head>');
+  const s2 = out.indexOf('];\nconst GITHUB_USER = ');
+  if (s1 === -1 || s2 === -1) { alert('Data block not found. s1=' + s1 + ' s2=' + s2); return; }
+  // Replace from 'const _SEED=' up to and including the closing ]; 
+  out = out.slice(0, s1) + 'const _SEED=' + data + out.slice(s2);
 
-  out = out.split('const _saved = localStorage.getItem(STORAGE_KEY);\nlet matches = _saved ? JSON.parse(_saved) : _SEED;\nif (!_saved) localStorage.setItem(STORAGE_KEY, JSON.stringify(_SEED));')
-           .join([
+  // 2. Replace _saved block with viewer loading logic
+  const savedBlock = 'const _saved = localStorage.getItem(STORAGE_KEY);\nlet matches = _saved ? JSON.parse(_saved) : _SEED;\nif (!_saved) localStorage.setItem(STORAGE_KEY, JSON.stringify(_SEED));';
+  const viewerBlock = [
+    'const _VCK="tt_vc";',
     'let matches=[];',
-    'async function loadViewerData(){',
-    '  const el=document.getElementById("viewer-loading");',
-    '  if(el)el.style.display="flex";',
+    'let _gateOpen=false;',
+    'try{const c=localStorage.getItem(_VCK);matches=c?JSON.parse(c):_SEED;}catch(e){matches=_SEED;}',
+    'function _renderIfOpen(){if(_gateOpen&&typeof renderAll==="function")renderAll();}',
+    'async function _bgRefresh(){',
     '  try{',
-    '    const r=await fetch("https://raw.githubusercontent.com/jiayi1211/tt-tracker/main/data.json?t="+Date.now());',
-    '    if(r.ok){',
-    '      matches=await r.json();',
-    '      if(el)el.style.display="none";',
-    '      renderAll();',
-    '    } else {',
-    '      if(el){el.innerHTML="<div style=\"text-align:center\"><div style=\"font-size:32px\">⚠️</div><div style=\"color:var(--red);font-weight:700;margin-top:8px\">Could not load match data</div><div style=\"color:var(--muted);font-size:13px;margin-top:6px\">data.json not found on GitHub.<br>Please sync data from the main tracker first.</div></div>";}',
-    '    }',
-    '  }catch(e){',
-    '    if(el){el.innerHTML="<div style=\"text-align:center\"><div style=\"font-size:32px\">⚠️</div><div style=\"color:var(--red);font-weight:700;margin-top:8px\">Network error</div><div style=\"color:var(--muted);font-size:13px;margin-top:6px\">"+e.message+"</div></div>";}',
-    '  }',
+    '    const ct=new AbortController();',
+    '    setTimeout(()=>ct.abort(),8000);',
+    '    const r=await fetch("https://api.github.com/repos/jiayi1211/tt-tracker/contents/data.json",',
+    '      {signal:ct.signal,headers:{"Accept":"application/vnd.github.v3.raw"}});',
+    '    if(r.ok){const d=await r.json();localStorage.setItem(_VCK,JSON.stringify(d));',
+    '      if(JSON.stringify(d)!==JSON.stringify(matches)){matches=d;_renderIfOpen();}}',
+    '  }catch(e){}',
     '}',
-    'window.addEventListener("load",loadViewerData);'
-  ].join('\n'));
+    'window.addEventListener("load",_bgRefresh);'
+  ].join('\n');
 
-  // 2. Hide entry section, export button, edit/delete buttons, sync button
+  if (out.indexOf(savedBlock) === -1) { alert('Could not locate _saved block.'); return; }
+  out = out.split(savedBlock).join(viewerBlock);
+
+  // 3. Hide entry/export/edit/delete/sync
   out = out.split('id="section-entry"').join('id="section-entry" style="display:none!important"');
   out = out.split('onclick="exportForGitHub()"').join('onclick="" style="display:none"');
   out = out.split('btn-edit" onclick="editMatch(').join('btn-edit" style="display:none" onclick="editMatch(');
   out = out.split('btn-danger" onclick="deleteMatch(').join('btn-danger" style="display:none" onclick="deleteMatch(');
   out = out.split('onclick="setupGitHub()"').join('onclick="setupGitHub()" style="display:none"');
-  out = out.split('showSection(\'entry\')">').join('showSection(\'entry\')" style="display:none">');
+  out = out.split("showSection('entry')\">").join("showSection('entry')\" style=\"display:none\">");
 
-  // 3. Build gate HTML
+  // 4. Gate HTML
   const gateHtml = '<div id="pw-gate" style="position:fixed;inset:0;background:#0e1525;z-index:9999;display:flex;align-items:center;justify-content:center;">'
     + '<div style="background:#162035;border:1px solid #2e4070;border-radius:16px;padding:40px 36px;text-align:center;max-width:360px;width:90%;">'
     + '<div style="font-size:22px;letter-spacing:3px;color:#00f0ff;margin-bottom:6px;font-weight:700;">MYS TT TRACKER</div>'
@@ -2010,25 +2008,35 @@ function exportForGitHub() {
     + '</div></div>'
     + '<div id="view-banner" style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;display:none;">VIEW ONLY</div>';
 
-  // 4. Gate script as base64 data URI
-  const gateLogic = '(function(){var K="' + encoded + '";'
-    + 'function u(){var v=document.getElementById("pw-inp").value;'
-    + 'var e=btoa(unescape(encodeURIComponent(v)));'
-    + 'if(e===K){document.getElementById("pw-gate").style.display="none";document.getElementById("view-banner").style.display="";document.body.style.overflow="";}'
-    + 'else{document.getElementById("pw-err").style.display="block";document.getElementById("pw-inp").value="";document.getElementById("pw-inp").focus();}}'
+  // 5. Gate script — calls renderAll + sets _gateOpen on unlock
+  const gateLogic = '(function(){'
+    + 'var K="' + encoded + '";'
+    + 'function u(){'
+    +   'var v=document.getElementById("pw-inp").value;'
+    +   'var e=btoa(unescape(encodeURIComponent(v)));'
+    +   'if(e===K){'
+    +     'document.getElementById("pw-gate").style.display="none";'
+    +     'document.getElementById("view-banner").style.display="";'
+    +     'document.body.style.overflow="";'
+    +     'window._gateOpen=true;'
+    +     'if(typeof renderAll==="function")renderAll();'
+    +   '}else{'
+    +     'document.getElementById("pw-err").style.display="block";'
+    +     'document.getElementById("pw-inp").value="";'
+    +     'document.getElementById("pw-inp").focus();'
+    +   '}'
+    + '}'
     + 'document.addEventListener("DOMContentLoaded",function(){'
-    + 'document.body.style.overflow="hidden";document.getElementById("pw-inp").focus();'
-    + 'document.getElementById("pw-btn").addEventListener("click",u);'
-    + 'document.getElementById("pw-inp").addEventListener("keydown",function(e){if(e.key==="Enter")u();});});})();';
+    +   'document.body.style.overflow="hidden";'
+    +   'document.getElementById("pw-inp").focus();'
+    +   'document.getElementById("pw-btn").addEventListener("click",u);'
+    +   'document.getElementById("pw-inp").addEventListener("keydown",function(e){if(e.key==="Enter")u();});'
+    + '});'
+    + '})();';
 
-  const b64script = btoa(unescape(encodeURIComponent(gateLogic)));
-  const scriptTag = ['<scr','ipt src="data:text/javascript;base64,',b64script,'"><','/scr','ipt>'].join('');
-  const loadingOverlay = '<div id="viewer-loading" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:500;flex-direction:column;align-items:center;justify-content:center;gap:16px;">'
-    + '<div style="width:48px;height:48px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite"></div>'
-    + '<div style="color:var(--accent);font-size:14px;letter-spacing:2px;font-weight:700;">LOADING MATCH DATA...</div>'
-    + '<div style="color:var(--muted);font-size:12px;">Fetching from GitHub</div>'
-    + '</div>';
-  out = out.replace('</body>', loadingOverlay + '\n' + gateHtml + '\n' + scriptTag + '\n</body>');
+  const b64 = btoa(unescape(encodeURIComponent(gateLogic)));
+  const scriptTag = ['<scr','ipt src="data:text/javascript;base64,',b64,'"><','/scr','ipt>'].join('');
+  out = out.replace('</body>', gateHtml + '\n' + scriptTag + '\n</body>');
 
   const blob = new Blob([out], {type:'text/html'});
   const a = document.createElement('a');
