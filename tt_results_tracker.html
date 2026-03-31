@@ -1808,7 +1808,6 @@ function exportForGitHub() {
   if (pw !== pw2) { alert('Passwords do not match.'); return; }
 
   const encoded = btoa(unescape(encodeURIComponent(pw.trim())));
-  const data = JSON.stringify(matches);
 
   // Decode the clean template stored at build time
   let out;
@@ -1818,26 +1817,37 @@ function exportForGitHub() {
     alert('Export failed: ' + e); return;
   }
 
-  // 1. Bake in current match data
+  // 1. The viewer loads data live from GitHub (public repo, no PAT needed)
+  //    Replace _SEED with empty array and _saved block with GitHub fetch
   const s1 = out.indexOf('const _SEED=');
-  const s2 = out.indexOf(';\nconst _saved=');
+  const s2 = out.indexOf('];\nconst GITHUB_USER');
   if (s1 === -1 || s2 === -1) { alert('Could not locate data block.'); return; }
-  out = out.slice(0, s1) + 'const _SEED=' + data + out.slice(s2);
+  // Keep _SEED as empty fallback, replace loading block with GitHub fetch
+  out = out.slice(0, s1) + 'const _SEED=[]' + out.slice(s2);
 
-  // 2. Force load from _SEED
-  out = out.split('const _saved=localStorage.getItem(STORAGE_KEY);\nlet matches=_saved?JSON.parse(_saved):_SEED;\nif(!_saved)localStorage.setItem(STORAGE_KEY,JSON.stringify(_SEED));')
-           .join('const _saved=null;\nlet matches=JSON.parse(JSON.stringify(_SEED));');
+  out = out.split('const _saved = localStorage.getItem(STORAGE_KEY);\nlet matches = _saved ? JSON.parse(_saved) : _SEED;\nif (!_saved) localStorage.setItem(STORAGE_KEY, JSON.stringify(_SEED));')
+           .join([
+    'let matches=[];',
+    '// Load live from GitHub public repo',
+    'async function loadViewerData(){',
+    '  try{',
+    '    const r=await fetch("https://raw.githubusercontent.com/jiayi1211/tt-tracker/main/data.json?t="+Date.now());',
+    '    if(r.ok){matches=await r.json();renderAll();}',
+    '    else{console.warn("Could not load data.json");}',
+    '  }catch(e){console.warn("Load error",e);}',
+    '}',
+    'window.addEventListener("load",loadViewerData);'
+  ].join('\n'));
 
-  // 3. Hide entry section, export button, edit/delete buttons
+  // 2. Hide entry section, export button, edit/delete buttons, sync button
   out = out.split('id="section-entry"').join('id="section-entry" style="display:none!important"');
   out = out.split('onclick="exportForGitHub()"').join('onclick="" style="display:none"');
-  // Hide Edit and Delete buttons in results table
   out = out.split('btn-edit" onclick="editMatch(').join('btn-edit" style="display:none" onclick="editMatch(');
   out = out.split('btn-danger" onclick="deleteMatch(').join('btn-danger" style="display:none" onclick="deleteMatch(');
-  // Also hide the Enter Result tab button
-  out = out.split('onclick="showSection(\'entry\')"').join('onclick="showSection(\'entry\')" style="display:none"');
+  out = out.split('onclick="setupGitHub()"').join('onclick="setupGitHub()" style="display:none"');
+  out = out.split('showSection(\'entry\')">').join('showSection(\'entry\')" style="display:none">');
 
-  // 4. Gate HTML
+  // 3. Build gate HTML
   const gateHtml = '<div id="pw-gate" style="position:fixed;inset:0;background:#0e1525;z-index:9999;display:flex;align-items:center;justify-content:center;">'
     + '<div style="background:#162035;border:1px solid #2e4070;border-radius:16px;padding:40px 36px;text-align:center;max-width:360px;width:90%;">'
     + '<div style="font-size:22px;letter-spacing:3px;color:#00f0ff;margin-bottom:6px;font-weight:700;">MYS TT TRACKER</div>'
@@ -1848,7 +1858,7 @@ function exportForGitHub() {
     + '</div></div>'
     + '<div id="view-banner" style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;display:none;">VIEW ONLY</div>';
 
-  // 5. Gate script as base64 data URI
+  // 4. Gate script as base64 data URI
   const gateLogic = '(function(){var K="' + encoded + '";'
     + 'function u(){var v=document.getElementById("pw-inp").value;'
     + 'var e=btoa(unescape(encodeURIComponent(v)));'
