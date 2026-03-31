@@ -2015,7 +2015,7 @@ function exportForGitHub() {
     + '<button id="pw-btn" style="width:100%;padding:11px;background:#00f0ff;color:#000;border:none;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;">UNLOCK</button>'
     + '<div id="pw-err" style="color:#ff3d3d;font-size:12px;margin-top:10px;display:none;">Incorrect password. Please try again.</div>'
     + '</div></div>'
-    + '<div id="view-banner" style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;display:none;">VIEW ONLY — Malaysia Table Tennis Tracker</div>';
+    + ''; // view-banner removed
 
   // 7. Gate script — unlock calls showSection('results') then renderAll()
   const gateLogic = '(function(){'
@@ -2025,7 +2025,7 @@ function exportForGitHub() {
     +   'var e=btoa(unescape(encodeURIComponent(v)));'
     +   'if(e===K){'
     +     'document.getElementById("pw-gate").style.display="none";'
-    +     'document.getElementById("view-banner").style.display="";'
+    +     ''  // view-banner removed
     +     'document.body.style.overflow="";'
     +     'window._unlocked=true;'
     +     'if(typeof showSection==="function")showSection("results");'
