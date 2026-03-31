@@ -728,24 +728,48 @@ function showSyncStatus(msg, color) {
   setTimeout(() => { el.style.opacity = '0'; }, 3000);
 }
 
-let matches=[];
-async function loadViewerData(){
-  const el=document.getElementById("viewer-loading");
-  if(el)el.style.display="flex";
-  try{
-    const r=await fetch("https://raw.githubusercontent.com/jiayi1211/tt-tracker/main/data.json?t="+Date.now());
-    if(r.ok){
-      matches=await r.json();
-      if(el)el.style.display="none";
+const VIEWER_CACHE_KEY = 'tt_viewer_cache';
+let matches = [];
+
+// Show cached data immediately, then refresh in background
+const _cached = localStorage.getItem(VIEWER_CACHE_KEY);
+if (_cached) {
+  try {
+    matches = JSON.parse(_cached);
+    const el = document.getElementById('viewer-loading');
+    if (el) el.style.display = 'none';
+    renderAll();
+  } catch(e) {}
+}
+
+async function loadViewerData() {
+  const el = document.getElementById('viewer-loading');
+  // Only show spinner if no cached data
+  if (!matches.length && el) el.style.display = 'flex';
+  try {
+    const r = await fetch('https://raw.githubusercontent.com/jiayi1211/tt-tracker/main/data.json?t=' + Date.now());
+    if (r.ok) {
+      const fresh = await r.json();
+      localStorage.setItem(VIEWER_CACHE_KEY, JSON.stringify(fresh));
+      matches = fresh;
+      if (el) el.style.display = 'none';
       renderAll();
     } else {
-      if(el){el.innerHTML="<div style="text-align:center"><div style="font-size:32px">⚠️</div><div style="color:var(--red);font-weight:700;margin-top:8px">Could not load match data</div><div style="color:var(--muted);font-size:13px;margin-top:6px">data.json not found on GitHub.<br>Please sync data from the main tracker first.</div></div>";}
+      if (!matches.length && el) {
+        el.innerHTML = '<div style="text-align:center"><div style="font-size:32px">⚠️</div><div style="color:var(--red);font-weight:700;margin-top:8px">Could not load match data</div><div style="color:var(--muted);font-size:13px;margin-top:6px">data.json not found on GitHub.<br>Please sync data from the main tracker first.</div></div>';
+      } else if (el) {
+        el.style.display = 'none';
+      }
     }
-  }catch(e){
-    if(el){el.innerHTML="<div style="text-align:center"><div style="font-size:32px">⚠️</div><div style="color:var(--red);font-weight:700;margin-top:8px">Network error</div><div style="color:var(--muted);font-size:13px;margin-top:6px">"+e.message+"</div></div>";}
+  } catch(e) {
+    if (!matches.length && el) {
+      el.innerHTML = '<div style="text-align:center"><div style="font-size:32px">⚠️</div><div style="color:var(--red);font-weight:700;margin-top:8px">Network error</div><div style="color:var(--muted);font-size:13px;margin-top:6px">' + e.message + '</div></div>';
+    } else if (el) {
+      el.style.display = 'none';
+    }
   }
 }
-window.addEventListener("load",loadViewerData);
+window.addEventListener('load', loadViewerData);
 let pFilter = 'all', rFilter = 'all', resultsTypeFilter = 'all';
 let dashFilter = 'all', analyticsFilter = 'all';
 let dashTypeFilter = 'all', analyticsTypeFilter = 'all', h2hTypeFilter = 'all';
