@@ -1,5 +1,44 @@
 [
   {
+    "id": 1774940958182,
+    "date": "2025-09-04",
+    "year": "2025",
+    "ev": "WTT Contender Almaty",
+    "player": "Wong Qi Shen",
+    "partner": "",
+    "opponent": "Darko Jorgic",
+    "oppPartner": "",
+    "round": "Round of 32",
+    "type": "Singles",
+    "result": "L",
+    "score": "1–3",
+    "sets": [
+      {
+        "us": "11",
+        "them": "8"
+      },
+      {
+        "us": "1",
+        "them": "11"
+      },
+      {
+        "us": "6",
+        "them": "11"
+      },
+      {
+        "us": "8",
+        "them": "11"
+      }
+    ],
+    "oppInfo": "SVN",
+    "notes": "1-3",
+    "ptsWon": "26",
+    "ptsOwnSrv": "16",
+    "ptsOppSrv": "10",
+    "bigLead": "3",
+    "consec": "6"
+  },
+  {
     "id": 1774939779209,
     "date": "2025-09-03",
     "year": "2025",
@@ -11,7 +50,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3–1",
+    "score": "3â1",
     "sets": [
       {
         "us": "11",
@@ -50,7 +89,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3â2",
+    "score": "3Ã¢ÂÂ2",
     "sets": [
       {
         "us": "10",
@@ -93,7 +132,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "9",
@@ -132,7 +171,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "5",
@@ -167,7 +206,7 @@
     "round": "Final",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "11",
@@ -206,7 +245,7 @@
     "round": "Semifinal",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -241,7 +280,7 @@
     "round": "Quarterfinal",
     "type": "Women's Doubles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "7",
@@ -280,7 +319,7 @@
     "round": "Quarterfinal",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -315,7 +354,7 @@
     "round": "Round of 16",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -350,7 +389,7 @@
     "round": "Round of 16",
     "type": "Women's Doubles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "11",
@@ -393,7 +432,7 @@
     "round": "Quarterfinal",
     "type": "Singles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "6",
@@ -436,7 +475,7 @@
     "round": "Round of 16",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "11",
@@ -479,7 +518,7 @@
     "round": "Round of 32",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "11",
@@ -522,7 +561,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -557,7 +596,7 @@
     "round": "Round of 32",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "2",
@@ -592,7 +631,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "11",
@@ -631,7 +670,7 @@
     "round": "Quarterfinal",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "4",
@@ -670,7 +709,7 @@
     "round": "Round of 16",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "9",
@@ -712,7 +751,7 @@
     "round": "Round of 32",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "11",
@@ -757,7 +796,7 @@
     "round": "Round of 32",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "10",
@@ -792,7 +831,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -827,7 +866,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "10",
@@ -862,7 +901,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "9",
@@ -901,7 +940,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "20",
@@ -936,7 +975,7 @@
     "round": "Final",
     "type": "Mixed Doubles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "8",
@@ -971,7 +1010,7 @@
     "round": "Semifinal",
     "type": "Mixed Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "11",
@@ -1014,7 +1053,7 @@
     "round": "Quarterfinal",
     "type": "Mixed Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "8",
@@ -1053,7 +1092,7 @@
     "round": "Round of 16",
     "type": "Mixed Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "11",
@@ -1092,7 +1131,7 @@
     "round": "Quarterfinal",
     "type": "Mixed Doubles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "11",
@@ -1135,7 +1174,7 @@
     "round": "Round of 16",
     "type": "Mixed Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -1170,7 +1209,7 @@
     "round": "Round of 16",
     "type": "Men's Doubles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "10",
@@ -1213,7 +1252,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "8",
@@ -1258,7 +1297,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -1293,7 +1332,7 @@
     "round": "Round of 32",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "8",
@@ -1332,7 +1371,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "11",
@@ -1374,7 +1413,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "8",
@@ -1413,7 +1452,7 @@
     "round": "Round of 32",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "5",
@@ -1452,7 +1491,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -1487,7 +1526,7 @@
     "round": "Quarterfinal",
     "type": "Women's Doubles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "6",
@@ -1526,7 +1565,7 @@
     "round": "Round of 128",
     "type": "Singles",
     "result": "L",
-    "score": "2Ã¢ÂÂ4",
+    "score": "2ÃÂ¢ÃÂÃÂ4",
     "sets": [
       {
         "us": "11",
@@ -1573,7 +1612,7 @@
     "round": "Round of 32",
     "type": "Women's Doubles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "6",
@@ -1616,7 +1655,7 @@
     "round": "Round of 64",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -1651,7 +1690,7 @@
     "round": "Round of 128",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ4",
+    "score": "0ÃÂ¢ÃÂÃÂ4",
     "sets": [
       {
         "us": "3",
@@ -1690,7 +1729,7 @@
     "round": "Round of 64",
     "type": "Men's Doubles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "10",
@@ -1733,7 +1772,7 @@
     "round": "Round of 16",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "11",
@@ -1772,7 +1811,7 @@
     "round": "Round of 16",
     "type": "Women's Doubles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "11",
@@ -1815,7 +1854,7 @@
     "round": "Qualifying",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "13",
@@ -1850,7 +1889,7 @@
     "round": "Qualifying",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "11",
@@ -1893,7 +1932,7 @@
     "round": "Final",
     "type": "Women's Doubles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "12",
@@ -1936,7 +1975,7 @@
     "round": "Semifinal",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "13",
@@ -1971,7 +2010,7 @@
     "round": "Quarterfinal",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "11",
@@ -2010,7 +2049,7 @@
     "round": "Round of 16",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -2045,7 +2084,7 @@
     "round": "Qualifying",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -2080,7 +2119,7 @@
     "round": "Qualifying",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "11",
@@ -2119,7 +2158,7 @@
     "round": "Round of 32",
     "type": "Women's Doubles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "6",
@@ -2162,7 +2201,7 @@
     "round": "Round of 64",
     "type": "Women's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -2197,7 +2236,7 @@
     "round": "Round of 64",
     "type": "Men's Doubles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "10",
@@ -2240,7 +2279,7 @@
     "round": "Final",
     "type": "Men's Doubles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "8",
@@ -2279,7 +2318,7 @@
     "round": "Semifinal",
     "type": "Men's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "6",
@@ -2318,7 +2357,7 @@
     "round": "Quarterfinal",
     "type": "Men's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "12",
@@ -2357,7 +2396,7 @@
     "round": "Round of 16",
     "type": "Men's Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "11",
@@ -2400,7 +2439,7 @@
     "round": "Round of 16",
     "type": "Men's Doubles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "9",
@@ -2439,7 +2478,7 @@
     "round": "Round of 16",
     "type": "Men's Doubles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "2",
@@ -2474,7 +2513,7 @@
     "round": "Qualifying",
     "type": "Mixed Doubles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "9",
@@ -2513,7 +2552,7 @@
     "round": "Quarterfinal",
     "type": "Mixed Doubles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "8",
@@ -2556,7 +2595,7 @@
     "round": "Round of 16",
     "type": "Mixed Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "11",
@@ -2595,7 +2634,7 @@
     "round": "Qualifying",
     "type": "Mixed Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "11",
@@ -2638,7 +2677,7 @@
     "round": "Qualifying",
     "type": "Mixed Doubles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "11",
@@ -2677,7 +2716,7 @@
     "round": "Round of 64",
     "type": "Mixed Doubles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "7",
@@ -2716,7 +2755,7 @@
     "round": "Round of 16",
     "type": "Mixed Doubles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "3",
@@ -2759,7 +2798,7 @@
     "round": "Qualifying",
     "type": "Mixed Doubles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "11",
@@ -2798,7 +2837,7 @@
     "round": "Round of 16",
     "type": "Mixed Doubles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "6",
@@ -2837,7 +2876,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "11",
@@ -2876,7 +2915,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "6",
@@ -2911,7 +2950,7 @@
     "round": "Round of 16",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "5",
@@ -2946,7 +2985,7 @@
     "round": "Round of 32",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "6",
@@ -2989,7 +3028,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "11",
@@ -3028,7 +3067,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "12",
@@ -3071,7 +3110,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "3",
@@ -3114,7 +3153,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "12",
@@ -3149,7 +3188,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "7",
@@ -3192,7 +3231,7 @@
     "round": "Round of 16",
     "type": "Singles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "9",
@@ -3235,7 +3274,7 @@
     "round": "Round of 32",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -3270,7 +3309,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "8",
@@ -3313,7 +3352,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -3348,7 +3387,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -3383,7 +3422,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "11",
@@ -3426,7 +3465,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "7",
@@ -3465,7 +3504,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "12",
@@ -3504,7 +3543,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -3539,7 +3578,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "11",
@@ -3578,7 +3617,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "11",
@@ -3617,7 +3656,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "11",
@@ -3660,7 +3699,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "111",
@@ -3695,7 +3734,7 @@
     "round": "Round of 32",
     "type": "Singles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "14",
@@ -3738,7 +3777,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ2",
+    "score": "3ÃÂ¢ÃÂÃÂ2",
     "sets": [
       {
         "us": "11",
@@ -3781,7 +3820,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -3816,7 +3855,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "12",
@@ -3851,7 +3890,7 @@
     "round": "Round of 128",
     "type": "Singles",
     "result": "L",
-    "score": "2Ã¢ÂÂ4",
+    "score": "2ÃÂ¢ÃÂÃÂ4",
     "sets": [
       {
         "us": "11",
@@ -3898,7 +3937,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "8",
@@ -3933,7 +3972,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "11",
@@ -3972,7 +4011,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "111",
@@ -4007,7 +4046,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "2",
@@ -4042,7 +4081,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "4",
@@ -4081,7 +4120,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "12",
@@ -4120,7 +4159,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "11",
@@ -4163,7 +4202,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "3",
@@ -4202,7 +4241,7 @@
     "round": "Round of 128",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ4",
+    "score": "0ÃÂ¢ÃÂÃÂ4",
     "sets": [
       {
         "us": "3",
@@ -4241,7 +4280,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "3",
@@ -4280,7 +4319,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -4316,7 +4355,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -4352,7 +4391,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -4388,7 +4427,7 @@
     "round": "Round of 64",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "7",
@@ -4424,7 +4463,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ1",
+    "score": "3ÃÂ¢ÃÂÃÂ1",
     "sets": [
       {
         "us": "11",
@@ -4464,7 +4503,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3Ã¢ÂÂ0",
+    "score": "3ÃÂ¢ÃÂÃÂ0",
     "sets": [
       {
         "us": "11",
@@ -4500,7 +4539,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "2Ã¢ÂÂ3",
+    "score": "2ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "11",
@@ -4544,7 +4583,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "1Ã¢ÂÂ3",
+    "score": "1ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "11",
@@ -4584,7 +4623,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "10",
@@ -4620,7 +4659,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "0Ã¢ÂÂ3",
+    "score": "0ÃÂ¢ÃÂÃÂ3",
     "sets": [
       {
         "us": "9",
