@@ -1958,38 +1958,47 @@ function exportForGitHub() {
   try { out = decodeURIComponent(escape(atob(window._TPL))); }
   catch(e) { alert('Export failed: ' + e); return; }
 
-  // 1. Replace _SEED array content with current match data
+  // 1. Replace _SEED array with empty (data goes into _SEED_DATA instead)
   const s1 = out.indexOf('const _SEED=');
   const s2 = out.indexOf('];\nconst GITHUB_USER = ');
   if (s1 === -1 || s2 === -1) { alert('Data block not found. s1=' + s1 + ' s2=' + s2); return; }
-  // Replace from 'const _SEED=' up to and including the closing ]; 
-  out = out.slice(0, s1) + 'const _SEED=' + data + out.slice(s2);
+  out = out.slice(0, s1) + 'const _SEED=[]' + out.slice(s2);
 
-  // 2. Replace _saved block with viewer loading logic
+  // 2. Inject baked-in match data before </head>
+  out = out.replace('</head>', '<' + 'script>window._SD=' + data + ';</' + 'script>\n</head>');
+
+  // 3. Replace _saved block with viewer logic
   const savedBlock = 'const _saved = localStorage.getItem(STORAGE_KEY);\nlet matches = _saved ? JSON.parse(_saved) : _SEED;\nif (!_saved) localStorage.setItem(STORAGE_KEY, JSON.stringify(_SEED));';
-  const viewerBlock = [
+  if (out.indexOf(savedBlock) === -1) { alert('_saved block not found in template.'); return; }
+
+  const viewerJS = [
     'const _VCK="tt_vc";',
     'let matches=[];',
-    'let _gateOpen=false;',
-    'try{const c=localStorage.getItem(_VCK);matches=c?JSON.parse(c):_SEED;}catch(e){matches=_SEED;}',
-    'function _renderIfOpen(){if(_gateOpen&&typeof renderAll==="function")renderAll();}',
+    'let _unlocked=false;',
+    // Load from cache, fallback to baked-in data — instant display
+    'try{const c=localStorage.getItem(_VCK);matches=c?JSON.parse(c):(window._SD||[]);}catch(e){matches=window._SD||[];}',
+    // Background refresh from GitHub
     'async function _bgRefresh(){',
     '  try{',
-    '    const ct=new AbortController();',
-    '    setTimeout(()=>ct.abort(),8000);',
+    '    const ct=new AbortController();setTimeout(()=>ct.abort(),8000);',
     '    const r=await fetch("https://api.github.com/repos/jiayi1211/tt-tracker/contents/data.json",',
     '      {signal:ct.signal,headers:{"Accept":"application/vnd.github.v3.raw"}});',
-    '    if(r.ok){const d=await r.json();localStorage.setItem(_VCK,JSON.stringify(d));',
-    '      if(JSON.stringify(d)!==JSON.stringify(matches)){matches=d;_renderIfOpen();}}',
+    '    if(r.ok){',
+    '      const d=await r.json();localStorage.setItem(_VCK,JSON.stringify(d));',
+    '      if(JSON.stringify(d)!==JSON.stringify(matches)){matches=d;if(_unlocked)renderAll();}',
+    '    }',
     '  }catch(e){}',
     '}',
     'window.addEventListener("load",_bgRefresh);'
   ].join('\n');
 
-  if (out.indexOf(savedBlock) === -1) { alert('Could not locate _saved block.'); return; }
-  out = out.split(savedBlock).join(viewerBlock);
+  out = out.split(savedBlock).join(viewerJS);
 
-  // 3. Hide entry/export/edit/delete/sync
+  // 4. Fix active section — entry is hidden, results should be default
+  out = out.replace('id="section-entry" class="section active"', 'id="section-entry" class="section"');
+  out = out.replace('id="section-results" class="section">', 'id="section-results" class="section active">');
+
+  // 5. Hide entry/export/edit/delete/sync buttons
   out = out.split('id="section-entry"').join('id="section-entry" style="display:none!important"');
   out = out.split('onclick="exportForGitHub()"').join('onclick="" style="display:none"');
   out = out.split('btn-edit" onclick="editMatch(').join('btn-edit" style="display:none" onclick="editMatch(');
@@ -1997,7 +2006,7 @@ function exportForGitHub() {
   out = out.split('onclick="setupGitHub()"').join('onclick="setupGitHub()" style="display:none"');
   out = out.split("showSection('entry')\">").join("showSection('entry')\" style=\"display:none\">");
 
-  // 4. Gate HTML
+  // 6. Gate HTML
   const gateHtml = '<div id="pw-gate" style="position:fixed;inset:0;background:#0e1525;z-index:9999;display:flex;align-items:center;justify-content:center;">'
     + '<div style="background:#162035;border:1px solid #2e4070;border-radius:16px;padding:40px 36px;text-align:center;max-width:360px;width:90%;">'
     + '<div style="font-size:22px;letter-spacing:3px;color:#00f0ff;margin-bottom:6px;font-weight:700;">MYS TT TRACKER</div>'
@@ -2006,9 +2015,9 @@ function exportForGitHub() {
     + '<button id="pw-btn" style="width:100%;padding:11px;background:#00f0ff;color:#000;border:none;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;">UNLOCK</button>'
     + '<div id="pw-err" style="color:#ff3d3d;font-size:12px;margin-top:10px;display:none;">Incorrect password. Please try again.</div>'
     + '</div></div>'
-    + '<div id="view-banner" style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;display:none;">VIEW ONLY</div>';
+    + '<div id="view-banner" style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;display:none;">VIEW ONLY — Malaysia Table Tennis Tracker</div>';
 
-  // 5. Gate script — calls renderAll + sets _gateOpen on unlock
+  // 7. Gate script — unlock calls showSection('results') then renderAll()
   const gateLogic = '(function(){'
     + 'var K="' + encoded + '";'
     + 'function u(){'
@@ -2018,7 +2027,8 @@ function exportForGitHub() {
     +     'document.getElementById("pw-gate").style.display="none";'
     +     'document.getElementById("view-banner").style.display="";'
     +     'document.body.style.overflow="";'
-    +     'window._gateOpen=true;'
+    +     'window._unlocked=true;'
+    +     'if(typeof showSection==="function")showSection("results");'
     +     'if(typeof renderAll==="function")renderAll();'
     +   '}else{'
     +     'document.getElementById("pw-err").style.display="block";'
