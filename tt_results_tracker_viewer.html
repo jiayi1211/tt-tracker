@@ -197,7 +197,7 @@
 <main>
 
 <!-- ═══ ENTRY ═══ -->
-<div id="section-entry" style="display:none!important" class="section active">
+<div id="section-entry" style="display:none!important" class="section">
  <div class="stats-grid">
  <div class="stat-card blue"><div class="stat-num" id="s-total">0</div><div class="stat-label">Matches</div></div>
  <div class="stat-card green"><div class="stat-num" id="s-wins">0</div><div class="stat-label">Wins</div></div>
@@ -443,7 +443,7 @@
 </div>
 
 <!-- ═══ RESULTS ═══ -->
-<div id="section-results" class="section">
+<div id="section-results" class="section active">
  <div class="filter-row" id="player-chips">
  <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;white-space:nowrap">Player:</span>
  <div class="filter-chip active" data-pf="all" onclick="setPF('all')">All</div>
@@ -2062,6 +2062,6 @@ renderAll();
   </div>
 </div>
 <div id="pw-gate" style="position:fixed;inset:0;background:#0e1525;z-index:9999;display:flex;align-items:center;justify-content:center;"><div style="background:#162035;border:1px solid #2e4070;border-radius:16px;padding:40px 36px;text-align:center;max-width:360px;width:90%;"><div style="font-size:22px;letter-spacing:3px;color:#00f0ff;margin-bottom:6px;font-weight:700;">MYS TT TRACKER</div><div style="font-size:12px;color:#94afd4;margin-bottom:24px;">Malaysia Table Tennis Performance Tracker<br>Enter password to continue</div><input id="pw-inp" type="password" placeholder="Password" style="width:100%;box-sizing:border-box;background:#0e1525;border:1px solid #2e4070;border-radius:8px;color:#fff;padding:10px 14px;font-size:15px;text-align:center;letter-spacing:4px;margin-bottom:14px;outline:none;"><button id="pw-btn" style="width:100%;padding:11px;background:#00f0ff;color:#000;border:none;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;">UNLOCK</button><div id="pw-err" style="color:#ff3d3d;font-size:12px;margin-top:10px;display:none;">Incorrect password. Please try again.</div></div></div><div id="view-banner" style="background:#facc1522;border-bottom:2px solid #facc15;padding:8px 24px;font-size:12px;text-align:center;color:#facc15;font-weight:600;letter-spacing:1px;display:none;">VIEW ONLY</div>
-<script src="data:text/javascript;base64,KGZ1bmN0aW9uKCl7dmFyIEs9ImFYTnVMVEF3TURBdGFYTnUiO2Z1bmN0aW9uIHUoKXt2YXIgdj1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgicHctaW5wIikudmFsdWU7dmFyIGU9YnRvYSh1bmVzY2FwZShlbmNvZGVVUklDb21wb25lbnQodikpKTtpZihlPT09Syl7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWdhdGUiKS5zdHlsZS5kaXNwbGF5PSJub25lIjtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgidmlldy1iYW5uZXIiKS5zdHlsZS5kaXNwbGF5PSIiO2RvY3VtZW50LmJvZHkuc3R5bGUub3ZlcmZsb3c9IiI7d2luZG93Ll9nYXRlT3Blbj10cnVlO2lmKHR5cGVvZiByZW5kZXJBbGw9PT0iZnVuY3Rpb24iKXJlbmRlckFsbCgpO31lbHNle2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1lcnIiKS5zdHlsZS5kaXNwbGF5PSJibG9jayI7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWlucCIpLnZhbHVlPSIiO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1pbnAiKS5mb2N1cygpO319ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigiRE9NQ29udGVudExvYWRlZCIsZnVuY3Rpb24oKXtkb2N1bWVudC5ib2R5LnN0eWxlLm92ZXJmbG93PSJoaWRkZW4iO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1pbnAiKS5mb2N1cygpO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1idG4iKS5hZGRFdmVudExpc3RlbmVyKCJjbGljayIsdSk7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWlucCIpLmFkZEV2ZW50TGlzdGVuZXIoImtleWRvd24iLGZ1bmN0aW9uKGUpe2lmKGUua2V5PT09IkVudGVyIil1KCk7fSk7fSk7fSkoKTs="></script>
+<script src="data:text/javascript;base64,KGZ1bmN0aW9uKCl7dmFyIEs9ImFYTnVMVEF3TURBdGFYTnUiO2Z1bmN0aW9uIHUoKXt2YXIgdj1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgicHctaW5wIikudmFsdWU7dmFyIGU9YnRvYSh1bmVzY2FwZShlbmNvZGVVUklDb21wb25lbnQodikpKTtpZihlPT09Syl7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInB3LWdhdGUiKS5zdHlsZS5kaXNwbGF5PSJub25lIjtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgidmlldy1iYW5uZXIiKS5zdHlsZS5kaXNwbGF5PSIiO2RvY3VtZW50LmJvZHkuc3R5bGUub3ZlcmZsb3c9IiI7d2luZG93Ll9nYXRlT3Blbj10cnVlO2lmKHR5cGVvZiBzaG93U2VjdGlvbj09PSJmdW5jdGlvbiIpc2hvd1NlY3Rpb24oInJlc3VsdHMiKTtpZih0eXBlb2YgcmVuZGVyQWxsPT09ImZ1bmN0aW9uIilyZW5kZXJBbGwoKTt9ZWxzZXtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgicHctZXJyIikuc3R5bGUuZGlzcGxheT0iYmxvY2siO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1pbnAiKS52YWx1ZT0iIjtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgicHctaW5wIikuZm9jdXMoKTt9fWRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoIkRPTUNvbnRlbnRMb2FkZWQiLGZ1bmN0aW9uKCl7ZG9jdW1lbnQuYm9keS5zdHlsZS5vdmVyZmxvdz0iaGlkZGVuIjtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgicHctaW5wIikuZm9jdXMoKTtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgicHctYnRuIikuYWRkRXZlbnRMaXN0ZW5lcigiY2xpY2siLHUpO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJwdy1pbnAiKS5hZGRFdmVudExpc3RlbmVyKCJrZXlkb3duIixmdW5jdGlvbihlKXtpZihlLmtleT09PSJFbnRlciIpdSgpO30pO30pO30pKCk7"></script>
 </body>
 </html>
