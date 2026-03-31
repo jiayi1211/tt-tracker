@@ -620,6 +620,24 @@
  <div id="trend-section"></div>
  </div>
 
+ <!-- SET-BY-SET PERFORMANCE -->
+ <div class="analytics-section">
+ <div class="analytics-section-title"><span>Set-by-Set Performance — Where are wins and losses happening?</span></div>
+ <div id="setbyset-section"></div>
+ </div>
+
+ <!-- CLUTCH & RESILIENCE -->
+ <div class="analytics-section">
+ <div class="analytics-section-title"><span>Clutch & Resilience — Performance under pressure</span></div>
+ <div id="clutch-section"></div>
+ </div>
+
+ <!-- YEAR ON YEAR -->
+ <div class="analytics-section">
+ <div class="analytics-section-title"><span>Year-on-Year Progress — How have we improved?</span></div>
+ <div id="yoy-section"></div>
+ </div>
+
 </div>
 
 <!-- ═══ PLAYERS ═══ -->
@@ -1204,6 +1222,9 @@ function renderAnalytics() {
   renderPtsAnalytics(data, focusPlayer);
   renderLeadAnalytics(data, focusPlayer);
   renderSetTrendAnalytics(data);
+  renderSetBySetAnalytics(data, focusPlayer);
+  renderClutchAnalytics(data, focusPlayer);
+  renderYearOnYear(data, focusPlayer);
 }
 
 function renderPtsAnalytics(data, focusPlayer) {
@@ -1458,6 +1479,115 @@ function renderSetTrendAnalytics(data) {
 
 // ── Chart helpers ─────────────────────────────────────────────────────────────
 const CDEFS={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#d0deff',font:{family:'DM Sans',size:12}}}},scales:{x:{ticks:{color:'#a8bedf',font:{size:11}},grid:{color:'#1e3060'}},y:{ticks:{color:'#a8bedf',font:{size:11}},grid:{color:'#1e3060'}}}};
+function renderSetBySetAnalytics(data, focusPlayer) {
+  const container = document.getElementById('setbyset-section');
+  if (!container) return;
+  const withSets = data.filter(m => m.sets && m.sets.filter(s=>s&&n(s.us)&&n(s.them)).length >= 2);
+  if (!withSets.length) { container.innerHTML='<div class="empty-state"><p>Enter matches with set scores to see set-by-set breakdown.</p></div>'; return; }
+  function playerMatches(p) { return withSets.filter(m=>m.player===p||m.partner===p); }
+  const _focusList = focusPlayer ? [focusPlayer] : [...new Set(data.map(m=>m.player))].sort();
+  const setLabels = ['Set 1','Set 2','Set 3','Set 4','Set 5'];
+  const setData = setLabels.map((_,i) => {
+    const played = withSets.filter(m => m.sets && m.sets[i] && n(m.sets[i].us) && n(m.sets[i].them));
+    const won = played.filter(m => parseInt(m.sets[i].us) > parseInt(m.sets[i].them));
+    return played.length ? Math.round(won.length/played.length*100) : null;
+  });
+  const avgScoreData = setLabels.map((_,i) => {
+    const played = withSets.filter(m => m.sets && m.sets[i] && n(m.sets[i].us) && n(m.sets[i].them));
+    if (!played.length) return null;
+    return Math.round(played.reduce((s,m)=>s+parseInt(m.sets[i].us),0)/played.length*10)/10;
+  });
+  const playerSetRates = _focusList.map(p => ({
+    player: p,
+    rates: setLabels.map((_,i) => {
+      const played = playerMatches(p).filter(m => m.sets && m.sets[i] && n(m.sets[i].us) && n(m.sets[i].them));
+      const won = played.filter(m => parseInt(m.sets[i].us) > parseInt(m.sets[i].them));
+      return played.length ? Math.round(won.length/played.length*100) : null;
+    })
+  })).filter(p => p.rates.some(r=>r!==null));
+
+  container.innerHTML = `<div class="charts-grid">
+    <div class="chart-card"><div class="chart-title">Set Win Rate % by Set Number</div><div class="chart-sub">Are we stronger in early or later sets?</div><div class="chart-wrap"><canvas id="c-set-winrate"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Avg Points Scored per Set</div><div class="chart-sub">How long do sets tend to go?</div><div class="chart-wrap"><canvas id="c-set-avgscore"></canvas></div></div>
+    ${playerSetRates.length>1?'<div class="chart-card chart-wide"><div class="chart-title">Set Win Rate % by Player</div><div class="chart-sub">Which player is strongest in each set?</div><div class="chart-wrap"><canvas id="c-set-player"></canvas></div></div>':''}
+  </div>`;
+
+  const vLabels=setLabels.filter((_,i)=>setData[i]!==null), vData=setData.filter(d=>d!==null);
+  if(vData.length) mkBar('c-set-winrate',vLabels,[{label:'Set Win %',data:vData,backgroundColor:vData.map(v=>v>=50?'rgba(16,185,129,.8)':'rgba(239,68,68,.7)')}],false);
+  const vaLabels=setLabels.filter((_,i)=>avgScoreData[i]!==null), vaData=avgScoreData.filter(d=>d!==null);
+  if(vaData.length) mkBar('c-set-avgscore',vaLabels,[{label:'Avg Pts Scored',data:vaData,backgroundColor:'rgba(0,240,255,.7)'}],false);
+  if(playerSetRates.length>1) mkBar('c-set-player',setLabels,playerSetRates.map(p=>({label:p.player.split(' ').slice(-1)[0],data:p.rates.map(r=>r||0),backgroundColor:(PLAYER_COLORS[p.player]||'#94a3b8')+'cc'})),true);
+}
+
+function renderClutchAnalytics(data, focusPlayer) {
+  const container = document.getElementById('clutch-section');
+  if (!container) return;
+  const withSets = data.filter(m => m.sets && m.sets.filter(s=>s&&n(s.us)&&n(s.them)).length >= 2);
+  if (!withSets.length) { container.innerHTML='<div class="empty-state"><p>Enter matches with set scores to see clutch analysis.</p></div>'; return; }
+  function setWinner(m,i){if(!m.sets||!m.sets[i])return null;const u=parseInt(m.sets[i].us),t=parseInt(m.sets[i].them);if(isNaN(u)||isNaN(t))return null;return u>t?'us':(t>u?'them':null);}
+  function playerMatches(p){return withSets.filter(m=>m.player===p||m.partner===p);}
+  const _focusList = focusPlayer ? [focusPlayer] : [...new Set(data.map(m=>m.player))].sort();
+
+  const allSetResults=[];
+  withSets.forEach(m=>{m.sets.forEach(s=>{if(!s||!n(s.us)||!n(s.them))return;const u=parseInt(s.us),t=parseInt(s.them);allSetResults.push({won:u>t,close:Math.abs(u-t)<=2,deuce:u>=10&&t>=10});});});
+  const closeSets=allSetResults.filter(s=>s.close), closeWon=closeSets.filter(s=>s.won).length;
+  const deuceSets=allSetResults.filter(s=>s.deuce), deuceWon=deuceSets.filter(s=>s.won).length;
+  const normalSets=allSetResults.filter(s=>!s.close), normalWon=normalSets.filter(s=>s.won).length;
+  const down01=withSets.filter(m=>setWinner(m,0)==='them'), down01won=down01.filter(m=>m.result==='W').length;
+  const with3=withSets.filter(m=>m.sets&&m.sets.filter(s=>s&&n(s.us)&&n(s.them)).length>=3);
+  const down02=with3.filter(m=>setWinner(m,0)==='them'&&setWinner(m,1)==='them'), down02won=down02.filter(m=>m.result==='W').length;
+
+  const cards=[
+    [closeWon+'/'+(closeSets.length||'—'),'Close Set Win Rate','Sets decided by ≤2 pts',closeSets.length?Math.round(closeWon/closeSets.length*100)+'%':''],
+    [deuceWon+'/'+(deuceSets.length||'—'),'Deuce Win Rate','Sets reaching 10-10+',deuceSets.length?Math.round(deuceWon/deuceSets.length*100)+'%':''],
+    [down01won+'/'+(down01.length||'—'),'Comeback Down 0-1','Match win after losing S1',down01.length?Math.round(down01won/down01.length*100)+'%':''],
+    [down02won+'/'+(down02.length||'—'),'Comeback Down 0-2','Match win after losing S1 & S2',down02.length?Math.round(down02won/down02.length*100)+'%':''],
+  ];
+
+  container.innerHTML = `<div class="insight-row">${cards.map(([v,l,s,pct])=>`<div class="insight-card"><div class="insight-num" style="color:var(--accent)">${v}</div><div class="insight-label">${l}</div><div class="insight-sub">${s}</div>${pct?`<div style="font-size:18px;font-weight:700;color:var(--green);margin-top:4px">${pct}</div>`:''}</div>`).join('')}</div>
+  <div class="charts-grid">
+    <div class="chart-card"><div class="chart-title">Close vs Normal Set Win Rate</div><div class="chart-sub">Better in tight or comfortable sets?</div><div class="chart-wrap"><canvas id="c-close-sets"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Comeback Win Rate by Deficit</div><div class="chart-sub">Match win rate when behind in sets</div><div class="chart-wrap"><canvas id="c-comeback"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Deuce Win Rate by Player</div><div class="chart-sub">Who wins the most pressure points?</div><div class="chart-wrap"><canvas id="c-deuce-player"></canvas></div></div>
+  </div>`;
+
+  mkBar('c-close-sets',['Close Sets (≤2pts)','Normal Sets (>2pts)'],[{label:'Win %',data:[closeSets.length?Math.round(closeWon/closeSets.length*100):0,normalSets.length?Math.round(normalWon/normalSets.length*100):0],backgroundColor:['rgba(0,240,255,.8)','rgba(124,58,237,.8)']}],false);
+  mkBar('c-comeback',['Down 0-1','Down 0-2'],[{label:'Comeback Win %',data:[down01.length?Math.round(down01won/down01.length*100):0,down02.length?Math.round(down02won/down02.length*100):0],backgroundColor:['rgba(251,191,36,.8)','rgba(239,68,68,.8)']}],false);
+
+  const deuceByPlayer=_focusList.map(p=>{
+    const dSets=[];
+    playerMatches(p).forEach(m=>{m.sets&&m.sets.forEach(s=>{if(s&&n(s.us)&&n(s.them)){const u=parseInt(s.us),t=parseInt(s.them);if(u>=10&&t>=10)dSets.push({won:u>t});}});});
+    return{player:p,pct:dSets.length?Math.round(dSets.filter(s=>s.won).length/dSets.length*100):null};
+  }).filter(p=>p.pct!==null);
+  if(deuceByPlayer.length) mkBar('c-deuce-player',deuceByPlayer.map(p=>p.player.split(' ').slice(-1)[0]),[{label:'Deuce Win %',data:deuceByPlayer.map(p=>p.pct),backgroundColor:deuceByPlayer.map(p=>PLAYER_COLORS[p.player]||'#94a3b8')}],false);
+}
+
+function renderYearOnYear(data, focusPlayer) {
+  const container = document.getElementById('yoy-section');
+  if (!container) return;
+  const years=[...new Set(data.map(m=>m.year||m.date.substring(0,4)))].filter(Boolean).sort();
+  if(years.length<2){container.innerHTML='<div class="empty-state"><p>Need data from at least 2 years to show year-on-year progress.</p></div>';return;}
+  function playerMatches(p,yr){return data.filter(m=>(m.player===p||m.partner===p)&&(m.year||m.date.substring(0,4))===yr);}
+  const _focusList=focusPlayer?[focusPlayer]:[...new Set(data.map(m=>m.player))].sort();
+  const yrWinRate=years.map(yr=>{const ym=data.filter(m=>(m.year||m.date.substring(0,4))===yr);return ym.length?Math.round(ym.filter(m=>m.result==='W').length/ym.length*100):null;});
+  const yrAvgPts=years.map(yr=>{const ym=data.filter(m=>(m.year||m.date.substring(0,4))===yr&&n(m.ptsWon));return ym.length?Math.round(ym.reduce((s,m)=>s+num(m.ptsWon),0)/ym.length):null;});
+  const yrVolume=years.map(yr=>data.filter(m=>(m.year||m.date.substring(0,4))===yr).length);
+  const playerYrData=_focusList.map(p=>({player:p,rates:years.map(yr=>{const pm=playerMatches(p,yr);return pm.length?Math.round(pm.filter(m=>m.result==='W').length/pm.length*100):null;})})).filter(p=>p.rates.some(r=>r!==null));
+
+  container.innerHTML=`<div class="charts-grid">
+    <div class="chart-card chart-wide"><div class="chart-title">Team Win Rate % by Year</div><div class="chart-sub">Overall improvement trend</div><div class="chart-wrap"><canvas id="c-yoy-winrate"></canvas></div></div>
+    <div class="chart-card chart-wide"><div class="chart-title">Win Rate % per Player by Year</div><div class="chart-sub">Individual progression over years</div><div class="chart-wrap"><canvas id="c-yoy-player"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Avg Points Won per Match by Year</div><div class="chart-sub">Are matches getting more competitive?</div><div class="chart-wrap"><canvas id="c-yoy-pts"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Matches Played per Year</div><div class="chart-sub">Activity volume</div><div class="chart-wrap"><canvas id="c-yoy-volume"></canvas></div></div>
+  </div>`;
+
+  mkLine('c-yoy-winrate',years,[{label:'Win Rate %',data:yrWinRate.map(v=>v||0),borderColor:'var(--green)',backgroundColor:'rgba(16,185,129,.15)',tension:0.3}]);
+  if(playerYrData.length) mkLine('c-yoy-player',years,playerYrData.map(p=>({label:p.player.split(' ').slice(-1)[0],data:p.rates.map(v=>v||0),borderColor:PLAYER_COLORS[p.player]||'#94a3b8',backgroundColor:'transparent',tension:0.3})));
+  mkBar('c-yoy-pts',years,[{label:'Avg Pts/Match',data:yrAvgPts.map(v=>v||0),backgroundColor:'rgba(0,240,255,.7)'}],false);
+  mkBar('c-yoy-volume',years,[{label:'Matches',data:yrVolume,backgroundColor:'rgba(124,58,237,.7)'}],false);
+}
+
+
 function _setTitle(id,title){const c=document.getElementById(id);if(!c)return;const card=c.closest('.chart-card');if(card){const t=card.querySelector('.chart-title');if(t&&title)t.textContent=title;}}
 function _empty(id,msg){const c=document.getElementById(id);if(c)c.parentElement.innerHTML=`<div class="empty-state" style="padding:30px"><p>${msg||'No data.'}</p></div>`;}
 function _destroy(id){
