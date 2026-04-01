@@ -1,5 +1,75 @@
 [
   {
+    "id": 1775031522185,
+    "date": "2025-09-02",
+    "year": "2025",
+    "ev": "WTT Contender Almaty",
+    "player": "Alice Chang Li Sian",
+    "partner": "",
+    "opponent": "Karen Lyne",
+    "oppPartner": "",
+    "round": "Qualifying",
+    "type": "Singles",
+    "result": "L",
+    "score": "0–3",
+    "sets": [
+      {
+        "us": "11",
+        "them": "13"
+      },
+      {
+        "us": "6",
+        "them": "11"
+      },
+      {
+        "us": "7",
+        "them": "11"
+      }
+    ],
+    "oppInfo": "",
+    "notes": "[auto-mirrored]",
+    "ptsWon": "",
+    "ptsOwnSrv": "",
+    "ptsOppSrv": "",
+    "bigLead": "",
+    "consec": ""
+  },
+  {
+    "id": 1775031522184,
+    "date": "2025-09-02",
+    "year": "2025",
+    "ev": "WTT Contender Almaty",
+    "player": "Karen Lyne",
+    "partner": "",
+    "opponent": "Alice Chang Li Sian",
+    "oppPartner": "",
+    "round": "Qualifying",
+    "type": "Singles",
+    "result": "W",
+    "score": "3–0",
+    "sets": [
+      {
+        "us": "13",
+        "them": "11"
+      },
+      {
+        "us": "11",
+        "them": "6"
+      },
+      {
+        "us": "11",
+        "them": "7"
+      }
+    ],
+    "oppInfo": "MAS",
+    "notes": "3-0",
+    "ptsWon": "35",
+    "ptsOwnSrv": "22",
+    "ptsOppSrv": "13",
+    "bigLead": "5",
+    "consec": "3"
+  },
+  {
     "id": 1775030958454,
     "date": "2025-09-02",
     "year": "2025",
