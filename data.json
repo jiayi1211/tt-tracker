@@ -24,15 +24,19 @@
       {
         "us": "7",
         "them": "11"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
-    "oppInfo": "",
+    "oppInfo": "MAS",
     "notes": "[auto-mirrored]",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "24",
+    "ptsOwnSrv": "16",
+    "ptsOppSrv": "8",
+    "bigLead": "2",
+    "consec": "3"
   },
   {
     "id": 1775031522184,
