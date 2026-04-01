@@ -1,5 +1,40 @@
 [
   {
+    "id": 1775032082138,
+    "date": "2025-09-03",
+    "year": "2025",
+    "ev": "WTT Contender Almaty",
+    "player": "Karen Lyne",
+    "partner": "",
+    "opponent": "Kyoka Idesawa",
+    "oppPartner": "",
+    "round": "Qualifying",
+    "type": "Singles",
+    "result": "L",
+    "score": "0–3",
+    "sets": [
+      {
+        "us": "5",
+        "them": "11"
+      },
+      {
+        "us": "5",
+        "them": "11"
+      },
+      {
+        "us": "3",
+        "them": "11"
+      }
+    ],
+    "oppInfo": "JPN",
+    "notes": "0-3",
+    "ptsWon": "13",
+    "ptsOwnSrv": "7",
+    "ptsOppSrv": "6",
+    "bigLead": "0",
+    "consec": "3"
+  },
+  {
     "id": 1775031522185,
     "date": "2025-09-02",
     "year": "2025",
