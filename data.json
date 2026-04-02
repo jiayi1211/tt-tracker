@@ -1,5 +1,83 @@
 [
   {
+    "id": 1775114188599,
+    "date": "2025-09-03",
+    "year": "2025",
+    "ev": "WTT Contender Almaty",
+    "player": "Alice Chang Li Sian",
+    "partner": "Im Li Ying",
+    "opponent": "Karen Lyne",
+    "oppPartner": "Tee Ai Xin",
+    "round": "Qualifying",
+    "type": "Women's Doubles",
+    "result": "L",
+    "score": "1–3",
+    "sets": [
+      {
+        "us": "11",
+        "them": "8"
+      },
+      {
+        "us": "5",
+        "them": "11"
+      },
+      {
+        "us": "10",
+        "them": "12"
+      },
+      {
+        "us": "9",
+        "them": "11"
+      }
+    ],
+    "oppInfo": "",
+    "notes": "[auto-mirrored]",
+    "ptsWon": "",
+    "ptsOwnSrv": "",
+    "ptsOppSrv": "",
+    "bigLead": "",
+    "consec": ""
+  },
+  {
+    "id": 1775114188598,
+    "date": "2025-09-03",
+    "year": "2025",
+    "ev": "WTT Contender Almaty",
+    "player": "Karen Lyne",
+    "partner": "Tee Ai Xin",
+    "opponent": "Alice Chang Li Sian",
+    "oppPartner": "Im Li Ying",
+    "round": "Qualifying",
+    "type": "Women's Doubles",
+    "result": "W",
+    "score": "3–1",
+    "sets": [
+      {
+        "us": "8",
+        "them": "11"
+      },
+      {
+        "us": "11",
+        "them": "5"
+      },
+      {
+        "us": "12",
+        "them": "10"
+      },
+      {
+        "us": "11",
+        "them": "9"
+      }
+    ],
+    "oppInfo": "MAS",
+    "notes": "3-1",
+    "ptsWon": "42",
+    "ptsOwnSrv": "20",
+    "ptsOppSrv": "22",
+    "bigLead": "10",
+    "consec": "10"
+  },
+  {
     "id": 1775103184150,
     "date": "2025-09-05",
     "year": "2025",
@@ -11,7 +89,7 @@
     "round": "Quarterfinal",
     "type": "Men's Doubles",
     "result": "L",
-    "score": "1\u00133",
+    "score": "1–3",
     "sets": [
       {
         "us": "7",
@@ -50,7 +128,7 @@
     "round": "Round of 16",
     "type": "Men's Doubles",
     "result": "W",
-    "score": "3\u00130",
+    "score": "3–0",
     "sets": [
       {
         "us": "11",
@@ -85,7 +163,7 @@
     "round": "Round of 16",
     "type": "Men's Doubles",
     "result": "L",
-    "score": "0\u00133",
+    "score": "0–3",
     "sets": [
       {
         "us": "7",
@@ -120,7 +198,7 @@
     "round": "Qualifying",
     "type": "Men's Doubles",
     "result": "W",
-    "score": "3\u00132",
+    "score": "3–2",
     "sets": [
       {
         "us": "7",
@@ -163,7 +241,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "0\u00133",
+    "score": "0–3",
     "sets": [
       {
         "us": "8",
@@ -198,7 +276,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "0\u00133",
+    "score": "0–3",
     "sets": [
       {
         "us": "5",
@@ -233,7 +311,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "0\u00133",
+    "score": "0–3",
     "sets": [
       {
         "us": "11",
@@ -272,7 +350,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3\u00130",
+    "score": "3–0",
     "sets": [
       {
         "us": "13",
@@ -307,7 +385,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "L",
-    "score": "0\u00133",
+    "score": "0–3",
     "sets": [
       {
         "us": "4",
@@ -342,7 +420,7 @@
     "round": "Qualifying",
     "type": "Singles",
     "result": "W",
-    "score": "3\u00130",
+    "score": "3–0",
     "sets": [
       {
         "us": "11",
