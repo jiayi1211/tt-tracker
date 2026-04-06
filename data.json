@@ -1,5 +1,48 @@
 [
   {
+    "id": 1775465392197,
+    "date": "2025-11-08",
+    "year": "2025",
+    "ev": "WTT Feeder Vila Nova de Gaia",
+    "player": "Karen Lyne",
+    "partner": "Tee Ai Xin",
+    "opponent": "Ji Eunchae",
+    "oppPartner": "Heo Yerim",
+    "round": "Quarterfinal",
+    "type": "Women's Doubles",
+    "result": "W",
+    "score": "3–2",
+    "sets": [
+      {
+        "us": "9",
+        "them": "11"
+      },
+      {
+        "us": "12",
+        "them": "10"
+      },
+      {
+        "us": "3",
+        "them": "11"
+      },
+      {
+        "us": "15",
+        "them": "13"
+      },
+      {
+        "us": "11",
+        "them": "7"
+      }
+    ],
+    "oppInfo": "KOR",
+    "notes": "3-2",
+    "ptsWon": "50",
+    "ptsOwnSrv": "30",
+    "ptsOppSrv": "20",
+    "bigLead": "4",
+    "consec": "5"
+  },
+  {
     "id": 1775465293490,
     "date": "2025-11-07",
     "year": "2025",
