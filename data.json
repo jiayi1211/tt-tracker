@@ -145,15 +145,18 @@
       {
         "us": "11",
         "them": "4"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "SVN",
     "notes": "3-1",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "44",
+    "ptsOwnSrv": "23",
+    "ptsOppSrv": "21",
+    "bigLead": "7",
+    "consec": "8"
   },
   {
     "id": 1775461564556,
