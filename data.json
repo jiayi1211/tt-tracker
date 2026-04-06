@@ -1,5 +1,48 @@
 [
   {
+    "id": 1775465461168,
+    "date": "2025-11-08",
+    "year": "2025",
+    "ev": "WTT Feeder Vila Nova de Gaia",
+    "player": "Karen Lyne",
+    "partner": "Tee Ai Xin",
+    "opponent": "Kim Seongjin",
+    "oppPartner": "Yoo Yerin",
+    "round": "Semifinal",
+    "type": "Women's Doubles",
+    "result": "W",
+    "score": "3–2",
+    "sets": [
+      {
+        "us": "12",
+        "them": "10"
+      },
+      {
+        "us": "5",
+        "them": "11"
+      },
+      {
+        "us": "11",
+        "them": "7"
+      },
+      {
+        "us": "4",
+        "them": "11"
+      },
+      {
+        "us": "11",
+        "them": "7"
+      }
+    ],
+    "oppInfo": "KOR",
+    "notes": "3-2",
+    "ptsWon": "43",
+    "ptsOwnSrv": "22",
+    "ptsOppSrv": "21",
+    "bigLead": "5",
+    "consec": "5"
+  },
+  {
     "id": 1775465392197,
     "date": "2025-11-08",
     "year": "2025",
