@@ -1,7 +1,7 @@
 [
   {
     "id": 1775465293490,
-    "date": "2025-11-01",
+    "date": "2025-11-07",
     "year": "2025",
     "ev": "WTT Feeder Vila Nova de Gaia",
     "player": "Karen Lyne",
@@ -24,7 +24,11 @@
       {
         "us": "11",
         "them": "7"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "POL",
     "notes": "3-0",
