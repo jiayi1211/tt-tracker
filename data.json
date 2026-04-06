@@ -231,15 +231,17 @@
       {
         "us": "11",
         "them": "7"
-      }
+      },
+      null,
+      null
     ],
     "oppInfo": "ISR",
     "notes": "3-2",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "45",
+    "ptsOwnSrv": "24",
+    "ptsOppSrv": "21",
+    "bigLead": "7",
+    "consec": "7"
   },
   {
     "id": 1775461164561,
