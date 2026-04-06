@@ -1,5 +1,44 @@
 [
   {
+    "id": 1775465546012,
+    "date": "2025-11-09",
+    "year": "2025",
+    "ev": "WTT Feeder Vila Nova de Gaia",
+    "player": "Karen Lyne",
+    "partner": "Tee Ai Xin",
+    "opponent": "Mateja Jeger",
+    "oppPartner": "Lea Rakovac",
+    "round": "Final",
+    "type": "Women's Doubles",
+    "result": "L",
+    "score": "1–3",
+    "sets": [
+      {
+        "us": "8",
+        "them": "11"
+      },
+      {
+        "us": "9",
+        "them": "11"
+      },
+      {
+        "us": "11",
+        "them": "4"
+      },
+      {
+        "us": "12",
+        "them": "14"
+      }
+    ],
+    "oppInfo": "HRV",
+    "notes": "1-3",
+    "ptsWon": "40",
+    "ptsOwnSrv": "22",
+    "ptsOppSrv": "18",
+    "bigLead": "7",
+    "consec": "5"
+  },
+  {
     "id": 1775465461168,
     "date": "2025-11-08",
     "year": "2025",
