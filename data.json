@@ -8,7 +8,7 @@
     "partner": "Karen Lyne",
     "opponent": "Flavien Coton",
     "oppPartner": "Charlotte Lutz",
-    "round": "Round of 16",
+    "round": "Qualifying",
     "type": "Mixed Doubles",
     "result": "W",
     "score": "3–1",
@@ -28,7 +28,10 @@
       {
         "us": "11",
         "them": "8"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "FRA",
     "notes": "3-1",
