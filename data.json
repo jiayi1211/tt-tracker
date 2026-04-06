@@ -106,15 +106,19 @@
       {
         "us": "7",
         "them": "11"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "ESP",
     "notes": "0-3",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "22",
+    "ptsOwnSrv": "9",
+    "ptsOppSrv": "13",
+    "bigLead": "3",
+    "consec": "3"
   },
   {
     "id": 1775461643377,
