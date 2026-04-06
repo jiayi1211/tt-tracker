@@ -8,7 +8,7 @@
     "partner": "Tee Ai Xin",
     "opponent": "Seo Jungwon",
     "oppPartner": "Heo Yerim",
-    "round": "Quarterfinal",
+    "round": "Semifinal",
     "type": "Mixed Doubles",
     "result": "W",
     "score": "3–0",
@@ -24,7 +24,11 @@
       {
         "us": "11",
         "them": "8"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "KOR",
     "notes": "3-0",
