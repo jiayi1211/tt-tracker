@@ -188,15 +188,17 @@
       {
         "us": "11",
         "them": "8"
-      }
+      },
+      null,
+      null
     ],
     "oppInfo": "JPN",
     "notes": "3-2",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "45",
+    "ptsOwnSrv": "25",
+    "ptsOppSrv": "20",
+    "bigLead": "8",
+    "consec": "6"
   },
   {
     "id": 1775461526506,
