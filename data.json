@@ -1,5 +1,44 @@
 [
   {
+    "id": 1775549575446,
+    "date": "2025-12-14",
+    "year": "2025",
+    "ev": "SEA Games",
+    "player": "Alice Chang Li Sian",
+    "partner": "",
+    "opponent": "Jinnipa Sawetttabut",
+    "oppPartner": "",
+    "round": "Semifinal",
+    "type": "Singles",
+    "result": "W",
+    "score": "3–1",
+    "sets": [
+      {
+        "us": "7",
+        "them": "11"
+      },
+      {
+        "us": "11",
+        "them": "6"
+      },
+      {
+        "us": "12",
+        "them": "10"
+      },
+      {
+        "us": "11",
+        "them": "7"
+      }
+    ],
+    "oppInfo": "THA",
+    "notes": "3-1",
+    "ptsWon": "",
+    "ptsOwnSrv": "",
+    "ptsOppSrv": "",
+    "bigLead": "",
+    "consec": ""
+  },
+  {
     "id": 1775549513926,
     "date": "2025-12-14",
     "year": "2025",
