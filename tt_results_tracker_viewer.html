@@ -692,7 +692,10 @@ async function githubLoad() {
     const r = await fetch('https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + GITHUB_FILE, {
       headers: { 'Authorization': 'token ' + pat, 'Accept': 'application/vnd.github.v3+json' }
     });
-    if (!r.ok) return null;
+    if (!r.ok) {
+      if (r.status === 401) localStorage.removeItem(PAT_KEY);
+      return null;
+    }
     const j = await r.json();
     const decoded = JSON.parse(atob(j.content.replace(/\n/g,'')));
     return { data: decoded, sha: j.sha };
@@ -706,6 +709,10 @@ async function githubSave(data) {
     const r1 = await fetch('https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + GITHUB_FILE, {
       headers: { 'Authorization': 'token ' + pat, 'Accept': 'application/vnd.github.v3+json' }
     });
+    if (r1.status === 401) {
+      localStorage.removeItem(PAT_KEY);
+      return false;
+    }
     const sha = r1.ok ? (await r1.json()).sha : undefined;
     const jsonStr = JSON.stringify(data, null, 2);
     const bytes = new TextEncoder().encode(jsonStr);
@@ -718,6 +725,7 @@ async function githubSave(data) {
       headers: { 'Authorization': 'token ' + pat, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
+    if (r2.status === 401) localStorage.removeItem(PAT_KEY);
     return r2.ok;
   } catch(e) { return false; }
 }
@@ -2038,9 +2046,16 @@ function setupGitHub() {
 }
 
 async function loadFromGitHub() {
+  const hadPat = !!getGithubPAT();
   const result = await githubLoad();
   if (!result) {
-    showSyncStatus('Could not load from GitHub. Check PAT or data.json.', 'var(--red)');
+    const clearedBadToken = hadPat && !getGithubPAT();
+    showSyncStatus(
+      clearedBadToken
+        ? 'GitHub rejected the saved token (expired or revoked). It was cleared — use GitHub Sync to paste a new PAT.'
+        : 'Could not load from GitHub. Check PAT or data.json.',
+      'var(--red)'
+    );
     document.getElementById('sync-status').style.opacity = '1';
     return;
   }
