@@ -1,5 +1,48 @@
 [
   {
+    "id": 1775549448541,
+    "date": "2025-12-13",
+    "year": "2025",
+    "ev": "SEA Games",
+    "player": "Karen Lyne",
+    "partner": "",
+    "opponent": "Suthasini Sawettabut",
+    "oppPartner": "",
+    "round": "Semifinal",
+    "type": "Singles",
+    "result": "L",
+    "score": "2–3",
+    "sets": [
+      {
+        "us": "4",
+        "them": "11"
+      },
+      {
+        "us": "11",
+        "them": "8"
+      },
+      {
+        "us": "8",
+        "them": "11"
+      },
+      {
+        "us": "11",
+        "them": "9"
+      },
+      {
+        "us": "7",
+        "them": "11"
+      }
+    ],
+    "oppInfo": "THA",
+    "notes": "2-3",
+    "ptsWon": "",
+    "ptsOwnSrv": "",
+    "ptsOppSrv": "",
+    "bigLead": "",
+    "consec": ""
+  },
+  {
     "id": 1775547566886,
     "date": "2025-12-13",
     "year": "2025",
