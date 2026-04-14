@@ -70,15 +70,18 @@
       {
         "us": "11",
         "them": "5"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "MAS",
     "notes": "3-1",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "39",
+    "ptsOwnSrv": "17",
+    "ptsOppSrv": "22",
+    "bigLead": "6",
+    "consec": "5"
   },
   {
     "id": 1776152057913,
