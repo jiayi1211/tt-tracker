@@ -8,7 +8,7 @@
     "partner": "Im Li Ying",
     "opponent": "Miyuu Kihara",
     "oppPartner": "Miu Hirano",
-    "round": "Qualifying",
+    "round": "Round of 16",
     "type": "Women's Doubles",
     "result": "L",
     "score": "0–3",
@@ -24,7 +24,11 @@
       {
         "us": "6",
         "them": "11"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "JPN",
     "notes": "0-3",
