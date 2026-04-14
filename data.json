@@ -28,9 +28,12 @@
       {
         "us": "5",
         "them": "11"
-      }
+      },
+      null,
+      null,
+      null
     ],
-    "oppInfo": "",
+    "oppInfo": "MAS",
     "notes": "[auto-mirrored]",
     "ptsWon": "",
     "ptsOwnSrv": "",
