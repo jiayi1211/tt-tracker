@@ -28,15 +28,18 @@
       {
         "us": "11",
         "them": "9"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "HKG",
     "notes": "3-1",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "42",
+    "ptsOwnSrv": "19",
+    "ptsOppSrv": "23",
+    "bigLead": "4",
+    "consec": "5"
   },
   {
     "id": 1776225302052,
