@@ -67,15 +67,18 @@
       {
         "us": "12",
         "them": "10"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "MAS",
     "notes": "3-1",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "41",
+    "ptsOwnSrv": "17",
+    "ptsOppSrv": "24",
+    "bigLead": "5",
+    "consec": "4"
   },
   {
     "id": 1776158207037,
