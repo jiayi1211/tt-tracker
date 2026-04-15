@@ -325,7 +325,7 @@
     "partner": "Karen Lyne",
     "opponent": "Wong Qi Shen",
     "oppPartner": "Tee Ai Xin",
-    "round": "Qualifying",
+    "round": "Round of 16",
     "type": "Mixed Doubles",
     "result": "L",
     "score": "1\u00133",
@@ -345,7 +345,10 @@
       {
         "us": "5",
         "them": "11"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "MAS",
     "notes": "1-3",
