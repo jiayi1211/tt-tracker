@@ -1222,7 +1222,7 @@
     "ev": "SEA Games",
     "player": "Choong Javen",
     "partner": "Karen Lyne",
-    "opponent": "Anh Hoang Dinh",
+    "opponent": "Dinh Anh Hoang",
     "oppPartner": "Mai Ngoc Tran",
     "round": "Quarterfinal",
     "type": "Mixed Doubles",
@@ -1248,7 +1248,9 @@
       {
         "us": "11",
         "them": "9"
-      }
+      },
+      null,
+      null
     ],
     "oppInfo": "VIE",
     "notes": "3-2",
