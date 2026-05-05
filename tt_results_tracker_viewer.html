@@ -1009,6 +1009,8 @@ function getFiltered() {
    (resultsTypeFilter==='all'||m.type===resultsTypeFilter)
  );
  if (pFilter !== 'all') return f;
+ // Only dedup when group=all to prevent mixed-group partner record duplicates
+ if (activeGroup !== 'all') return f;
  const seen = new Set();
  return f.filter(m => {
    const key = (m.date||'')+'|'+[m.player,m.partner||''].sort().join('|')+'|'+(m.opponent||'')+'|'+(m.round||'');
@@ -1027,14 +1029,6 @@ function getDFiltered() {
  if (yearFilter!=='all') ms=ms.filter(m=>(m.year||m.date.substring(0,4))===yearFilter);
  if (dashFilter!=='all') ms=ms.filter(m=>m.player===dashFilter||m.partner===dashFilter);
  if (dashTypeFilter!=='all') ms=ms.filter(m=>m.type===dashTypeFilter);
- // Dedup mixed-group records when no specific player selected
- if (dashFilter==='all') {
-   const seen=new Set();
-   ms=ms.filter(m=>{
-     const k=(m.date||'')+'|'+[m.player,m.partner||''].sort().join('|')+'|'+(m.opponent||'')+'|'+(m.round||'');
-     if(seen.has(k))return false; seen.add(k); return true;
-   });
- }
  return ms;
 }
 function setAF(p) {
@@ -1062,13 +1056,6 @@ function getAFiltered() {
  if (yearFilter!=='all') ms=ms.filter(m=>(m.year||m.date.substring(0,4))===yearFilter);
  if (analyticsFilter!=='all') ms=ms.filter(m=>m.player===analyticsFilter||m.partner===analyticsFilter);
  if (analyticsTypeFilter!=='all') ms=ms.filter(m=>m.type===analyticsTypeFilter);
- if (analyticsFilter==='all') {
-   const seen=new Set();
-   ms=ms.filter(m=>{
-     const k=(m.date||'')+'|'+[m.player,m.partner||''].sort().join('|')+'|'+(m.opponent||'')+'|'+(m.round||'');
-     if(seen.has(k))return false; seen.add(k); return true;
-   });
- }
  return ms;
 }
 
@@ -1131,12 +1118,7 @@ function renderAll() {
 function renderStats() {
  let _ym = getGroupMatches();
  if (yearFilter!=='all') _ym=_ym.filter(m=>(m.year||m.date.substring(0,4))===yearFilter);
- // Dedup mixed-group records for overall stats
- const _seenSt=new Set();
- _ym=_ym.filter(m=>{
-   const k=(m.date||'')+'|'+[m.player,m.partner||''].sort().join('|')+'|'+(m.opponent||'')+'|'+(m.round||'');
-   if(_seenSt.has(k))return false; _seenSt.add(k); return true;
- });
+
  const wins=_ym.filter(m=>m.result==='W').length, total=_ym.length;
  const pct=total?Math.round(wins/total*100)+'%':'—';
  const players=[...new Set(_ym.map(m=>m.player))].length;
