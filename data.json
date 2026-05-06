@@ -169,7 +169,7 @@
     "opponent": "Xaysana Xaysavath",
     "oppPartner": "Phetsamay Kiyavong",
     "round": "Round of 32",
-    "type": "Men's Doubles",
+    "type": "Mixed Doubles",
     "result": "W",
     "score": "3\u00131",
     "sets": [
@@ -188,7 +188,10 @@
       {
         "us": "11",
         "them": "9"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "LAO",
     "notes": "3-1",
