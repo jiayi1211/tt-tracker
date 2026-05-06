@@ -9,7 +9,7 @@
     "opponent": "Ellsworth Le",
     "oppPartner": "Chloe Lai",
     "round": "Round of 32",
-    "type": "Men's Doubles",
+    "type": "Mixed Doubles",
     "result": "L",
     "score": "0–3",
     "sets": [
@@ -24,7 +24,11 @@
       {
         "us": "10",
         "them": "12"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "SGP",
     "notes": "0-3",
