@@ -129,7 +129,7 @@
     "opponent": "Luong Do Manh",
     "oppPartner": "Luong Bao Han",
     "round": "Round of 32",
-    "type": "Men's Doubles",
+    "type": "Mixed Doubles",
     "result": "W",
     "score": "3\u00131",
     "sets": [
@@ -148,7 +148,10 @@
       {
         "us": "11",
         "them": "5"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "VIE",
     "notes": "3-1",
