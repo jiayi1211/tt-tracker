@@ -8,7 +8,7 @@
     "partner": "Lai Yong Han",
     "opponent": "Ellsworth Le",
     "oppPartner": "Loy Xing Yao",
-    "round": "Round of 16",
+    "round": "Quarterfinal",
     "type": "Men's Doubles",
     "result": "W",
     "score": "3–1",
@@ -28,7 +28,10 @@
       {
         "us": "11",
         "them": "8"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "SGP",
     "notes": "3-1",
