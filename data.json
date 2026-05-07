@@ -8,7 +8,7 @@
     "partner": "Lai Yong Ren",
     "opponent": "Tak Nay Lin",
     "oppPartner": "Myint Mo Thant",
-    "round": "Quarterfinal",
+    "round": "Round of 16",
     "type": "Mixed Doubles",
     "result": "W",
     "score": "3–0",
@@ -24,7 +24,11 @@
       {
         "us": "11",
         "them": "4"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "MMR",
     "notes": "3-0",
