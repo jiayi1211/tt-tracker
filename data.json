@@ -9,7 +9,7 @@
     "opponent": "Phoommiphat Noita",
     "oppPartner": "Napop Daraneerut",
     "round": "Semifinal",
-    "type": "Women's Doubles",
+    "type": "Men's Doubles",
     "result": "W",
     "score": "3–0",
     "sets": [
@@ -24,7 +24,11 @@
       {
         "us": "11",
         "them": "9"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "THA",
     "notes": "3-0",
