@@ -1,5 +1,41 @@
 [
   {
+    "id": 1778560680799,
+    "date": "2026-05-04",
+    "year": "2026",
+    "ev": "ITTF World Team Table Tennis Championships",
+    "player": "Karen Lyne",
+    "partner": "",
+    "opponent": "Sabine Winter",
+    "oppPartner": "",
+    "round": "Team Match",
+    "type": "Singles",
+    "result": "L",
+    "score": "0–3",
+    "sets": [
+      {
+        "us": "2",
+        "them": "11"
+      },
+      {
+        "us": "6",
+        "them": "11"
+      },
+      {
+        "us": "7",
+        "them": "11"
+      }
+    ],
+    "oppInfo": "GER",
+    "notes": "0-3",
+    "group": "podium",
+    "ptsWon": "",
+    "ptsOwnSrv": "",
+    "ptsOppSrv": "",
+    "bigLead": "",
+    "consec": ""
+  },
+  {
     "id": 1778560301131,
     "date": "2026-04-29",
     "year": "2026",
