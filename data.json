@@ -1,5 +1,41 @@
 [
   {
+    "id": 1778662319762,
+    "date": "2026-04-29",
+    "year": "2026",
+    "ev": "ITTF World Team Table Tennis Championships",
+    "player": "Karen Lyne",
+    "partner": "",
+    "opponent": "Lily Zhang",
+    "oppPartner": "",
+    "round": "Team Match",
+    "type": "Singles",
+    "result": "L",
+    "score": "0–3",
+    "sets": [
+      {
+        "us": "6",
+        "them": "11"
+      },
+      {
+        "us": "13",
+        "them": "15"
+      },
+      {
+        "us": "6",
+        "them": "11"
+      }
+    ],
+    "oppInfo": "USA",
+    "notes": "0-3",
+    "group": "podium",
+    "ptsWon": "",
+    "ptsOwnSrv": "",
+    "ptsOppSrv": "",
+    "bigLead": "",
+    "consec": ""
+  },
+  {
     "id": 1778662285314,
     "date": "2026-04-29",
     "year": "2026",
