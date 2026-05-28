@@ -5,7 +5,7 @@
     "year": "2026",
     "ev": "WTT Youth Contender Bangkok",
     "player": "Muhd Faiz Danial Bin Mohd Hizir",
-    "partner": "Muhd Faiz Danial Bin Mohd Hizir",
+    "partner": "Dania Elisha Bt Mohd Airul Hafis",
     "opponent": "Daniel Lin",
     "oppPartner": "Lydia Tran",
     "round": "Round of 32",
@@ -32,7 +32,9 @@
       {
         "us": "11",
         "them": "7"
-      }
+      },
+      null,
+      null
     ],
     "oppInfo": "AUS",
     "notes": "3-2",
