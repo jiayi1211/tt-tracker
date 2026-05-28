@@ -28,16 +28,19 @@
       {
         "us": "2",
         "them": "11"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "CHN",
     "notes": "1-3",
     "group": "podium",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "26",
+    "ptsOwnSrv": "14",
+    "ptsOppSrv": "12",
+    "bigLead": "5",
+    "consec": "5"
   },
   {
     "id": 1779952336601,
