@@ -60,16 +60,20 @@
       {
         "us": "12",
         "them": "10"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "TPE",
     "notes": "3-0",
     "group": "podium",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "37",
+    "ptsOwnSrv": "18",
+    "ptsOppSrv": "19",
+    "bigLead": "6",
+    "consec": "6"
   },
   {
     "id": 1780454879252,
