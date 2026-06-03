@@ -24,16 +24,20 @@
       {
         "us": "9",
         "them": "11"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "HKG",
     "notes": "0-3",
     "group": "podium",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "16",
+    "ptsOwnSrv": "9",
+    "ptsOppSrv": "7",
+    "bigLead": "3",
+    "consec": "3"
   },
   {
     "id": 1780454924265,
