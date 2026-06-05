@@ -100,16 +100,19 @@
       {
         "us": "11",
         "them": "9"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "THA",
     "notes": "3-1",
     "group": "pelapis",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "41",
+    "ptsOwnSrv": "24",
+    "ptsOppSrv": "17",
+    "bigLead": "6",
+    "consec": "7"
   },
   {
     "id": 1780647641736,
