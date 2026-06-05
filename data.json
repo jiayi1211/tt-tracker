@@ -172,16 +172,20 @@
       {
         "us": "10",
         "them": "12"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "HKG",
     "notes": "0-3",
     "group": "pelapis",
-    "ptsWon": "",
-    "ptsOwnSrv": "",
-    "ptsOppSrv": "",
-    "bigLead": "",
-    "consec": ""
+    "ptsWon": "23",
+    "ptsOwnSrv": "14",
+    "ptsOppSrv": "9",
+    "bigLead": "2",
+    "consec": "3"
   },
   {
     "id": 1780459659848,
