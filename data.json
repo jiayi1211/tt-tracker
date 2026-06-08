@@ -10,7 +10,7 @@
     "oppPartner": "Du Hanjing",
     "round": "Semifinal",
     "type": "Women's Doubles",
-    "result": "W",
+    "result": "L",
     "score": "0–3",
     "sets": [
       {
@@ -24,7 +24,11 @@
       {
         "us": "1",
         "them": "11"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "CHN",
     "notes": "0-3",
