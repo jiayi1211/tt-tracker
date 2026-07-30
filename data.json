@@ -1,5 +1,41 @@
 [
   {
+    "id": 1785383770087,
+    "date": "2026-06-30",
+    "year": "2026",
+    "ev": "ITTF-ATTU South East Asian Youth Championships",
+    "player": "Lee Hong An",
+    "partner": "",
+    "opponent": "Ellsworth Le",
+    "oppPartner": "",
+    "round": "Team Match",
+    "type": "Singles",
+    "result": "L",
+    "score": "0–3",
+    "sets": [
+      {
+        "us": "9",
+        "them": "11"
+      },
+      {
+        "us": "6",
+        "them": "11"
+      },
+      {
+        "us": "8",
+        "them": "11"
+      }
+    ],
+    "oppInfo": "SGP",
+    "notes": "0-3",
+    "group": "pelapis",
+    "ptsWon": "23",
+    "ptsOwnSrv": "12",
+    "ptsOppSrv": "11",
+    "bigLead": "3",
+    "consec": "3"
+  },
+  {
     "id": 1785383703458,
     "date": "2026-06-30",
     "year": "2026",
