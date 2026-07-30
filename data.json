@@ -1,7 +1,7 @@
 [
   {
     "id": 1785387126550,
-    "date": "2026-07-01",
+    "date": "2026-07-02",
     "year": "2026",
     "ev": "ITTF-ATTU South East Asian Youth Championships",
     "player": "Tey Hong Yu",
@@ -28,7 +28,10 @@
       {
         "us": "5",
         "them": "11"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "TPE",
     "notes": "0-4",
