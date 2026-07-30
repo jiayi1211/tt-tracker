@@ -173,7 +173,7 @@
   },
   {
     "id": 1785386689742,
-    "date": "2026-07-01",
+    "date": "2026-07-02",
     "year": "2026",
     "ev": "ITTF-ATTU South East Asian Youth Championships",
     "player": "Lee Hong An",
@@ -200,7 +200,10 @@
       {
         "us": "11",
         "them": "9"
-      }
+      },
+      null,
+      null,
+      null
     ],
     "oppInfo": "THA",
     "notes": "4-0",
