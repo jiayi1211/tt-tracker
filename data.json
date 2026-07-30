@@ -6,7 +6,7 @@
     "ev": "ITTF-ATTU South East Asian Youth Championships",
     "player": "Choo Ke Ying",
     "partner": "",
-    "opponent": "Nafiz Aishath",
+    "opponent": "Aishath Nafiz",
     "oppPartner": "",
     "round": "Team Match",
     "type": "Singles",
@@ -24,7 +24,11 @@
       {
         "us": "11",
         "them": "8"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "MDV",
     "notes": "3-0",
