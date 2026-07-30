@@ -457,7 +457,7 @@
   },
   {
     "id": 1785385870657,
-    "date": "2026-07-01",
+    "date": "2026-07-02",
     "year": "2026",
     "ev": "ITTF-ATTU South East Asian Youth Championships",
     "player": "Im Jin Zhen",
@@ -480,7 +480,11 @@
       {
         "us": "11",
         "them": "5"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
     "oppInfo": "SRI",
     "notes": "3-0",
