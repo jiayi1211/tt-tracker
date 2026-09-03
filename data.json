@@ -24,9 +24,13 @@
       {
         "us": "6",
         "them": "11"
-      }
+      },
+      null,
+      null,
+      null,
+      null
     ],
-    "oppInfo": "",
+    "oppInfo": "USA",
     "notes": "0-3",
     "group": "podium",
     "ptsWon": "16",
