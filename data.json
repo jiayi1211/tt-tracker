@@ -1,5 +1,41 @@
 [
   {
+    "id": 1788417881848,
+    "date": "2026-08-08",
+    "year": "2026",
+    "ev": "Europe Smash - Sweden",
+    "player": "Tee Ai Xin",
+    "partner": "",
+    "opponent": "Angelina Bebawy",
+    "oppPartner": "",
+    "round": "Qualifying",
+    "type": "Singles",
+    "result": "W",
+    "score": "3–0",
+    "sets": [
+      {
+        "us": "11",
+        "them": "6"
+      },
+      {
+        "us": "11",
+        "them": "4"
+      },
+      {
+        "us": "11",
+        "them": "9"
+      }
+    ],
+    "oppInfo": "SWE",
+    "notes": "3-0",
+    "group": "podium",
+    "ptsWon": "33",
+    "ptsOwnSrv": "17",
+    "ptsOppSrv": "16",
+    "bigLead": "7",
+    "consec": "5"
+  },
+  {
     "id": 1788417764326,
     "date": "2026-08-08",
     "year": "2026",
