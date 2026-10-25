@@ -60,7 +60,7 @@ def main():
     args = ap.parse_args()
 
     data = json.loads(mi.DATA_FILE.read_text(encoding="utf-8"))
-    roster = {m["player"] for m in data}
+    roster = mi.tracked_players(data)
     done = set() if args.full or not STATE_FILE.exists() else set(json.loads(STATE_FILE.read_text())["done"])
     today = date.today()
 
