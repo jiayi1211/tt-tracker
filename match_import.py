@@ -195,7 +195,18 @@ def ittf_expand(match, day, ev):
 
     Not filtered on Status: some finished ties stay "live" (2) for good, so each match is
     judged by its own games instead (see ittf_match).
+    Matches in formats the tracker doesn't record are skipped: Para team ties (no "Home") and
+    classes that aren't singles/doubles (e.g. the Parkinson's championship's "Alzheimer" class).
     """
+    if "Home" not in match:
+        return []
+    try:
+        return _ittf_expand(match, day, ev)
+    except (ValueError, KeyError):  # not singles/doubles (match_type), or a rubber without "Home"
+        return []
+
+
+def _ittf_expand(match, day, ev):
     if not match["IsTeam"]:
         subs = [ittf_match(match, day, ev, round_name(match["Desc"]), match_type(match["Desc"]))]
     else:
@@ -243,10 +254,25 @@ def same_person(a, b):
 def find_known(name, known):
     if ALIASES.get(name) in known:
         return ALIASES[name]
-    hits = [k for k in known if same_person(name, k)]
-    if len(hits) > 1:
+    hits = sorted(k for k in known if same_person(name, k))
+    # data.json can spell one person both ways round ("Chua Josh", "Josh Chua"): same person.
+    if len({frozenset(tokens(h)) for h in hits}) > 1:
         raise ValueError(f"'{name}' matches several names in data.json: {hits}")
     return hits[0] if hits else None
+
+
+def tracker_roster():
+    """{player: group} from the tracker's PLAYER_GROUP, so rostered players count as tracked
+    before their first match is in data.json."""
+    html = DATA_FILE.with_name("tt_results_tracker.html").read_text(encoding="utf-8")
+    block = re.search(r"const PLAYER_GROUP = \{(.*?)\};", html, re.S)
+    if not block:
+        raise ValueError("PLAYER_GROUP not found in tt_results_tracker.html")
+    return dict(re.findall(r"'([^']+)'\s*:\s*'([^']+)'", block.group(1)))
+
+
+def tracked_players(data):
+    return {m["player"] for m in data} | set(tracker_roster())
 
 
 def tracker_name(source_name, org, known):
@@ -293,9 +319,9 @@ def event_label(event_name):
 
 def build_records(match, data):
     """Tracker records for each side of `match` that has a tracked player (none -> [])."""
-    players_known = {m["player"] for m in data}
+    players_known = tracked_players(data)
     names_known = players_known | {m[k] for m in data for k in ("opponent", "partner", "oppPartner") if m[k]}
-    groups = {m["player"]: m["group"] for m in data if m.get("group")}
+    groups = {**{m["player"]: m["group"] for m in data if m.get("group")}, **tracker_roster()}
 
     records = []
     for i, side in enumerate(match["sides"]):
@@ -374,7 +400,7 @@ def assign_ids(new, data):
 
 def untracked(matches, data):
     """{(source name, org): matches} for players from a tracked player's country who matched nobody."""
-    known = {m["player"] for m in data}
+    known = tracked_players(data)
     orgs = {org for m in matches for side in m["sides"] for name, org in side["players"] if find_known(name, known)}
     counts = {}
     for m in matches:

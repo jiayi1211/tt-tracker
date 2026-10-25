@@ -12,8 +12,8 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from match_import import (assign_ids, build_records, event_label, ittf_expand,  # noqa: E402
-                          plan, wtt_match)
+from match_import import (assign_ids, build_records, event_label, find_known,  # noqa: E402
+                          ittf_expand, plan, wtt_match)
 
 FIX = Path(__file__).parent / "fixtures"
 EVENT = "China Smash 2026 Presented by Beijing Shijingshan Culture & Tourism Group"
@@ -142,6 +142,27 @@ class PlanTest(unittest.TestCase):
         new = self.rec(player="Lee Hong An", partner="Tey Hong Yu", opponent="A B", oppPartner="C D")
         old = self.rec(player="Tey Hong Yu", partner="Lee Hong An", opponent="C D", oppPartner="A B")
         self.assertEqual(plan([new], [old])[0][0], "have")
+
+
+class RosterTest(unittest.TestCase):
+    def test_rostered_player_without_matches_is_tracked(self):
+        # Richard Yap Rui Zhe is in the tracker's PLAYER_GROUP but had no record in data.json yet.
+        f = load("ittf_matches.json")["tie_with_stats"]
+        m = ittf_expand(f["match"], f["date"], "Some Event")[0]
+        m["sides"][0]["players"] = [("YAP Rui Zhe", "MAS")]
+        [r] = build_records(m, [row("Someone Else")])
+        self.assertEqual((r["player"], r["group"]), ("Richard Yap Rui Zhe", "pelapis"))
+
+    def test_same_person_spelled_both_ways(self):
+        self.assertEqual(find_known("CHUA Josh", {"Chua Josh", "Josh Chua"}), "Chua Josh")
+        with self.assertRaises(ValueError):
+            find_known("LEE Ann Mei", {"Lee Ann", "Lee Mei"})
+
+    def test_unsupported_ittf_formats_skipped(self):
+        self.assertEqual(ittf_expand({"Key": "x", "IsTeam": True, "Desc": "Para Teams"}, "2025-01-01", "E"), [])
+        odd = json.loads(json.dumps(load("ittf_matches.json")["walkover"]["match"]))
+        odd["Desc"] = "Alzheimer - Group 1 - Match 1"
+        self.assertEqual(ittf_expand(odd, "2025-01-01", "E"), [])
 
 
 class IdTest(unittest.TestCase):
