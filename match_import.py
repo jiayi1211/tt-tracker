@@ -91,17 +91,43 @@ def wtt_matches(url):
         sys.exit("WTT team matches aren't supported yet. Open the individual rubber's link instead.")
     event_name = wtt_get(f"{WTT_API}GetEventName/{event_id}")[0]["eventName"]
     try:
-        card = wtt_get(f"{WTT_API}GetMatchCardDetails/{event_id}/{quote(doc_code)}"
-                       "?no_cache=true&require_full_msg=true&require_play_by_play_full=false")
+        card = wtt_live_card(event_id, doc_code)
     except LookupError:
         # Many youth and older matches have no live card; the event archive still has the result.
-        rows = wtt_get(f"{WTT_ARCHIVE}{event_id}/officialresult/officialresult.json")
-        card = next((r["match_card"] for r in rows if r["documentCode"] == doc_code and r.get("match_card")), None)
+        card = next((c for c in wtt_archive(event_id) if c["documentCode"] == doc_code), None)
         if card is None:
             sys.exit(f"WTT has no result for {doc_code} at event {event_id}.")
     if card.get("resultStatus") != "OFFICIAL":
         sys.exit(f"Match isn't official yet (status: {card.get('resultStatus')}).")
     return [wtt_match(card, event_name)]
+
+
+def wtt_live_card(event_id, doc_code):
+    """Full match card, with Match Stats when WTT has them. LookupError when there is none."""
+    return wtt_get(f"{WTT_API}GetMatchCardDetails/{event_id}/{quote(doc_code)}"
+                   "?no_cache=true&require_full_msg=true&require_play_by_play_full=false")
+
+
+def wtt_archive(event_id):
+    """Every official match card of a finished event: scores, no stats."""
+    rows = wtt_get(f"{WTT_ARCHIVE}{event_id}/officialresult/officialresult.json")
+    return [r["match_card"] for r in rows if r.get("match_card") and r["match_card"].get("resultStatus") == "OFFICIAL"]
+
+
+def wtt_event_matches(event_id, event_name, roster):
+    """Source matches at a finished WTT event involving anyone in `roster` (team ties skipped)."""
+    out = []
+    for card in wtt_archive(event_id):
+        if "TEAM" in card["documentCode"] or not any(
+                find_known(p["playerName"], roster) for c in card["competitiors"] for p in c["players"]):
+            continue
+        time.sleep(0.2)  # be gentle with WTT's API
+        try:
+            live = wtt_live_card(event_id, card["documentCode"])
+        except LookupError:
+            live = None
+        out.append(wtt_match(live if live and live.get("resultStatus") == "OFFICIAL" else card, event_name))
+    return out
 
 
 def official_payload(card):
@@ -154,8 +180,11 @@ def ittf_matches(url):
     m = re.search(r"/html/(TT\w+)/", url)
     if not m:
         sys.exit("ITTF URL should look like https://results.ittf.com/ittf-web-results/html/TTE3472/results.html")
-    champ = m.group(1)
-    info = ittf_get(f"{champ}/champ.json")
+    return ittf_event_matches(m.group(1), ittf_get(f"{m.group(1)}/champ.json"))
+
+
+def ittf_event_matches(champ, info):
+    """Every source match at an ITTF event; `info` is its champ.json."""
     ev = event_label(info["champDesc"])
     return [s for d in info["dates"] for match in ittf_get(f"{champ}/match/d{d['raw']}.json")
             for s in ittf_expand(match, d["raw"], ev)]
@@ -216,7 +245,7 @@ def find_known(name, known):
         return ALIASES[name]
     hits = [k for k in known if same_person(name, k)]
     if len(hits) > 1:
-        sys.exit(f"'{name}' matches several names in data.json: {hits}")
+        raise ValueError(f"'{name}' matches several names in data.json: {hits}")
     return hits[0] if hits else None
 
 
@@ -241,7 +270,7 @@ def match_type(sub_event):
         return "Women's Doubles"
     if "men" in s or "boys" in s:
         return "Men's Doubles"
-    sys.exit(f"Unrecognised event type: {sub_event}")
+    raise ValueError(f"Unrecognised event type: {sub_event}")
 
 
 def round_name(description):
@@ -356,36 +385,24 @@ def untracked(matches, data):
     return counts
 
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("url", help="WTT PostMatchCenter URL or any ITTF results URL")
-    ap.add_argument("--write", action="store_true", help="apply the changes to data.json")
-    args = ap.parse_args()
-
-    data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
-    host = urlparse(args.url).netloc
-    if host.endswith("worldtabletennis.com"):
-        matches = wtt_matches(args.url)
-    elif host == "results.ittf.com":
-        matches = ittf_matches(args.url)
-    else:
-        sys.exit("Give a worldtabletennis.com PostMatchCenter URL or a results.ittf.com URL.")
-
+def actions_for(matches, data):
+    """plan() for a set of source matches, plus unfinished ones (reported, never written)."""
     records, unfinished = [], []
     for m in matches:
         (records if m["finished"] else unfinished).extend(build_records(m, data))
-    if not records and not unfinished:
-        sys.exit("No matches with a player already in data.json.")
-    # Reported, never written: a walkover, a retirement, or a match still being played.
     actions = plan(records, data) + [("not finished", r, None, {}) for r in unfinished]
-
     # Keep the event name data.json already uses for this event (e.g. records typed in by hand).
     used = {old["ev"] for _, _, old, _ in actions if old}
     if len(used) == 1:
-        for _, rec, old, _ in actions:
+        for _, rec, _, _ in actions:
             rec["ev"] = next(iter(used))
+    return actions
 
+
+def print_actions(actions, show_have=True):
     for action, rec, old, fill in sorted(actions, key=lambda a: (a[0], a[1]["date"], a[1]["player"])):
+        if action == "have" and not show_have:
+            continue
         who = rec["player"] + (f" / {rec['partner']}" if rec["partner"] else "")
         opp = rec["opponent"] + (f" / {rec['oppPartner']}" if rec["oppPartner"] else "")
         stats = "stats" if rec["ptsWon"] else "no stats"
@@ -395,22 +412,58 @@ def main():
         if fill:
             line += f"\n    fill {fill}"
         print(line)
+
+
+def count(actions):
     counts = {}
     for a, *_ in actions:
         counts[a] = counts.get(a, 0) + 1
-    print(f"\n{actions[0][1]['ev']}: " + ", ".join(f"{n} {a}" for a, n in sorted(counts.items())))
+    return counts
+
+
+def apply(actions, data):
+    """Fill stats in place and return data with the new records in front (newest first)."""
+    for _, _, old, fill in actions:
+        if old:
+            old.update(fill)
+    return assign_ids([rec for a, rec, _, _ in actions if a == "new"], data) + data
+
+
+def save(data):
+    # Same layout as the tracker's githubSave (JSON.stringify(data, null, 2)).
+    DATA_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("url", help="WTT PostMatchCenter URL or any ITTF results URL")
+    ap.add_argument("--write", action="store_true", help="apply the changes to data.json")
+    args = ap.parse_args()
+
+    data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
+    host = urlparse(args.url).netloc
+    if host.endswith("worldtabletennis.com"):
+        fetch = wtt_matches
+    elif host == "results.ittf.com":
+        fetch = ittf_matches
+    else:
+        sys.exit("Give a worldtabletennis.com PostMatchCenter URL or a results.ittf.com URL.")
+    try:
+        matches = fetch(args.url)
+        actions = actions_for(matches, data)
+    except ValueError as e:
+        sys.exit(str(e))
+    if not actions:
+        sys.exit("No matches with a player already in data.json.")
+    print_actions(actions)
+    print(f"\n{actions[0][1]['ev']}: " + ", ".join(f"{n} {a}" for a, n in sorted(count(actions).items())))
     for (name, org), n in sorted(untracked(matches, data).items()):
         print(f"Not recognised: {name} ({org}), {n} match(es). If this is a tracked player, add them to ALIASES.")
 
     if args.write:
-        for _, _, old, fill in actions:
-            if old:
-                old.update(fill)
-        new = assign_ids([rec for a, rec, _, _ in actions if a == "new"], data)
-        # Same layout as the tracker's githubSave (JSON.stringify(data, null, 2)), newest first.
-        DATA_FILE.write_text(json.dumps(new + data, indent=2, ensure_ascii=False), encoding="utf-8")
-        print(f"Wrote {DATA_FILE.name}: {len(new)} added, "
-              f"{sum(1 for a, *_ in actions if a == 'fill stats')} given stats.")
+        save(apply(actions, data))
+        c = count(actions)
+        print(f"Wrote {DATA_FILE.name}: {c.get('new', 0)} added, {c.get('fill stats', 0)} given stats.")
     else:
         print("Dry run: nothing written. Add --write to apply.")
 

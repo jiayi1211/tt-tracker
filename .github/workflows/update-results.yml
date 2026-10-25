@@ -1,0 +1,51 @@
+# Started by the tracker's "Update from WTT/ITTF" button (or Actions tab -> Run workflow).
+# Imports tracked players' results since Jan 2025 into data.json; see sync_results.py.
+name: Update results
+
+on:
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Re-scan every event since Jan 2025 (use after adding a player to the tracker)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-results  # one run at a time; a second click waits for the first
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120  # the first run reads every event since Jan 2025; later runs only new ones
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install brotli (reads WTT's archive)
+        run: pip install brotli==1.1.0
+
+      - name: Import from WTT and ITTF, commit
+        shell: bash  # explicit shell turns on pipefail, so a failing sync isn't hidden by `tee`
+        env:
+          FULL: ${{ inputs.full && '--full' || '' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          # The tracker can save data.json while this runs; if the push is rejected, start
+          # again from the new data.json so the tracker's change isn't overwritten.
+          for attempt in 1 2 3; do
+            python sync_results.py --write $FULL | tee -a "$GITHUB_STEP_SUMMARY"
+            git add data.json sync_state.json
+            if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+            git commit -q -m "Update results from WTT/ITTF"
+            if git push; then exit 0; fi
+            git fetch -q origin main && git reset -q --hard origin/main
+          done
+          echo "Could not push after 3 attempts." && exit 1
