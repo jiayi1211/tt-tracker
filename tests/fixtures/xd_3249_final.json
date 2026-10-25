@@ -1,0 +1,206 @@
+{
+ "eventId": "3249",
+ "documentCode": "TTEXDOUBLES-----------FNL-000100----------",
+ "subEventName": "Mixed Doubles",
+ "subEventDescription": "Mixed Doubles - Final - Match 1",
+ "competitiors": [
+  {
+   "competitorType": "H",
+   "competitiorId": "57776",
+   "competitiorName": "LIM Jonghoon/SHIN Yubin",
+   "competitiorOrg": "KOR",
+   "compCardY": "0",
+   "compCardYR1": "0",
+   "compCardYR2": "0",
+   "compTimeout": "1",
+   "compMedicalTimeout": "",
+   "players": [
+    {
+     "playerId": "117357",
+     "playerName": "LIM Jonghoon",
+     "playerGivenName": null,
+     "playerFamilyName": null,
+     "playerOrgCode": "KOR",
+     "playerPosition": 1
+    },
+    {
+     "playerId": "123977",
+     "playerName": "SHIN Yubin",
+     "playerGivenName": null,
+     "playerFamilyName": null,
+     "playerOrgCode": "KOR",
+     "playerPosition": 2
+    }
+   ],
+   "scores": "12,11,16,13,11",
+   "irm": null
+  },
+  {
+   "competitorType": "A",
+   "competitiorId": "37282",
+   "competitiorName": "LIN Yun-Ju/CHENG I-Ching",
+   "competitiorOrg": "TPE",
+   "compCardY": "0",
+   "compCardYR1": "0",
+   "compCardYR2": "0",
+   "compTimeout": "1",
+   "compMedicalTimeout": "",
+   "players": [
+    {
+     "playerId": "121582",
+     "playerName": "LIN Yun-Ju",
+     "playerGivenName": null,
+     "playerFamilyName": null,
+     "playerOrgCode": "TPE",
+     "playerPosition": 1
+    },
+    {
+     "playerId": "110797",
+     "playerName": "CHENG I-Ching",
+     "playerGivenName": null,
+     "playerFamilyName": null,
+     "playerOrgCode": "TPE",
+     "playerPosition": 2
+    }
+   ],
+   "scores": "14,9,18,11,8",
+   "irm": null
+  }
+ ],
+ "resultsGameScores": "12-14,11-9,16-18,13-11,11-8",
+ "resultStatus": "OFFICIAL",
+ "full_msg": {
+  "Results_all": [
+   {
+    "MessageType": "DT_RESULT_OFFICIAL",
+    "MessagePayLoad": {
+     "Competition": {
+      "ExtendedInfos": {
+       "UnitDateTime": {
+        "StartDateLocal": "2026-10-09T20:15:00",
+        "StartDateUTC": "2026-10-09T12:15:00",
+        "Duration": "00:58:12"
+       }
+      },
+      "Result": [
+       {
+        "Wlt": "W",
+        "Competitor": [
+         {
+          "Code": "57776",
+          "StatsItems": {
+           "StatsItem": [
+            {
+             "Code": "PTS_WON",
+             "Pos": "TOT",
+             "Value": "63"
+            },
+            {
+             "Code": "LEAD_MAX",
+             "Pos": "TOT",
+             "Value": "6"
+            },
+            {
+             "Code": "LEAD_MAX_AGNST",
+             "Pos": "TOT",
+             "Value": "7"
+            },
+            {
+             "Code": "PTS_SERVICE_WON",
+             "Pos": "TOT",
+             "Value": "32"
+            },
+            {
+             "Code": "PTS_OPP_SERVICE_WON",
+             "Pos": "TOT",
+             "Value": "31"
+            },
+            {
+             "Code": "PTS_SERVICE_LOST",
+             "Pos": "TOT",
+             "Value": "29"
+            },
+            {
+             "Code": "PTS_OPP_SERVICE_LOST",
+             "Pos": "TOT",
+             "Value": "31"
+            },
+            {
+             "Code": "PTS_CONSEC",
+             "Pos": "TOT",
+             "Value": "8"
+            },
+            {
+             "Code": "DEF_OVC_MAX",
+             "Pos": "TOT",
+             "Value": "7"
+            }
+           ]
+          }
+         }
+        ]
+       },
+       {
+        "Wlt": "L",
+        "Competitor": [
+         {
+          "Code": "37282",
+          "StatsItems": {
+           "StatsItem": [
+            {
+             "Code": "PTS_WON",
+             "Pos": "TOT",
+             "Value": "60"
+            },
+            {
+             "Code": "LEAD_MAX",
+             "Pos": "TOT",
+             "Value": "7"
+            },
+            {
+             "Code": "LEAD_MAX_AGNST",
+             "Pos": "TOT",
+             "Value": "6"
+            },
+            {
+             "Code": "PTS_SERVICE_WON",
+             "Pos": "TOT",
+             "Value": "31"
+            },
+            {
+             "Code": "PTS_OPP_SERVICE_WON",
+             "Pos": "TOT",
+             "Value": "29"
+            },
+            {
+             "Code": "PTS_SERVICE_LOST",
+             "Pos": "TOT",
+             "Value": "31"
+            },
+            {
+             "Code": "PTS_OPP_SERVICE_LOST",
+             "Pos": "TOT",
+             "Value": "32"
+            },
+            {
+             "Code": "PTS_CONSEC",
+             "Pos": "TOT",
+             "Value": "5"
+            },
+            {
+             "Code": "DEF_OVC_MAX",
+             "Pos": "TOT",
+             "Value": "6"
+            }
+           ]
+          }
+         }
+        ]
+       }
+      ]
+     }
+    }
+   }
+  ]
+ }
+}
