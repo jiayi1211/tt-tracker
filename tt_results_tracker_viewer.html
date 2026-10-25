@@ -677,7 +677,7 @@ async function githubLoad() {
       return null;
     }
     const j = await r.json();
-    const decoded = JSON.parse(atob(j.content.replace(/\n/g,'')));
+    const decoded = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(j.content.replace(/\n/g,'')), c => c.charCodeAt(0))));
     return { data: decoded, sha: j.sha };
   } catch(e) { return null; }
 }
@@ -785,18 +785,9 @@ function n(v) { return v!==undefined&&v!==null&&v!==''&&!isNaN(Number(v)); }
 function num(v) { return n(v)?Number(v):null; }
 function cleanScore(s) {
   if (!s) return s;
-  // Iteratively decode corrupted UTF-8 em dash (handles multiple levels of corruption)
-  let result = String(s);
-  let prev = null;
-  for (let i = 0; i < 8; i++) {
-    if (result === prev) break;
-    prev = result;
-    try {
-      const bytes = new Uint8Array(result.split('').map(c => c.charCodeAt(0)));
-      result = new TextDecoder('utf-8').decode(bytes);
-    } catch(e) { break; }
-  }
-  return result;
+  // Older versions of this function turned the en dash in "3–1" into the control
+  // character \x13 (it pushed U+2013 through a byte array). Put the dash back.
+  return String(s).replace(/\x13/g, '–');
 }
 
 function save() {
