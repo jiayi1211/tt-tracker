@@ -12,8 +12,8 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from match_import import (build_records, event_label, ittf_expand, plan,  # noqa: E402
-                          wtt_match)
+from match_import import (assign_ids, build_records, event_label, ittf_expand,  # noqa: E402
+                          plan, wtt_match)
 
 FIX = Path(__file__).parent / "fixtures"
 EVENT = "China Smash 2026 Presented by Beijing Shijingshan Culture & Tourism Group"
@@ -142,6 +142,15 @@ class PlanTest(unittest.TestCase):
         new = self.rec(player="Lee Hong An", partner="Tey Hong Yu", opponent="A B", oppPartner="C D")
         old = self.rec(player="Tey Hong Yu", partner="Lee Hong An", opponent="C D", oppPartner="A B")
         self.assertEqual(plan([new], [old])[0][0], "have")
+
+
+class IdTest(unittest.TestCase):
+    def test_ids_unique_and_above_existing(self):
+        data = [row("A B", id=99999999999999)]
+        new = assign_ids([row("C D", id=None) for _ in range(5)], data)
+        ids = [r["id"] for r in new]
+        self.assertEqual(len(set(ids)), 5)
+        self.assertGreater(min(ids), 99999999999999)
 
 
 class LabelTest(unittest.TestCase):

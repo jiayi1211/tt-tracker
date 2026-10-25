@@ -281,7 +281,7 @@ def build_records(match, data):
         sets = [{"us": str(g[i]), "them": str(g[1 - i])} for g in match["games"]]
         won = sum(int(s["us"]) > int(s["them"]) for s in sets)
         records.append({
-            "id": int(time.time() * 1000) + i,
+            "id": None,  # assigned when written (assign_ids)
             "date": match["date"], "year": match["date"][:4], "ev": match["ev"],
             "player": player, "partner": partner,
             "opponent": opp[0], "oppPartner": opp[1] if len(opp) > 1 else "",
@@ -333,6 +333,14 @@ def plan(records, data):
         fill = {f: rec[f] for f in STAT_FIELDS if rec[f] and not str(old.get(f, "")).strip()}
         out.append(("fill stats" if fill else "have", rec, old, fill))
     return out
+
+
+def assign_ids(new, data):
+    """Unique ids like the tracker's Date.now(), never colliding with existing ones."""
+    start = max([int(time.time() * 1000)] + [m["id"] + 1 for m in data])
+    for k, rec in enumerate(new):
+        rec["id"] = start + k
+    return new
 
 
 def untracked(matches, data):
@@ -398,7 +406,7 @@ def main():
         for _, _, old, fill in actions:
             if old:
                 old.update(fill)
-        new = [rec for a, rec, _, _ in actions if a == "new"]
+        new = assign_ids([rec for a, rec, _, _ in actions if a == "new"], data)
         # Same layout as the tracker's githubSave (JSON.stringify(data, null, 2)), newest first.
         DATA_FILE.write_text(json.dumps(new + data, indent=2, ensure_ascii=False), encoding="utf-8")
         print(f"Wrote {DATA_FILE.name}: {len(new)} added, "
