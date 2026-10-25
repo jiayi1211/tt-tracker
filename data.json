@@ -19318,53 +19318,6 @@
     "consec": "3"
   },
   {
-    "id": 1774578782325,
-    "date": "2025-05-17",
-    "year": "2025",
-    "ev": "ITTF World Championships",
-    "player": "Alice Chang Li Sian",
-    "partner": "",
-    "opponent": "Jieni Shao",
-    "oppPartner": "",
-    "round": "Round of 128",
-    "type": "Singles",
-    "result": "L",
-    "score": "2–4",
-    "sets": [
-      {
-        "us": "11",
-        "them": "8"
-      },
-      {
-        "us": "9",
-        "them": "11"
-      },
-      {
-        "us": "7",
-        "them": "11"
-      },
-      {
-        "us": "11",
-        "them": "9"
-      },
-      {
-        "us": "4",
-        "them": "11"
-      },
-      {
-        "us": "8",
-        "them": "11"
-      }
-    ],
-    "oppInfo": "PRT",
-    "notes": "2-4",
-    "ptsWon": "50",
-    "ptsOwnSrv": "23",
-    "ptsOppSrv": "27",
-    "bigLead": "3",
-    "consec": "5"
-  },
-  {
     "id": 1774578546737,
     "date": "2025-05-19",
     "year": "2025",
@@ -19406,80 +19359,6 @@
     "ptsOppSrv": "24",
     "bigLead": "5",
     "consec": "4"
-  },
-  {
-    "id": 1774578413619,
-    "date": "2025-05-18",
-    "year": "2025",
-    "ev": "ITTF World Championships",
-    "player": "Alice Chang Li Sian",
-    "partner": "Karen Lyne",
-    "opponent": "Fatimo Bello",
-    "oppPartner": "Hope Udoaka",
-    "round": "Round of 64",
-    "type": "Women's Doubles",
-    "result": "W",
-    "score": "3–0",
-    "sets": [
-      {
-        "us": "11",
-        "them": "5"
-      },
-      {
-        "us": "11",
-        "them": "6"
-      },
-      {
-        "us": "11",
-        "them": "7"
-      }
-    ],
-    "oppInfo": "NGA",
-    "notes": "3-0",
-    "ptsWon": "33",
-    "ptsOwnSrv": "15",
-    "ptsOppSrv": "18",
-    "bigLead": "6",
-    "consec": "8"
-  },
-  {
-    "id": 1774578238436,
-    "date": "2025-05-18",
-    "year": "2025",
-    "ev": "ITTF World Championships",
-    "player": "Wong Qi Shen",
-    "partner": "",
-    "opponent": "Panagiotis Gionis",
-    "oppPartner": "",
-    "round": "Round of 128",
-    "type": "Singles",
-    "result": "L",
-    "score": "0–4",
-    "sets": [
-      {
-        "us": "3",
-        "them": "11"
-      },
-      {
-        "us": "10",
-        "them": "12"
-      },
-      {
-        "us": "7",
-        "them": "11"
-      },
-      {
-        "us": "9",
-        "them": "11"
-      }
-    ],
-    "oppInfo": "GRC",
-    "notes": "0-4",
-    "ptsWon": "29",
-    "ptsOwnSrv": "18",
-    "ptsOppSrv": "11",
-    "bigLead": "1",
-    "consec": "3"
   },
   {
     "id": 1774577919209,
@@ -21466,7 +21345,7 @@
     "score": "3–0",
     "sets": [
       {
-        "us": "111",
+        "us": "11",
         "them": "3"
       },
       {
@@ -21778,7 +21657,7 @@
     "score": "3–0",
     "sets": [
       {
-        "us": "111",
+        "us": "11",
         "them": "8"
       },
       {
