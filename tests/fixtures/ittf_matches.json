@@ -1,0 +1,1846 @@
+{
+ "tie_with_stats": {
+  "date": "2025-10-11",
+  "match": {
+   "Key": "W.TEAM--------------.GP04.00010000",
+   "Desc": "Women's Teams - Group 4 - Match 1",
+   "Time": "Sat 11, 12:00",
+   "Loc": "T5",
+   "LocDesc": "Table 5",
+   "Venue": "Athletics Centre - Kalinga Stadium",
+   "RTime": "12:00",
+   "Status": 1,
+   "IsTeam": true,
+   "HasComps": true,
+   "Home": {
+    "Reg": "TWMASA2830",
+    "Org": "MAS",
+    "OrgDesc": "Malaysia",
+    "Desc": "Malaysia",
+    "Res": "3",
+    "Win": true,
+    "RkPo": 1,
+    "Splits": [
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     }
+    ]
+   },
+   "Away": {
+    "Reg": "TWNEPA2906",
+    "Org": "NEP",
+    "OrgDesc": "Nepal",
+    "Desc": "Nepal",
+    "Res": "0",
+    "Win": false,
+    "RkPo": 2,
+    "Splits": [
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     }
+    ]
+   },
+   "HasStats": false,
+   "SubMatches": [
+    {
+     "Home": {
+      "Reg": "132892",
+      "Org": "MAS",
+      "OrgDesc": "Malaysia",
+      "Desc": "LYNE Karen",
+      "Res": "3",
+      "Win": false,
+      "RkPo": 1,
+      "Stats": {
+       "ST_PWOS": "14",
+       "ST_PWOPS": "19",
+       "ST_PW": "33",
+       "ST_PLOS": "14",
+       "ST_PLOPS": "7",
+       "ST_MCPW": "4",
+       "ST_MCPL": "4",
+       "ST_GLL": "4",
+       "ST_GDO": "4",
+       "ST_BL": "5"
+      },
+      "Splits": [
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "6",
+         "ST_PWOPS": "5",
+         "ST_PW": "11",
+         "ST_PLOS": "3",
+         "ST_PLOPS": "4",
+         "ST_MCPW": "4",
+         "ST_MCPL": "3",
+         "ST_GLL": "4",
+         "ST_GDO": "4",
+         "ST_BL": "4"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "4",
+         "ST_PWOPS": "7",
+         "ST_PW": "11",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "1",
+         "ST_MCPW": "3",
+         "ST_MCPL": "2",
+         "ST_GLL": "1",
+         "ST_GDO": "1",
+         "ST_BL": "5"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "4",
+         "ST_PWOPS": "7",
+         "ST_PW": "11",
+         "ST_PLOS": "6",
+         "ST_PLOPS": "2",
+         "ST_MCPW": "4",
+         "ST_MCPL": "4",
+         "ST_GLL": "1",
+         "ST_GDO": "1",
+         "ST_BL": "3"
+        }
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TWMASA2830"
+     },
+     "Away": {
+      "Reg": "111260",
+      "Org": "NEP",
+      "OrgDesc": "Nepal",
+      "Desc": "SHRESTHA Nabita",
+      "Res": "0",
+      "Win": false,
+      "RkPo": 2,
+      "Stats": {
+       "ST_PWOS": "7",
+       "ST_PWOPS": "14",
+       "ST_PW": "21",
+       "ST_PLOS": "19",
+       "ST_PLOPS": "14",
+       "ST_MCPW": "4",
+       "ST_MCPL": "4",
+       "ST_GLL": "5",
+       "ST_GDO": "0",
+       "ST_BL": "4"
+      },
+      "Splits": [
+       {
+        "Win": false,
+        "Res": "7",
+        "Stats": {
+         "ST_PWOS": "4",
+         "ST_PWOPS": "3",
+         "ST_PW": "7",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "6",
+         "ST_MCPW": "3",
+         "ST_MCPL": "4",
+         "ST_GLL": "4",
+         "ST_GDO": "0",
+         "ST_BL": "4"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "6",
+        "Stats": {
+         "ST_PWOS": "1",
+         "ST_PWOPS": "5",
+         "ST_PW": "6",
+         "ST_PLOS": "7",
+         "ST_PLOPS": "4",
+         "ST_MCPW": "2",
+         "ST_MCPL": "3",
+         "ST_GLL": "5",
+         "ST_GDO": "0",
+         "ST_BL": "1"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "8",
+        "Stats": {
+         "ST_PWOS": "2",
+         "ST_PWOPS": "6",
+         "ST_PW": "8",
+         "ST_PLOS": "7",
+         "ST_PLOPS": "4",
+         "ST_MCPW": "4",
+         "ST_MCPL": "4",
+         "ST_GLL": "3",
+         "ST_GDO": "0",
+         "ST_BL": "1"
+        }
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TWNEPA2906"
+     },
+     "HasComps": true,
+     "HasStats": true,
+     "Duration": "16m57s",
+     "Periods": [
+      "6m22s",
+      "5m21s",
+      "5m12s",
+      "",
+      ""
+     ]
+    },
+    {
+     "Home": {
+      "Reg": "134085",
+      "Org": "MAS",
+      "OrgDesc": "Malaysia",
+      "Desc": "TEE Ai Xin",
+      "Res": "3",
+      "Win": false,
+      "RkPo": 1,
+      "Stats": {
+       "ST_PWOS": "17",
+       "ST_PWOPS": "16",
+       "ST_PW": "33",
+       "ST_PLOS": "8",
+       "ST_PLOPS": "7",
+       "ST_MCPW": "6",
+       "ST_MCPL": "3",
+       "ST_GLL": "3",
+       "ST_GDO": "3",
+       "ST_BL": "10"
+      },
+      "Splits": [
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "6",
+         "ST_PWOPS": "5",
+         "ST_PW": "11",
+         "ST_PLOS": "3",
+         "ST_PLOPS": "4",
+         "ST_MCPW": "2",
+         "ST_MCPL": "2",
+         "ST_GLL": "0",
+         "ST_GDO": "0",
+         "ST_BL": "4"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "5",
+         "ST_PWOPS": "6",
+         "ST_PW": "11",
+         "ST_PLOS": "4",
+         "ST_PLOPS": "3",
+         "ST_MCPW": "4",
+         "ST_MCPL": "3",
+         "ST_GLL": "3",
+         "ST_GDO": "3",
+         "ST_BL": "4"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "6",
+         "ST_PWOPS": "5",
+         "ST_PW": "11",
+         "ST_PLOS": "1",
+         "ST_PLOPS": "0",
+         "ST_MCPW": "6",
+         "ST_MCPL": "1",
+         "ST_GLL": "0",
+         "ST_GDO": "0",
+         "ST_BL": "10"
+        }
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TWMASA2830"
+     },
+     "Away": {
+      "Reg": "202991",
+      "Org": "NEP",
+      "OrgDesc": "Nepal",
+      "Desc": "RAI Bianca",
+      "Res": "0",
+      "Win": false,
+      "RkPo": 2,
+      "Stats": {
+       "ST_PWOS": "7",
+       "ST_PWOPS": "8",
+       "ST_PW": "15",
+       "ST_PLOS": "16",
+       "ST_PLOPS": "17",
+       "ST_MCPW": "3",
+       "ST_MCPL": "6",
+       "ST_GLL": "10",
+       "ST_GDO": "0",
+       "ST_BL": "3"
+      },
+      "Splits": [
+       {
+        "Win": false,
+        "Res": "7",
+        "Stats": {
+         "ST_PWOS": "4",
+         "ST_PWOPS": "3",
+         "ST_PW": "7",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "6",
+         "ST_MCPW": "2",
+         "ST_MCPL": "2",
+         "ST_GLL": "4",
+         "ST_GDO": "0",
+         "ST_BL": "0"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "7",
+        "Stats": {
+         "ST_PWOS": "3",
+         "ST_PWOPS": "4",
+         "ST_PW": "7",
+         "ST_PLOS": "6",
+         "ST_PLOPS": "5",
+         "ST_MCPW": "3",
+         "ST_MCPL": "4",
+         "ST_GLL": "4",
+         "ST_GDO": "0",
+         "ST_BL": "3"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "1",
+        "Stats": {
+         "ST_PWOS": "0",
+         "ST_PWOPS": "1",
+         "ST_PW": "1",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "6",
+         "ST_MCPW": "1",
+         "ST_MCPL": "6",
+         "ST_GLL": "10",
+         "ST_GDO": "0",
+         "ST_BL": "0"
+        }
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TWNEPA2906"
+     },
+     "HasComps": true,
+     "HasStats": true,
+     "Duration": "13m30s",
+     "Periods": [
+      "5m21s",
+      "5m0s",
+      "3m9s",
+      "",
+      ""
+     ]
+    },
+    {
+     "Home": {
+      "Reg": "132724",
+      "Org": "MAS",
+      "OrgDesc": "Malaysia",
+      "Desc": "CHANG Li Sian",
+      "Res": "3",
+      "Win": false,
+      "RkPo": 1,
+      "Stats": {
+       "ST_PWOS": "14",
+       "ST_PWOPS": "19",
+       "ST_PW": "33",
+       "ST_PLOS": "10",
+       "ST_PLOPS": "6",
+       "ST_MCPW": "8",
+       "ST_MCPL": "4",
+       "ST_GLL": "1",
+       "ST_GDO": "1",
+       "ST_BL": "9"
+      },
+      "Splits": [
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "6",
+         "ST_PWOPS": "5",
+         "ST_PW": "11",
+         "ST_PLOS": "3",
+         "ST_PLOPS": "4",
+         "ST_MCPW": "5",
+         "ST_MCPL": "4",
+         "ST_GLL": "1",
+         "ST_GDO": "1",
+         "ST_BL": "4"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "5",
+         "ST_PWOPS": "6",
+         "ST_PW": "11",
+         "ST_PLOS": "2",
+         "ST_PLOPS": "1",
+         "ST_MCPW": "8",
+         "ST_MCPL": "2",
+         "ST_GLL": "0",
+         "ST_GDO": "0",
+         "ST_BL": "9"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "3",
+         "ST_PWOPS": "8",
+         "ST_PW": "11",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "1",
+         "ST_MCPW": "5",
+         "ST_MCPL": "2",
+         "ST_GLL": "0",
+         "ST_GDO": "0",
+         "ST_BL": "5"
+        }
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TWMASA2830"
+     },
+     "Away": {
+      "Reg": "200578",
+      "Org": "NEP",
+      "OrgDesc": "Nepal",
+      "Desc": "THAPA Evana",
+      "Res": "0",
+      "Win": false,
+      "RkPo": 2,
+      "Stats": {
+       "ST_PWOS": "6",
+       "ST_PWOPS": "10",
+       "ST_PW": "16",
+       "ST_PLOS": "19",
+       "ST_PLOPS": "14",
+       "ST_MCPW": "4",
+       "ST_MCPL": "8",
+       "ST_GLL": "9",
+       "ST_GDO": "0",
+       "ST_BL": "1"
+      },
+      "Splits": [
+       {
+        "Win": false,
+        "Res": "7",
+        "Stats": {
+         "ST_PWOS": "4",
+         "ST_PWOPS": "3",
+         "ST_PW": "7",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "6",
+         "ST_MCPW": "4",
+         "ST_MCPL": "5",
+         "ST_GLL": "4",
+         "ST_GDO": "0",
+         "ST_BL": "1"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "3",
+        "Stats": {
+         "ST_PWOS": "1",
+         "ST_PWOPS": "2",
+         "ST_PW": "3",
+         "ST_PLOS": "6",
+         "ST_PLOPS": "5",
+         "ST_MCPW": "2",
+         "ST_MCPL": "8",
+         "ST_GLL": "9",
+         "ST_GDO": "0",
+         "ST_BL": "0"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "6",
+        "Stats": {
+         "ST_PWOS": "1",
+         "ST_PWOPS": "5",
+         "ST_PW": "6",
+         "ST_PLOS": "8",
+         "ST_PLOPS": "3",
+         "ST_MCPW": "2",
+         "ST_MCPL": "5",
+         "ST_GLL": "5",
+         "ST_GDO": "0",
+         "ST_BL": "0"
+        }
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TWNEPA2906"
+     },
+     "HasComps": true,
+     "HasStats": true,
+     "Duration": "16m50s",
+     "Periods": [
+      "6m44s",
+      "5m7s",
+      "4m58s",
+      "",
+      ""
+     ]
+    },
+    {
+     "Home": {
+      "Reg": "132892",
+      "Org": "MAS",
+      "OrgDesc": "Malaysia",
+      "Desc": "LYNE Karen",
+      "Res": "0",
+      "Win": false,
+      "RkPo": 0,
+      "Splits": [
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TWMASA2830"
+     },
+     "Away": {
+      "Reg": "202991",
+      "Org": "NEP",
+      "OrgDesc": "Nepal",
+      "Desc": "RAI Bianca",
+      "Res": "0",
+      "Win": false,
+      "RkPo": 0,
+      "Splits": [
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TWNEPA2906"
+     },
+     "HasComps": true,
+     "HasStats": false,
+     "Duration": "",
+     "Periods": [
+      "",
+      "",
+      "",
+      "",
+      ""
+     ]
+    },
+    {
+     "Home": {
+      "Reg": "134085",
+      "Org": "MAS",
+      "OrgDesc": "Malaysia",
+      "Desc": "TEE Ai Xin",
+      "Res": "0",
+      "Win": false,
+      "RkPo": 0,
+      "Splits": [
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TWMASA2830"
+     },
+     "Away": {
+      "Reg": "111260",
+      "Org": "NEP",
+      "OrgDesc": "Nepal",
+      "Desc": "SHRESTHA Nabita",
+      "Res": "0",
+      "Win": false,
+      "RkPo": 0,
+      "Splits": [
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TWNEPA2906"
+     },
+     "HasComps": true,
+     "HasStats": false,
+     "Duration": "",
+     "Periods": [
+      "",
+      "",
+      "",
+      "",
+      ""
+     ]
+    }
+   ]
+  }
+ },
+ "tie_stuck_live": {
+  "date": "2026-06-30",
+  "match": {
+   "Key": "M.TEAM-----------U19.78--.00010000",
+   "Desc": "U19 Boys' Teams - Pos. 7-8 - Match 1",
+   "Time": "Tue 30, 15:00",
+   "Loc": "T3",
+   "LocDesc": "Table 3",
+   "Venue": "Bangkokthonburi Hall",
+   "RTime": "15:00",
+   "Status": 2,
+   "IsTeam": true,
+   "HasComps": true,
+   "Home": {
+    "Reg": "TMMASA3246",
+    "Org": "MAS",
+    "OrgDesc": "Malaysia",
+    "Desc": "Malaysia",
+    "Res": "1",
+    "Win": false,
+    "RkPo": 2,
+    "Splits": [
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     }
+    ]
+   },
+   "Away": {
+    "Reg": "TMSGPA3250",
+    "Org": "SGP",
+    "OrgDesc": "Singapore",
+    "Desc": "Singapore",
+    "Res": "3",
+    "Win": true,
+    "RkPo": 1,
+    "Splits": [
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     }
+    ]
+   },
+   "HasStats": false,
+   "SubMatches": [
+    {
+     "Home": {
+      "Reg": "202974",
+      "Org": "MAS",
+      "OrgDesc": "Malaysia",
+      "Desc": "LEE Hong An",
+      "Res": "0",
+      "Win": false,
+      "RkPo": 2,
+      "Stats": {
+       "ST_PWOS": "12",
+       "ST_PWOPS": "11",
+       "ST_PW": "23",
+       "ST_PLOS": "15",
+       "ST_PLOPS": "18",
+       "ST_MCPW": "3",
+       "ST_MCPL": "4",
+       "ST_GLL": "5",
+       "ST_GDO": "0",
+       "ST_BL": "3"
+      },
+      "Splits": [
+       {
+        "Win": false,
+        "Res": "9",
+        "Stats": {
+         "ST_PWOS": "6",
+         "ST_PWOPS": "3",
+         "ST_PW": "9",
+         "ST_PLOS": "4",
+         "ST_PLOPS": "7",
+         "ST_MCPW": "3",
+         "ST_MCPL": "3",
+         "ST_GLL": "2",
+         "ST_GDO": "0",
+         "ST_BL": "3"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "6",
+        "Stats": {
+         "ST_PWOS": "2",
+         "ST_PWOPS": "4",
+         "ST_PW": "6",
+         "ST_PLOS": "6",
+         "ST_PLOPS": "5",
+         "ST_MCPW": "1",
+         "ST_MCPL": "4",
+         "ST_GLL": "5",
+         "ST_GDO": "0",
+         "ST_BL": "1"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "8",
+        "Stats": {
+         "ST_PWOS": "4",
+         "ST_PWOPS": "4",
+         "ST_PW": "8",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "6",
+         "ST_MCPW": "3",
+         "ST_MCPL": "4",
+         "ST_GLL": "3",
+         "ST_GDO": "0",
+         "ST_BL": "3"
+        }
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TMMASA3246"
+     },
+     "Away": {
+      "Reg": "144488",
+      "Org": "SGP",
+      "OrgDesc": "Singapore",
+      "Desc": "LE Ellsworth",
+      "Res": "3",
+      "Win": false,
+      "RkPo": 1,
+      "Stats": {
+       "ST_PWOS": "18",
+       "ST_PWOPS": "15",
+       "ST_PW": "33",
+       "ST_PLOS": "11",
+       "ST_PLOPS": "12",
+       "ST_MCPW": "4",
+       "ST_MCPL": "3",
+       "ST_GLL": "3",
+       "ST_GDO": "3",
+       "ST_BL": "5"
+      },
+      "Splits": [
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "7",
+         "ST_PWOPS": "4",
+         "ST_PW": "11",
+         "ST_PLOS": "3",
+         "ST_PLOPS": "6",
+         "ST_MCPW": "3",
+         "ST_MCPL": "3",
+         "ST_GLL": "3",
+         "ST_GDO": "3",
+         "ST_BL": "2"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "5",
+         "ST_PWOPS": "6",
+         "ST_PW": "11",
+         "ST_PLOS": "4",
+         "ST_PLOPS": "2",
+         "ST_MCPW": "4",
+         "ST_MCPL": "1",
+         "ST_GLL": "1",
+         "ST_GDO": "1",
+         "ST_BL": "5"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "6",
+         "ST_PWOPS": "5",
+         "ST_PW": "11",
+         "ST_PLOS": "4",
+         "ST_PLOPS": "4",
+         "ST_MCPW": "4",
+         "ST_MCPL": "3",
+         "ST_GLL": "3",
+         "ST_GDO": "3",
+         "ST_BL": "3"
+        }
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TMSGPA3250"
+     },
+     "HasComps": true,
+     "HasStats": true,
+     "Duration": "19m55s",
+     "Periods": [
+      "7m25s",
+      "5m46s",
+      "6m44s",
+      "",
+      ""
+     ]
+    },
+    {
+     "Home": {
+      "Reg": "144712",
+      "Org": "MAS",
+      "OrgDesc": "Malaysia",
+      "Desc": "IM Jin Zhen",
+      "Res": "2",
+      "Win": false,
+      "RkPo": 2,
+      "Stats": {
+       "ST_PWOS": "22",
+       "ST_PWOPS": "25",
+       "ST_PW": "47",
+       "ST_PLOS": "26",
+       "ST_PLOPS": "24",
+       "ST_MCPW": "4",
+       "ST_MCPL": "5",
+       "ST_GLL": "5",
+       "ST_GDO": "3",
+       "ST_BL": "4"
+      },
+      "Splits": [
+       {
+        "Win": true,
+        "Res": "12",
+        "Stats": {
+         "ST_PWOS": "5",
+         "ST_PWOPS": "7",
+         "ST_PW": "12",
+         "ST_PLOS": "6",
+         "ST_PLOPS": "4",
+         "ST_MCPW": "3",
+         "ST_MCPL": "4",
+         "ST_GLL": "3",
+         "ST_GDO": "3",
+         "ST_BL": "2"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "8",
+        "Stats": {
+         "ST_PWOS": "4",
+         "ST_PWOPS": "4",
+         "ST_PW": "8",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "6",
+         "ST_MCPW": "3",
+         "ST_MCPL": "5",
+         "ST_GLL": "3",
+         "ST_GDO": "0",
+         "ST_BL": "4"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "5",
+         "ST_PWOPS": "6",
+         "ST_PW": "11",
+         "ST_PLOS": "4",
+         "ST_PLOPS": "3",
+         "ST_MCPW": "3",
+         "ST_MCPL": "2",
+         "ST_GLL": "1",
+         "ST_GDO": "1",
+         "ST_BL": "4"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "7",
+        "Stats": {
+         "ST_PWOS": "5",
+         "ST_PWOPS": "2",
+         "ST_PW": "7",
+         "ST_PLOS": "4",
+         "ST_PLOPS": "7",
+         "ST_MCPW": "2",
+         "ST_MCPL": "3",
+         "ST_GLL": "4",
+         "ST_GDO": "0",
+         "ST_BL": "2"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "9",
+        "Stats": {
+         "ST_PWOS": "3",
+         "ST_PWOPS": "6",
+         "ST_PW": "9",
+         "ST_PLOS": "7",
+         "ST_PLOPS": "4",
+         "ST_MCPW": "4",
+         "ST_MCPL": "4",
+         "ST_GLL": "5",
+         "ST_GDO": "0",
+         "ST_BL": "0"
+        }
+       }
+      ],
+      "TeamReg": "TMMASA3246"
+     },
+     "Away": {
+      "Reg": "144490",
+      "Org": "SGP",
+      "OrgDesc": "Singapore",
+      "Desc": "TAN Nicholas",
+      "Res": "3",
+      "Win": false,
+      "RkPo": 1,
+      "Stats": {
+       "ST_PWOS": "24",
+       "ST_PWOPS": "26",
+       "ST_PW": "50",
+       "ST_PLOS": "25",
+       "ST_PLOPS": "22",
+       "ST_MCPW": "5",
+       "ST_MCPL": "4",
+       "ST_GLL": "4",
+       "ST_GDO": "4",
+       "ST_BL": "5"
+      },
+      "Splits": [
+       {
+        "Win": false,
+        "Res": "10",
+        "Stats": {
+         "ST_PWOS": "4",
+         "ST_PWOPS": "6",
+         "ST_PW": "10",
+         "ST_PLOS": "7",
+         "ST_PLOPS": "5",
+         "ST_MCPW": "4",
+         "ST_MCPL": "3",
+         "ST_GLL": "2",
+         "ST_GDO": "0",
+         "ST_BL": "3"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "6",
+         "ST_PWOPS": "5",
+         "ST_PW": "11",
+         "ST_PLOS": "4",
+         "ST_PLOPS": "4",
+         "ST_MCPW": "5",
+         "ST_MCPL": "3",
+         "ST_GLL": "4",
+         "ST_GDO": "4",
+         "ST_BL": "3"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "7",
+        "Stats": {
+         "ST_PWOS": "3",
+         "ST_PWOPS": "4",
+         "ST_PW": "7",
+         "ST_PLOS": "6",
+         "ST_PLOPS": "5",
+         "ST_MCPW": "2",
+         "ST_MCPL": "3",
+         "ST_GLL": "4",
+         "ST_GDO": "0",
+         "ST_BL": "1"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "7",
+         "ST_PWOPS": "4",
+         "ST_PW": "11",
+         "ST_PLOS": "2",
+         "ST_PLOPS": "5",
+         "ST_MCPW": "3",
+         "ST_MCPL": "2",
+         "ST_GLL": "2",
+         "ST_GDO": "2",
+         "ST_BL": "4"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "4",
+         "ST_PWOPS": "7",
+         "ST_PW": "11",
+         "ST_PLOS": "6",
+         "ST_PLOPS": "3",
+         "ST_MCPW": "4",
+         "ST_MCPL": "4",
+         "ST_GLL": "0",
+         "ST_GDO": "0",
+         "ST_BL": "5"
+        }
+       }
+      ],
+      "TeamReg": "TMSGPA3250"
+     },
+     "HasComps": true,
+     "HasStats": true,
+     "Duration": "36m14s",
+     "Periods": [
+      "7m27s",
+      "6m57s",
+      "5m59s",
+      "6m23s",
+      "9m28s"
+     ]
+    },
+    {
+     "Home": {
+      "Reg": "144748",
+      "Org": "MAS",
+      "OrgDesc": "Malaysia",
+      "Desc": "HONG YU Tey",
+      "Res": "3",
+      "Win": false,
+      "RkPo": 1,
+      "Stats": {
+       "ST_PWOS": "20",
+       "ST_PWOPS": "24",
+       "ST_PW": "44",
+       "ST_PLOS": "16",
+       "ST_PLOPS": "15",
+       "ST_MCPW": "7",
+       "ST_MCPL": "5",
+       "ST_GLL": "2",
+       "ST_GDO": "0",
+       "ST_BL": "7"
+      },
+      "Splits": [
+       {
+        "Win": true,
+        "Res": "13",
+        "Stats": {
+         "ST_PWOS": "5",
+         "ST_PWOPS": "8",
+         "ST_PW": "13",
+         "ST_PLOS": "6",
+         "ST_PLOPS": "5",
+         "ST_MCPW": "7",
+         "ST_MCPL": "5",
+         "ST_GLL": "0",
+         "ST_GDO": "0",
+         "ST_BL": "7"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "6",
+         "ST_PWOPS": "5",
+         "ST_PW": "11",
+         "ST_PLOS": "2",
+         "ST_PLOPS": "2",
+         "ST_MCPW": "6",
+         "ST_MCPL": "1",
+         "ST_GLL": "0",
+         "ST_GDO": "0",
+         "ST_BL": "7"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "9",
+        "Stats": {
+         "ST_PWOS": "4",
+         "ST_PWOPS": "5",
+         "ST_PW": "9",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "6",
+         "ST_MCPW": "5",
+         "ST_MCPL": "4",
+         "ST_GLL": "2",
+         "ST_GDO": "0",
+         "ST_BL": "3"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "5",
+         "ST_PWOPS": "6",
+         "ST_PW": "11",
+         "ST_PLOS": "3",
+         "ST_PLOPS": "2",
+         "ST_MCPW": "5",
+         "ST_MCPL": "3",
+         "ST_GLL": "0",
+         "ST_GDO": "0",
+         "ST_BL": "7"
+        }
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TMMASA3246"
+     },
+     "Away": {
+      "Reg": "136338",
+      "Org": "SGP",
+      "OrgDesc": "Singapore",
+      "Desc": "YANG Ze Yi",
+      "Res": "1",
+      "Win": false,
+      "RkPo": 2,
+      "Stats": {
+       "ST_PWOS": "15",
+       "ST_PWOPS": "16",
+       "ST_PW": "31",
+       "ST_PLOS": "24",
+       "ST_PLOPS": "20",
+       "ST_MCPW": "5",
+       "ST_MCPL": "7",
+       "ST_GLL": "7",
+       "ST_GDO": "3",
+       "ST_BL": "2"
+      },
+      "Splits": [
+       {
+        "Win": false,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "5",
+         "ST_PWOPS": "6",
+         "ST_PW": "11",
+         "ST_PLOS": "8",
+         "ST_PLOPS": "5",
+         "ST_MCPW": "5",
+         "ST_MCPL": "7",
+         "ST_GLL": "7",
+         "ST_GDO": "0",
+         "ST_BL": "0"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "4",
+        "Stats": {
+         "ST_PWOS": "2",
+         "ST_PWOPS": "2",
+         "ST_PW": "4",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "6",
+         "ST_MCPW": "1",
+         "ST_MCPL": "6",
+         "ST_GLL": "7",
+         "ST_GDO": "0",
+         "ST_BL": "0"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "6",
+         "ST_PWOPS": "5",
+         "ST_PW": "11",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "4",
+         "ST_MCPW": "4",
+         "ST_MCPL": "5",
+         "ST_GLL": "3",
+         "ST_GDO": "3",
+         "ST_BL": "2"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "5",
+        "Stats": {
+         "ST_PWOS": "2",
+         "ST_PWOPS": "3",
+         "ST_PW": "5",
+         "ST_PLOS": "6",
+         "ST_PLOPS": "5",
+         "ST_MCPW": "3",
+         "ST_MCPL": "5",
+         "ST_GLL": "7",
+         "ST_GDO": "0",
+         "ST_BL": "0"
+        }
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TMSGPA3250"
+     },
+     "HasComps": true,
+     "HasStats": true,
+     "Duration": "31m41s",
+     "Periods": [
+      "10m29s",
+      "5m45s",
+      "9m24s",
+      "6m3s",
+      ""
+     ]
+    },
+    {
+     "Home": {
+      "Reg": "202974",
+      "Org": "MAS",
+      "OrgDesc": "Malaysia",
+      "Desc": "LEE Hong An",
+      "Res": "0",
+      "Win": false,
+      "RkPo": 2,
+      "Stats": {
+       "ST_PWOS": "9",
+       "ST_PWOPS": "10",
+       "ST_PW": "19",
+       "ST_PLOS": "17",
+       "ST_PLOPS": "16",
+       "ST_MCPW": "3",
+       "ST_MCPL": "6",
+       "ST_GLL": "8",
+       "ST_GDO": "0",
+       "ST_BL": "3"
+      },
+      "Splits": [
+       {
+        "Win": false,
+        "Res": "6",
+        "Stats": {
+         "ST_PWOS": "1",
+         "ST_PWOPS": "5",
+         "ST_PW": "6",
+         "ST_PLOS": "7",
+         "ST_PLOPS": "4",
+         "ST_MCPW": "2",
+         "ST_MCPL": "4",
+         "ST_GLL": "6",
+         "ST_GDO": "0",
+         "ST_BL": "1"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "4",
+        "Stats": {
+         "ST_PWOS": "2",
+         "ST_PWOPS": "2",
+         "ST_PW": "4",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "6",
+         "ST_MCPW": "2",
+         "ST_MCPL": "6",
+         "ST_GLL": "8",
+         "ST_GDO": "0",
+         "ST_BL": "0"
+        }
+       },
+       {
+        "Win": false,
+        "Res": "9",
+        "Stats": {
+         "ST_PWOS": "6",
+         "ST_PWOPS": "3",
+         "ST_PW": "9",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "6",
+         "ST_MCPW": "3",
+         "ST_MCPL": "5",
+         "ST_GLL": "2",
+         "ST_GDO": "0",
+         "ST_BL": "3"
+        }
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TMMASA3246"
+     },
+     "Away": {
+      "Reg": "144490",
+      "Org": "SGP",
+      "OrgDesc": "Singapore",
+      "Desc": "TAN Nicholas",
+      "Res": "3",
+      "Win": false,
+      "RkPo": 1,
+      "Stats": {
+       "ST_PWOS": "16",
+       "ST_PWOPS": "17",
+       "ST_PW": "33",
+       "ST_PLOS": "10",
+       "ST_PLOPS": "9",
+       "ST_MCPW": "6",
+       "ST_MCPL": "3",
+       "ST_GLL": "3",
+       "ST_GDO": "3",
+       "ST_BL": "8"
+      },
+      "Splits": [
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "4",
+         "ST_PWOPS": "7",
+         "ST_PW": "11",
+         "ST_PLOS": "5",
+         "ST_PLOPS": "1",
+         "ST_MCPW": "4",
+         "ST_MCPL": "2",
+         "ST_GLL": "1",
+         "ST_GDO": "1",
+         "ST_BL": "6"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "6",
+         "ST_PWOPS": "5",
+         "ST_PW": "11",
+         "ST_PLOS": "2",
+         "ST_PLOPS": "2",
+         "ST_MCPW": "6",
+         "ST_MCPL": "2",
+         "ST_GLL": "0",
+         "ST_GDO": "0",
+         "ST_BL": "8"
+        }
+       },
+       {
+        "Win": true,
+        "Res": "11",
+        "Stats": {
+         "ST_PWOS": "6",
+         "ST_PWOPS": "5",
+         "ST_PW": "11",
+         "ST_PLOS": "3",
+         "ST_PLOPS": "6",
+         "ST_MCPW": "5",
+         "ST_MCPL": "3",
+         "ST_GLL": "3",
+         "ST_GDO": "3",
+         "ST_BL": "2"
+        }
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TMSGPA3250"
+     },
+     "HasComps": true,
+     "HasStats": true,
+     "Duration": "21m21s",
+     "Periods": [
+      "6m6s",
+      "8m54s",
+      "6m21s",
+      "",
+      ""
+     ]
+    },
+    {
+     "Home": {
+      "Reg": "144712",
+      "Org": "MAS",
+      "OrgDesc": "Malaysia",
+      "Desc": "IM Jin Zhen",
+      "Res": "0",
+      "Win": false,
+      "RkPo": 0,
+      "Splits": [
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TMMASA3246"
+     },
+     "Away": {
+      "Reg": "144488",
+      "Org": "SGP",
+      "OrgDesc": "Singapore",
+      "Desc": "LE Ellsworth",
+      "Res": "0",
+      "Win": false,
+      "RkPo": 0,
+      "Splits": [
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       },
+       {
+        "Win": false,
+        "Res": ""
+       }
+      ],
+      "TeamReg": "TMSGPA3250"
+     },
+     "HasComps": true,
+     "HasStats": false,
+     "Duration": "",
+     "Periods": [
+      "",
+      "",
+      "",
+      "",
+      ""
+     ]
+    }
+   ]
+  }
+ },
+ "walkover": {
+  "date": "2026-07-01",
+  "match": {
+   "Key": "M.SINGLES--------U15.GP04.000300--",
+   "Desc": "U15 Boys' Singles - Group 4 - Match 3",
+   "Time": "Wed 1, 11:55",
+   "Loc": "T7",
+   "LocDesc": "Table 7",
+   "Venue": "Bangkokthonburi Hall",
+   "RTime": "11:55",
+   "Status": 1,
+   "IsTeam": false,
+   "HasComps": true,
+   "Home": {
+    "Reg": "209392",
+    "Org": "PHI",
+    "OrgDesc": "Philippines",
+    "Desc": "CORPUZ Carlos",
+    "Res": "3",
+    "Win": true,
+    "RkPo": 1,
+    "Splits": [
+     {
+      "Win": false,
+      "Res": "0"
+     },
+     {
+      "Win": false,
+      "Res": "0"
+     },
+     {
+      "Win": false,
+      "Res": "0"
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     }
+    ]
+   },
+   "Away": {
+    "Reg": "202965",
+    "Org": "THA",
+    "OrgDesc": "Thailand",
+    "Desc": "SEELIANG Chanamet",
+    "Res": "WO",
+    "Win": false,
+    "RkPo": 2,
+    "Splits": [
+     {
+      "Win": false,
+      "Res": "0"
+     },
+     {
+      "Win": false,
+      "Res": "0"
+     },
+     {
+      "Win": false,
+      "Res": "0"
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     }
+    ]
+   },
+   "HasStats": false
+  }
+ },
+ "mixed_doubles": {
+  "date": "2026-04-17",
+  "match": {
+   "Key": "X.DOUBLES--------U19.8FNL.000100--",
+   "Desc": "U19 Mixed Doubles - Round of 16 - Match 1",
+   "Time": "Fri 17, 16:30",
+   "Loc": "T1",
+   "LocDesc": "Table 1",
+   "Venue": "Pasir Ris Sports Hall",
+   "RTime": "16:30",
+   "Status": 1,
+   "IsTeam": false,
+   "HasComps": true,
+   "Home": {
+    "Reg": "D4399",
+    "Org": "SGP",
+    "OrgDesc": "Singapore",
+    "Desc": "LE Ellsworth/LAI Chloe",
+    "Members": [
+     {
+      "Reg": "144488",
+      "Org": "SGP",
+      "Desc": "LE Ellsworth"
+     },
+     {
+      "Reg": "135571",
+      "Org": "SGP",
+      "Desc": "LAI Chloe"
+     }
+    ],
+    "Res": "3",
+    "Win": true,
+    "RkPo": 1,
+    "Splits": [
+     {
+      "Win": true,
+      "Res": "11"
+     },
+     {
+      "Win": true,
+      "Res": "13"
+     },
+     {
+      "Win": true,
+      "Res": "12"
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     }
+    ]
+   },
+   "Away": {
+    "Reg": "D4414",
+    "Org": "MAS",
+    "OrgDesc": "Malaysia",
+    "Desc": "HONG YU Tey/YU ZHENG Cheah",
+    "Members": [
+     {
+      "Reg": "144748",
+      "Org": "MAS",
+      "Desc": "HONG YU Tey"
+     },
+     {
+      "Reg": "206421",
+      "Org": "MAS",
+      "Desc": "YU ZHENG Cheah"
+     }
+    ],
+    "Res": "0",
+    "Win": false,
+    "RkPo": 2,
+    "Splits": [
+     {
+      "Win": false,
+      "Res": "7"
+     },
+     {
+      "Win": false,
+      "Res": "11"
+     },
+     {
+      "Win": false,
+      "Res": "10"
+     },
+     {
+      "Win": false,
+      "Res": ""
+     },
+     {
+      "Win": false,
+      "Res": ""
+     }
+    ]
+   },
+   "HasStats": false
+  }
+ }
+}
