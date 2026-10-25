@@ -48,7 +48,10 @@ def get_json(path):
         "Accept": "application/json",
     })
     with urllib.request.urlopen(req, timeout=60) as r:
-        return json.load(r)
+        body = r.read()
+    if not body:  # 204: WTT has nothing for this (e.g. older events' match cards)
+        raise LookupError(f"WTT returned no data for {path}")
+    return json.loads(body)
 
 
 def fetch_match(url):
@@ -65,6 +68,7 @@ def fetch_match(url):
         sys.exit(f"Match isn't official yet (status: {card.get('resultStatus')}).")
     event_name = get_json(f"GetEventName/{event_id}")[0]["eventName"]
     return card, event_name
+
 
 
 def tokens(name):
@@ -115,10 +119,33 @@ def round_name(description):
     return ROUNDS.get(re.sub(r"[^a-z]", "", raw.lower()), raw)
 
 
+def event_label(event_name):
+    """'China Smash 2026 Presented by ... (dates)' -> 'China Smash', like the tracker's names."""
+    name = re.sub(r"\s*\(.*\)\s*$", "", event_name)
+    name = re.sub(r"\s+Presented by.*$", "", name, flags=re.I)
+    return re.sub(r"\s+20\d\d$", "", name).strip()
+
+
 def official_payload(card):
     msg = next(m for m in card["full_msg"]["Results_all"] if m["MessageType"] == "DT_RESULT_OFFICIAL")
     p = msg["MessagePayLoad"]
     return json.loads(p) if isinstance(p, str) else p
+
+
+def side_stats(card):
+    """Competitor id -> (W/L, {tracker stat field: value}) from the official result."""
+    out = {}
+    for res in official_payload(card)["Competition"]["Result"]:
+        comp = res["Competitor"]
+        comp = comp[0] if isinstance(comp, list) else comp  # WTT sends both shapes
+        items = comp["StatsItems"]["StatsItem"]
+        stats = {STATS[i["Code"]]: i["Value"] for i in items
+                 if i["Pos"] == "TOT" and i["Code"] in STATS and i["Value"] not in (None, "")}
+        missing = set(STATS.values()) - set(stats)
+        if missing:
+            raise ValueError(f"WTT has no {sorted(missing)} for competitor {comp['Code']}; not using partial stats.")
+        out[comp["Code"]] = (res["Wlt"], stats)
+    return out
 
 
 def build_records(card, event_name, data):
@@ -126,21 +153,12 @@ def build_records(card, event_name, data):
     names_known = players_known | {m[k] for m in data for k in ("opponent", "partner", "oppPartner") if m[k]}
     groups = {m["player"]: m["group"] for m in data if m.get("group")}
 
+    by_side = side_stats(card)
     payload = official_payload(card)
-    stats = {}  # competitor id -> {tracker field: value}
-    wlt = {}
-    for res in payload["Competition"]["Result"]:
-        comp = res["Competitor"]
-        comp = comp[0] if isinstance(comp, list) else comp  # WTT sends both shapes
-        items = comp["StatsItems"]["StatsItem"]
-        stats[comp["Code"]] = {STATS[i["Code"]]: i["Value"] for i in items
-                               if i["Pos"] == "TOT" and i["Code"] in STATS}
-        wlt[comp["Code"]] = res["Wlt"]
     date = payload["Competition"]["ExtendedInfos"]["UnitDateTime"]["StartDateLocal"][:10]
 
     sides = card["competitiors"]
     games = [g.split("-") for g in card["resultsGameScores"].split(",") if g != "0-0"]
-    ev = re.sub(r"\s+20\d\d$", "", re.sub(r"\s+Presented by.*$", "", event_name, flags=re.I)).strip()
 
     records = []
     for i, side in enumerate(sides):
@@ -154,21 +172,19 @@ def build_records(card, event_name, data):
         opp = [tracker_name(p["playerName"], p["playerOrgCode"], names_known) for p in other["players"]]
         sets = [{"us": g[i], "them": g[1 - i]} for g in games]
         won = sum(int(s["us"]) > int(s["them"]) for s in sets)
-        missing = set(STATS.values()) - set(stats[side["competitiorId"]])
-        if missing:
-            sys.exit(f"WTT has no {sorted(missing)} for {side['competitiorName']}; not importing partial stats.")
+        wlt, stats = by_side[side["competitiorId"]]
         records.append({
             "id": int(time.time() * 1000) + i,
-            "date": date, "year": date[:4], "ev": ev,
+            "date": date, "year": date[:4], "ev": event_label(event_name),
             "player": player, "partner": partner,
             "opponent": opp[0], "oppPartner": opp[1] if len(opp) > 1 else "",
             "round": round_name(card["subEventDescription"]),
             "type": match_type(card["subEventName"]),
-            "result": wlt[side["competitiorId"]],
+            "result": wlt,
             "score": f"{won}–{len(sets) - won}",
             "sets": sets, "oppInfo": other["competitiorOrg"], "notes": "",
             "group": groups.get(player, "podium"),
-            **stats[side["competitiorId"]],
+            **stats,
         })
     if not records:
         sys.exit("Neither side has a player already in data.json: "
@@ -188,8 +204,11 @@ def main():
     args = ap.parse_args()
 
     data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
-    card, event_name = fetch_match(args.url)
-    records = build_records(card, event_name, data)
+    try:
+        card, event_name = fetch_match(args.url)
+        records = build_records(card, event_name, data)
+    except (ValueError, LookupError) as e:
+        sys.exit(str(e))
     print(json.dumps(records, indent=2, ensure_ascii=False))
 
     if args.write:

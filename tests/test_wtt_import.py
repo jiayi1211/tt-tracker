@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from wtt_import import build_records, is_duplicate  # noqa: E402
+from wtt_import import build_records, event_label, is_duplicate  # noqa: E402
 
 FIX = Path(__file__).parent / "fixtures"
 EVENT = "China Smash 2026 Presented by Beijing Shijingshan Culture & Tourism Group"
@@ -59,6 +59,22 @@ class SinglesTest(unittest.TestCase):
         [r] = build_records(card("ms_3249_lebrun_pucar.json"), EVENT, data)
         self.assertTrue(is_duplicate(r, [r]))
         self.assertFalse(is_duplicate(r, data))
+
+
+    def test_blank_stats_refused(self):
+        # Some events (e.g. WTT Youth Contender Vientiane 2026) send the stat items with null values.
+        c = card("ms_3249_lebrun_pucar.json")
+        for res in c["full_msg"]["Results_all"][0]["MessagePayLoad"]["Competition"]["Result"]:
+            for item in res["Competitor"][0]["StatsItems"]["StatsItem"]:
+                item["Value"] = None
+        with self.assertRaises(ValueError):
+            build_records(c, EVENT, [row("Felix Lebrun")])
+
+    def test_event_label(self):
+        self.assertEqual(event_label(EVENT), "China Smash")
+        self.assertEqual(event_label("WTT Youth Contender Vientiane 2026 Presented by ICBC Bank (30 Jul 2026 - 02 Aug 2026)"),
+                         "WTT Youth Contender Vientiane")
+        self.assertEqual(event_label("Europe Youth Smash - Sweden 2026"), "Europe Youth Smash - Sweden")
 
 
 class DoublesTest(unittest.TestCase):
