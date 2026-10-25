@@ -1,0 +1,190 @@
+{
+ "eventId": "3249",
+ "documentCode": "TTEMSINGLES-----------8FNL000100----------",
+ "subEventName": "Men's Singles",
+ "subEventDescription": "Men's Singles - Round of 16 - Match 1",
+ "competitiors": [
+  {
+   "competitorType": "H",
+   "competitiorId": "135977",
+   "competitiorName": "LEBRUN Felix",
+   "competitiorOrg": "FRA",
+   "compCardY": "0",
+   "compCardYR1": "0",
+   "compCardYR2": "0",
+   "compTimeout": "1",
+   "compMedicalTimeout": "",
+   "players": [
+    {
+     "playerId": "135977",
+     "playerName": "LEBRUN Felix",
+     "playerGivenName": null,
+     "playerFamilyName": null,
+     "playerOrgCode": "FRA",
+     "playerPosition": 1
+    }
+   ],
+   "scores": "11,12,11,0,0",
+   "irm": null
+  },
+  {
+   "competitorType": "A",
+   "competitiorId": "116532",
+   "competitiorName": "PUCAR Tomislav",
+   "competitiorOrg": "CRO",
+   "compCardY": "0",
+   "compCardYR1": "0",
+   "compCardYR2": "0",
+   "compTimeout": "1",
+   "compMedicalTimeout": "",
+   "players": [
+    {
+     "playerId": "116532",
+     "playerName": "PUCAR Tomislav",
+     "playerGivenName": null,
+     "playerFamilyName": null,
+     "playerOrgCode": "CRO",
+     "playerPosition": 2
+    }
+   ],
+   "scores": "9,10,5,0,0",
+   "irm": null
+  }
+ ],
+ "resultsGameScores": "11-9,12-10,11-5,0-0,0-0",
+ "resultStatus": "OFFICIAL",
+ "full_msg": {
+  "Results_all": [
+   {
+    "MessageType": "DT_RESULT_OFFICIAL",
+    "MessagePayLoad": {
+     "Competition": {
+      "ExtendedInfos": {
+       "UnitDateTime": {
+        "StartDateLocal": "2026-10-08T13:55:00",
+        "StartDateUTC": "2026-10-08T05:55:00",
+        "Duration": "00:18:58"
+       }
+      },
+      "Result": [
+       {
+        "Wlt": "W",
+        "Competitor": [
+         {
+          "Code": "135977",
+          "StatsItems": {
+           "StatsItem": [
+            {
+             "Code": "PTS_WON",
+             "Pos": "TOT",
+             "Value": "34"
+            },
+            {
+             "Code": "LEAD_MAX",
+             "Pos": "TOT",
+             "Value": "6"
+            },
+            {
+             "Code": "LEAD_MAX_AGNST",
+             "Pos": "TOT",
+             "Value": "1"
+            },
+            {
+             "Code": "PTS_SERVICE_WON",
+             "Pos": "TOT",
+             "Value": "20"
+            },
+            {
+             "Code": "PTS_OPP_SERVICE_WON",
+             "Pos": "TOT",
+             "Value": "14"
+            },
+            {
+             "Code": "PTS_SERVICE_LOST",
+             "Pos": "TOT",
+             "Value": "9"
+            },
+            {
+             "Code": "PTS_OPP_SERVICE_LOST",
+             "Pos": "TOT",
+             "Value": "15"
+            },
+            {
+             "Code": "PTS_CONSEC",
+             "Pos": "TOT",
+             "Value": "7"
+            },
+            {
+             "Code": "DEF_OVC_MAX",
+             "Pos": "TOT",
+             "Value": "1"
+            }
+           ]
+          }
+         }
+        ]
+       },
+       {
+        "Wlt": "L",
+        "Competitor": [
+         {
+          "Code": "116532",
+          "StatsItems": {
+           "StatsItem": [
+            {
+             "Code": "PTS_WON",
+             "Pos": "TOT",
+             "Value": "24"
+            },
+            {
+             "Code": "LEAD_MAX",
+             "Pos": "TOT",
+             "Value": "1"
+            },
+            {
+             "Code": "LEAD_MAX_AGNST",
+             "Pos": "TOT",
+             "Value": "6"
+            },
+            {
+             "Code": "PTS_SERVICE_WON",
+             "Pos": "TOT",
+             "Value": "15"
+            },
+            {
+             "Code": "PTS_OPP_SERVICE_WON",
+             "Pos": "TOT",
+             "Value": "9"
+            },
+            {
+             "Code": "PTS_SERVICE_LOST",
+             "Pos": "TOT",
+             "Value": "14"
+            },
+            {
+             "Code": "PTS_OPP_SERVICE_LOST",
+             "Pos": "TOT",
+             "Value": "20"
+            },
+            {
+             "Code": "PTS_CONSEC",
+             "Pos": "TOT",
+             "Value": "6"
+            },
+            {
+             "Code": "DEF_OVC_MAX",
+             "Pos": "TOT",
+             "Value": "-"
+            }
+           ]
+          }
+         }
+        ]
+       }
+      ]
+     }
+    }
+   }
+  ]
+ }
+}

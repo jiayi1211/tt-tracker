@@ -1,0 +1,95 @@
+{
+ "eventId": "3308",
+ "documentCode": "TTEWSINGLES--------U15R64-003100----------",
+ "subEventName": "U15 Girls' Singles",
+ "subEventDescription": "U15 Girls' Singles - Round of 64 - Match 31",
+ "matchConfig": {
+  "bestOfXGames": 5,
+  "maxPointsPerGame": 11,
+  "advantagePerGame": 2,
+  "suddenDeathPoint": 99,
+  "maxChallengesPerCompetitor": 99,
+  "yellowCard": true,
+  "yellowRed1": true,
+  "yellowRed2": true,
+  "tTRReview": false
+ },
+ "venueName": "Fashion Island",
+ "tableNumber": "T16",
+ "tableName": "Table 16",
+ "competitiors": [
+  {
+   "competitorType": "H",
+   "competitiorId": "206688",
+   "competitiorName": "MEEKAEW Thunyatorn",
+   "competitiorOrg": "THA",
+   "compCardY": "0",
+   "compCardYR1": "0",
+   "compCardYR2": "0",
+   "compTimeout": "0",
+   "compMedicalTimeout": "",
+   "players": [
+    {
+     "playerId": "206688",
+     "playerName": "MEEKAEW Thunyatorn",
+     "playerGivenName": null,
+     "playerFamilyName": null,
+     "playerOrgCode": "THA",
+     "playerPosition": 1
+    }
+   ],
+   "scores": "11,11,7,11,11",
+   "irm": null
+  },
+  {
+   "competitorType": "A",
+   "competitiorId": "202816",
+   "competitiorName": "CHOO Ke Ying",
+   "competitiorOrg": "MAS",
+   "compCardY": "0",
+   "compCardYR1": "0",
+   "compCardYR2": "0",
+   "compTimeout": "0",
+   "compMedicalTimeout": "",
+   "players": [
+    {
+     "playerId": "202816",
+     "playerName": "CHOO Ke Ying",
+     "playerGivenName": null,
+     "playerFamilyName": null,
+     "playerOrgCode": "MAS",
+     "playerPosition": 2
+    }
+   ],
+   "scores": "7,1,11,13,6",
+   "irm": null
+  }
+ ],
+ "currentGameNumber": 5,
+ "full_msg": null,
+ "gameScores": "11-7,11-1,7-11,11-13,11-6",
+ "resultsGameScores": "11-7,11-1,7-11,11-13,11-6",
+ "overallScores": "3-2",
+ "resultOverallScores": "3-2",
+ "resultStatus": "OFFICIAL",
+ "action": {
+  "actionType": "OF",
+  "serverPlayer": "202816",
+  "serverReceiver": "206688",
+  "serverNext": "202816",
+  "serverCompetitor": "202816",
+  "receiverNext": "202816"
+ },
+ "resultSet": null,
+ "matchDateTime": {
+  "duration": "00:00:00",
+  "startDateLocal": "05/21/2026 10:00:00",
+  "startDateUTC": "05/21/2026 03:00:00"
+ },
+ "teamParentData": null,
+ "playByPlaySequenceNumber": "2",
+ "teamMatchNo": "0",
+ "teamMatchScores": "0-0,0-0,0-0,0-0,0-0",
+ "teamMatchScoresSummary": "0",
+ "matchStartTimeUTC": null
+}
