@@ -669,11 +669,12 @@ function getGithubPAT() { return localStorage.getItem(PAT_KEY) || ''; }
 const GITHUB_API = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO;
 
 // GitHub's copy of data.json, exactly as stored, as { data, sha }; null if it can't be read.
-async function githubRead(pat) {
-  const headers = { 'Authorization': 'token ' + pat, 'Accept': 'application/vnd.github.v3+json' };
+async function githubRead(pat) {  // pat null: anonymous read, possible because the repo is public
+  const headers = { 'Accept': 'application/vnd.github.v3+json' };
+  if (pat) headers.Authorization = 'token ' + pat;
   const r = await fetch(GITHUB_API + '/contents/' + GITHUB_FILE, { headers, cache: 'no-store' });
   if (!r.ok) {
-    if (r.status === 401) localStorage.removeItem(PAT_KEY);
+    if (pat && r.status === 401) localStorage.removeItem(PAT_KEY);
     return null;
   }
   const j = await r.json();
@@ -737,13 +738,15 @@ async function githubSave(data) {
   } catch(e) { return null; }
 }
 
-function showSyncStatus(msg, color) {
+let _syncStatusTimer = null;
+function showSyncStatus(msg, color, sticky) {  // sticky: stays until the next message
   const el = document.getElementById('sync-status');
   if (!el) return;
+  clearTimeout(_syncStatusTimer);
   el.textContent = msg;
   el.style.color = color || 'var(--muted)';
   el.style.opacity = '1';
-  setTimeout(() => { el.style.opacity = '0'; }, 3000);
+  if (!sticky) _syncStatusTimer = setTimeout(() => { el.style.opacity = '0'; }, 3000);
 }
 
 const _saved = localStorage.getItem(STORAGE_KEY);
@@ -805,6 +808,13 @@ function cleanScore(s) {
 }
 
 function save() {
+  // Without a token the page shows GitHub's data read-only (loadShared): a change kept only in
+  // this browser would vanish the next time the page opens, so refuse it instead.
+  if (!getGithubPAT()) {
+    alert('View only: this device is not connected to GitHub.\nTo add or edit matches, tap GitHub Sync and paste your GitHub token.');
+    loadShared();  // put the screen back to the saved data
+    return;
+  }
   localStorage.setItem(STORAGE_KEY, JSON.stringify(matches));
   if (getGithubPAT()) {
     showSyncStatus('Saving...', 'var(--accent)');
@@ -2709,12 +2719,38 @@ async function runResultsUpdate() {
   }
 }
 
-// On page load, if PAT exists, load from GitHub automatically
+// No token on this device: show GitHub's data, view only. The repo is public, so this needs no
+// login. Ceiling: GitHub allows 60 anonymous requests an hour per network, and a page open takes
+// 2 while data.json is over 1 MB (about 30 opens an hour); past that the page says so and falls
+// back to this browser's copy. A token avoids the limit.
+// This browser's own saved copy is left untouched, so nothing stored here is lost.
+async function loadShared() {
+  let result = null;
+  try { result = await githubRead(null); } catch(e) {}
+  if (!result) {
+    showSyncStatus("Couldn't load the shared data from GitHub (offline?). Showing this browser's saved copy (" +
+                   matches.length + ' matches), which may be out of date.', 'var(--red)', true);
+    return;
+  }
+  const shared = new Set(result.data.map(m => m.id)), starter = new Set(_SEED.map(m => m.id));
+  let stored = [];
+  try { stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) {}
+  const localOnly = stored.filter(m => !shared.has(m.id) && !starter.has(m.id)).length;
+  matches = result.data.map(m => { if (m.score) m.score = cleanScore(m.score); return m; });
+  renderAll();
+  showSyncStatus('Showing ' + matches.length + ' matches from GitHub (view only; use GitHub Sync to edit).' +
+                 (localOnly ? ' Note: this browser also has ' + localOnly + ' older match(es) saved here that are not on GitHub.' : ''),
+                 localOnly ? 'var(--gold)' : 'var(--green)', !!localOnly);
+}
+
+// On page load: with a token, load and sync with GitHub; without one, show GitHub's data read-only.
 window.addEventListener('load', function() {
   if (getGithubPAT()) {
-    showSyncStatus('Syncing from GitHub...', 'var(--accent)');
-    document.getElementById('sync-status').style.opacity = '1';
+    showSyncStatus('Syncing from GitHub...', 'var(--accent)', true);
     loadFromGitHub();
+  } else {
+    showSyncStatus('Loading shared data from GitHub...', 'var(--accent)', true);
+    loadShared();
   }
 });
 
