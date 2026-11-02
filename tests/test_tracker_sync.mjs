@@ -11,20 +11,21 @@ function grab(name) {
   return html.slice(m.index, j + 1);
 }
 const names = ['cleanScore', 'n', 'getGithubPAT', 'githubRead', 'githubLoad', 'setSyncBase', 'mergeWithRemote',
-               'githubSave', 'loadFromGitHub', 'runResultsUpdate'];
+               'githubSave', 'loadFromGitHub', 'runResultsUpdate', 'loadShared', 'save'];
 let src = names.map(grab).join('\n\n');
 src = `const GITHUB_USER='u', GITHUB_REPO='r', GITHUB_FILE='data.json', PAT_KEY='pat', STORAGE_KEY='k';
 const GITHUB_API='https://api.github.com/repos/u/r'; let _syncBase=null; let matches=[];
+const _SEED=[{ id: 42, player: 'Starter', score: '3–0' }];
 const UPDATE_WORKFLOW = GITHUB_API + '/actions/workflows/update-results.yml';
 ${src}
-globalThis.api = { mergeWithRemote, setSyncBase, githubSave, loadFromGitHub, runResultsUpdate,
+globalThis.api = { mergeWithRemote, setSyncBase, githubSave, loadFromGitHub, runResultsUpdate, loadShared, save,
   get matches(){return matches}, set matches(v){matches=v}, get base(){return _syncBase} };`;
 
 // ---- fake environment ----
 const store = { pat: 'tok' };
-const gh = { data: [], sha: 1, puts: 0, conflictOnce: false, dispatched: 0, runStatus: [], run: null, dispatchStatus: 204 };
+const gh = { reads: [], readFails: false, data: [], sha: 1, puts: 0, conflictOnce: false, dispatched: 0, runStatus: [], run: null, dispatchStatus: 204 };
 const b64 = s => Buffer.from(s, 'utf8').toString('base64');
-const alerts = [];
+const alerts = [], status = [];
 const ctx = {
   console, TextDecoder, TextEncoder, Uint8Array, JSON, Map, Set, Date, Math, Promise, Buffer,
   atob: s => Buffer.from(s, 'base64').toString('latin1'),
@@ -32,12 +33,16 @@ const ctx = {
   setTimeout: (f) => setImmediate(f),
   localStorage: { getItem: k => store[k] ?? null, setItem: (k, v) => { store[k] = v; }, removeItem: k => { delete store[k]; } },
   document: { getElementById: () => ({ style: {}, textContent: 'Update from WTT/ITTF', disabled: false }) },
-  alert: m => alerts.push(m), showSyncStatus: () => {}, renderAll: () => {},
+  alert: m => alerts.push(m), renderAll: () => {},
+  showSyncStatus: (msg, color, sticky) => { status.push({ msg, color, sticky: !!sticky }); },
   fetch: async (url, opt = {}) => {
     const method = opt.method || 'GET';
     const resp = (status, body) => ({ ok: status < 300, status, json: async () => body, text: async () => body });
     if (url.endsWith('/contents/data.json') && method === 'GET') {
+      gh.reads.push(opt.headers);
+      if (gh.readFails) return resp(500, {});
       if (opt.headers.Accept.includes('raw')) return resp(200, JSON.stringify(gh.data));
+      if (gh.overOneMB) return resp(200, { sha: String(gh.sha), content: '' });  // GitHub omits content over 1 MB
       return resp(200, { sha: String(gh.sha), content: b64(JSON.stringify(gh.data)).replace(/(.{60})/g, '$1\n') });
     }
     if (url.endsWith('/contents/data.json') && method === 'PUT') {
@@ -114,6 +119,49 @@ eq(alerts[0].startsWith('This GitHub token may not start the update.'), true, 'm
 gh.dispatchStatus = 204; gh.runStatus = ['completed']; gh.conclusion = 'failure'; alerts.length = 0;
 await api.runResultsUpdate();
 eq(alerts[0], 'The update failed. Details: https://run', 'failed run reported with link');
+
+// 8. No token: shows GitHub's data read-only, without sending a token, leaving this browser's copy alone.
+delete store.pat; gh.readFails = false; gh.reads.length = 0; status.length = 0;
+gh.data = [{ id: 1, player: 'A', score: '3\x131' }, { id: 2, player: 'B', score: '3–0' }]; gh.sha++;
+store.k = JSON.stringify([{ id: 42, player: 'Starter', score: '3–0' }, { id: 777, player: 'Local only', score: '3–0' }]);
+const storedBefore = store.k, putsStart = gh.puts;
+await api.loadShared();
+eq(gh.reads.every(h => !('Authorization' in h)), true, 'no token: reads GitHub without sending a token');
+eq(api.matches.map(m => [m.id, m.score]), [[1, '3–1'], [2, '3–0']], "no token: shows GitHub's data (dash repaired for display)");
+eq(store.k, storedBefore, "no token: this browser's saved copy is left untouched");
+eq(/also has 1 older match/.test(status.at(-1).msg) && status.at(-1).sticky, true, 'no token: matches only on this device are reported (starter ones ignored)');
+eq(gh.puts, putsStart, 'no token: nothing is written to GitHub');
+
+// 9. No token and GitHub unreachable: says so, keeps what is on screen.
+gh.readFails = true; status.length = 0; api.matches = [{ id: 9, player: 'Old' }];
+await api.loadShared();
+eq(api.matches.map(m => m.id), [9], 'load failure: keeps showing the saved copy');
+eq(status[0].color === 'var(--red)' && status[0].sticky && /Couldn't load the shared data/.test(status[0].msg), true,
+   'load failure: red message that stays up');
+
+// 10. No token: add/edit/delete is refused and undone; nothing sent.
+gh.readFails = false; alerts.length = 0; const putsBefore = gh.puts;
+await api.loadShared();
+api.matches = [{ id: 99, player: 'Typed on phone' }, ...api.matches];
+api.save(); await new Promise(r => setTimeout(r, 20));
+eq(alerts[0].startsWith('View only'), true, 'no token: save explains it is view only');
+eq(api.matches.map(m => m.id), [1, 2], 'no token: the unsaved change is undone on screen');
+eq([gh.puts, store.k], [putsBefore, storedBefore], 'no token: nothing written to GitHub or this browser');
+
+// 11b. data.json over 1 MB (GitHub then omits the inline content): read falls back to the raw file.
+delete store.pat; gh.overOneMB = true; gh.reads.length = 0;
+await api.loadShared();
+eq([api.matches.map(m => m.id), gh.reads.length, gh.reads[1].Accept], [[1, 2], 2, 'application/vnd.github.v3.raw'],
+   'over 1 MB: second request fetches the raw file');
+gh.overOneMB = false;
+
+// 11. With a token, save still goes to GitHub.
+store.pat = 'tok'; await api.loadFromGitHub(); await new Promise(r => setTimeout(r, 20));
+const putsWithToken = gh.puts;
+api.matches = [{ id: 100, player: 'New', score: '3–0' }, ...api.matches];
+api.save(); await new Promise(r => setTimeout(r, 20));
+eq(gh.puts, putsWithToken + 1, 'with a token: save writes to GitHub');
+eq(gh.data.map(m => m.id), [100, 1, 2], 'with a token: the new match is on GitHub');
 
 console.log(fails ? `${fails} FAILED` : 'all passed');
 process.exit(fails ? 1 : 0);
