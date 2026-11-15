@@ -1520,8 +1520,7 @@ function renderPtsAnalytics(data, focusPlayer) {
  return pm.length?Math.round(pm.reduce((s,m)=>s+num(m.ptsWon),0)/pm.length):0;
  }),backgroundColor:avgPtsPlayers.map(p=>PLAYER_COLORS[p]||'#00f0ff')}],false);
  } else {
- const ctx=document.getElementById('c-pts-avg');
- if(ctx) ctx.parentElement.innerHTML='<div class="empty-state" style="padding:30px"><p>Enter "Total Points Won" when adding matches to see this chart.</p></div>';
+ _empty('c-pts-avg','Enter "Total Points Won" when adding matches to see this chart.');
  }
 
  // Points Won % = our total pts / (our pts + opponent's pts from set scores)
@@ -1542,8 +1541,7 @@ function renderPtsAnalytics(data, focusPlayer) {
  return total>0 ? Math.round(ourPts/total*100) : 0;
  }),backgroundColor:ptsPctPlayers.map(p=>PLAYER_COLORS[p]||'#00f0ff')}],false);
  } else {
- const ctx=document.getElementById('c-pts-pct');
- if(ctx) ctx.parentElement.innerHTML='<div class="empty-state" style="padding:30px"><p>Enter "Total Points Won" and set scores to see this chart.</p></div>';
+ _empty('c-pts-pct','Enter "Total Points Won" and set scores to see this chart.');
  }
 
  if(players.length) {
@@ -1560,7 +1558,7 @@ function renderPtsAnalytics(data, focusPlayer) {
  }),backgroundColor:'rgba(0,240,255,.8)'}],false);
  } else {
  ['c-serve-pts','c-serve-rate'].forEach(id=>{
- const ctx=document.getElementById(id); if(ctx) ctx.parentElement.innerHTML='<div class="empty-state" style="padding:30px"><p>Enter "Own Serve Pts" and "Opp Serve Pts" to see this chart.</p></div>';
+ _empty(id,'Enter "Own Serve Pts" and "Opp Serve Pts" to see this chart.');
  });
  }
 }
@@ -1589,16 +1587,14 @@ function renderLeadAnalytics(data, focusPlayer) {
  [{label:'Biggest Lead',data:hasLead.map(m=>num(m.bigLead)),
  backgroundColor:hasLead.map(m=>m.result==='W'?'rgba(16,185,129,.8)':'rgba(239,68,68,.8)')}],false);
  } else {
- const ctx=document.getElementById('c-lead');
- if(ctx) ctx.parentElement.innerHTML='<div class="empty-state" style="padding:30px"><p>No biggest lead data for this selection.</p></div>';
+ _empty('c-lead','No biggest lead data for this selection.');
  }
  if(hasConsec.length) {
  mkBar('c-consec',hasConsec.map((_,i)=>`M${i+1}`),
  [{label:'Consecutive Pts',data:hasConsec.map(m=>num(m.consec)),
  backgroundColor:hasConsec.map(m=>m.result==='W'?'rgba(124,58,237,.8)':'rgba(100,116,139,.5)')}],false);
  } else {
- const ctx=document.getElementById('c-consec');
- if(ctx) ctx.parentElement.innerHTML='<div class="empty-state" style="padding:30px"><p>No consecutive points data for this selection.</p></div>';
+ _empty('c-consec','No consecutive points data for this selection.');
  }
 
  const leadPlayers=players.filter(p=>data.some(m=>(m.player===p||m.partner===p)&&n(m.bigLead)));
@@ -1613,8 +1609,7 @@ function renderLeadAnalytics(data, focusPlayer) {
  return pm.length?Math.round(pm.reduce((s,m)=>s+num(m.bigLead),0)/pm.length*10)/10:0;
  }),backgroundColor:'rgba(239,68,68,.8)'}],false);
  } else {
- const ctx=document.getElementById('c-lead-outcome');
- if(ctx) ctx.parentElement.innerHTML='<div class="empty-state" style="padding:30px"><p>No lead data for this selection.</p></div>';
+ _empty('c-lead-outcome','No lead data for this selection.');
  }
 }
 
@@ -2126,12 +2121,21 @@ function renderYearComparison() {
 
 
 function _setTitle(id,title){const c=document.getElementById(id);if(!c)return;const card=c.closest('.chart-card');if(card){const t=card.querySelector('.chart-title');if(t&&title)t.textContent=title;}}
-function _empty(id,msg){const c=document.getElementById(id);if(c)c.parentElement.innerHTML=`<div class="empty-state" style="padding:30px"><p>${msg||'No data.'}</p></div>`;}
+// Hide the canvas and show a note beside it. Never remove the canvas: static charts (Points, Lead, Dashboard)
+// are looked up by id on every render, so a removed canvas means that chart never draws again until reload.
+function _empty(id,msg){
+  _destroy(id);
+  const c=document.getElementById(id); if(!c)return;
+  c.style.display='none';
+  const note=document.createElement('div'); note.className='empty-state'; note.style.padding='30px';
+  note.innerHTML=`<p>${msg||'No data.'}</p>`;
+  c.parentElement.appendChild(note);
+}
 function _destroy(id){
   if(charts[id]){charts[id].destroy();delete charts[id];}
   // Replace canvas with a fresh one to avoid Chart.js stale-canvas errors
   const old=document.getElementById(id);
-  if(old){const fresh=document.createElement('canvas');fresh.id=id;old.parentNode.replaceChild(fresh,old);}
+  if(old){old.parentNode.querySelectorAll('.empty-state').forEach(e=>e.remove());const fresh=document.createElement('canvas');fresh.id=id;old.parentNode.replaceChild(fresh,old);}
 }
 function mkBar(id,labels,datasets,stacked,title){
   if(title)_setTitle(id,title);
