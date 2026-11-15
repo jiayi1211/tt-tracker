@@ -1095,6 +1095,9 @@ function renderAll() {
  renderStats(); renderRecentList(); renderResultsTable(); renderPlayerChips(); renderPlayers();
  buildFilterChips('dash-filter-row','df',dashFilter,setDF);
  buildFilterChips('analytics-filter-row','af',analyticsFilter,setAF);
+ // Dashboard/Analytics/H2H/Year only draw inside showSection, so redraw the open tab or filters look dead there.
+ const open=document.querySelector('.section.active');
+ if (open) showSection(open.id.replace('section-',''));
 }
 
 function renderStats() {
