@@ -1,4 +1,4 @@
-# Started by the tracker's "Update from WTT/ITTF" button (or Actions tab -> Run workflow).
+# Started by the tracker's "Update from WTT/ITTF/CWTTC" button (or Actions tab -> Run workflow).
 # Imports tracked players' results since Jan 2025 into data.json; see sync_results.py.
 name: Update results
 
@@ -31,7 +31,7 @@ jobs:
       - name: Install brotli (reads WTT's archive)
         run: pip install brotli==1.1.0
 
-      - name: Import from WTT and ITTF, commit
+      - name: Import from WTT, ITTF and CWTTC, commit
         shell: bash  # explicit shell turns on pipefail, so a failing sync isn't hidden by `tee`
         env:
           FULL: ${{ inputs.full && '--full' || '' }}
@@ -44,7 +44,7 @@ jobs:
             python sync_results.py --write $FULL | tee -a "$GITHUB_STEP_SUMMARY"
             git add data.json sync_state.json
             if git diff --cached --quiet; then echo "No changes."; exit 0; fi
-            git commit -q -m "Update results from WTT/ITTF"
+            git commit -q -m "Update results from WTT/ITTF/CWTTC"
             if git push; then exit 0; fi
             git fetch -q origin main && git reset -q --hard origin/main
           done

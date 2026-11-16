@@ -33,7 +33,7 @@ const ctx = {
   btoa: s => Buffer.from(s, 'latin1').toString('base64'),
   setTimeout: (f) => setImmediate(f),
   localStorage: { getItem: k => store[k] ?? null, setItem: (k, v) => { store[k] = v; }, removeItem: k => { delete store[k]; } },
-  document: { getElementById: () => ({ style: {}, textContent: 'Update from WTT/ITTF', disabled: false }) },
+  document: { getElementById: () => ({ style: {}, textContent: 'Update from WTT/ITTF/CWTTC', disabled: false }) },
   alert: m => alerts.push(m), renderAll: () => {},
   showSyncStatus: (msg, color, sticky) => { status.push({ msg, color, sticky: !!sticky }); },
   fetch: async (url, opt = {}) => {

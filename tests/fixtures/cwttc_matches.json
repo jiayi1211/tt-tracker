@@ -1,0 +1,397 @@
+{
+ "xd_final_701": {
+  "event_name": "Mixed Doubles",
+  "round_name": "Final",
+  "status": "Finished",
+  "score_summary": "2-3",
+  "participants": [
+   {
+    "participant_name": "Ai Xin Tee / Rui Zhe Richard Yap",
+    "organization_name": "Malaysia",
+    "score": 2,
+    "segments": [
+     8,
+     12,
+     12,
+     9,
+     5
+    ],
+    "status": null,
+    "is_winner": false,
+    "players": [
+     {
+      "player_name": "Ai Xin Tee"
+     },
+     {
+      "player_name": "Rui Zhe Richard Yap"
+     }
+    ]
+   },
+   {
+    "participant_name": "Taneesha Sanjay Kotecha / Manav Vikash Thakkar",
+    "organization_name": "India",
+    "score": 3,
+    "segments": [
+     11,
+     10,
+     10,
+     11,
+     11
+    ],
+    "status": null,
+    "is_winner": true,
+    "players": [
+     {
+      "player_name": "Taneesha Sanjay Kotecha"
+     },
+     {
+      "player_name": "Manav Vikash Thakkar"
+     }
+    ]
+   }
+  ],
+  "sub_matches": []
+ },
+ "team_walkover_20": {
+  "event_name": "Women's Team",
+  "round_name": "Pool",
+  "status": "Finished",
+  "score_summary": null,
+  "participants": [
+   {
+    "participant_name": "Botswana WT",
+    "organization_name": "Botswana",
+    "score": null,
+    "segments": [],
+    "status": "Walk Over",
+    "is_winner": false,
+    "players": []
+   },
+   {
+    "participant_name": "Canada WT",
+    "organization_name": "Canada",
+    "score": null,
+    "segments": [],
+    "status": null,
+    "is_winner": true,
+    "players": []
+   }
+  ],
+  "sub_matches": []
+ },
+ "team_int_scores_17": {
+  "event_name": "Women's Team",
+  "round_name": "Pool",
+  "status": "Finished",
+  "score_summary": "3-0",
+  "participants": [
+   {
+    "participant_name": "Cyprus WT",
+    "organization_name": "Cyprus",
+    "score": 3,
+    "segments": [],
+    "status": null,
+    "is_winner": true,
+    "players": []
+   },
+   {
+    "participant_name": "Bangladesh WT",
+    "organization_name": "Bangladesh",
+    "score": 0,
+    "segments": [],
+    "status": null,
+    "is_winner": false,
+    "players": []
+   }
+  ],
+  "sub_matches": [
+   {
+    "status": "Finished",
+    "score_summary": "3-1",
+    "participants": [
+     {
+      "participant_name": "Konstantina Meletie",
+      "organization_name": "Cyprus",
+      "score": 3,
+      "segments": [
+       9,
+       11,
+       11,
+       11
+      ],
+      "status": null,
+      "is_winner": true,
+      "players": [
+       {
+        "player_name": "Konstantina Meletie"
+       }
+      ]
+     },
+     {
+      "participant_name": "Laxmi Datta",
+      "organization_name": "Bangladesh",
+      "score": 1,
+      "segments": [
+       11,
+       6,
+       1,
+       3
+      ],
+      "status": null,
+      "is_winner": false,
+      "players": [
+       {
+        "player_name": "Laxmi Datta"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "status": "Finished",
+    "score_summary": "3-0",
+    "participants": [
+     {
+      "participant_name": "Foteini Meletie",
+      "organization_name": "Cyprus",
+      "score": 3,
+      "segments": [
+       11,
+       11,
+       11
+      ],
+      "status": null,
+      "is_winner": true,
+      "players": [
+       {
+        "player_name": "Foteini Meletie"
+       }
+      ]
+     },
+     {
+      "participant_name": "Mst Asma Khatun",
+      "organization_name": "Bangladesh",
+      "score": 0,
+      "segments": [
+       3,
+       7,
+       6
+      ],
+      "status": null,
+      "is_winner": false,
+      "players": [
+       {
+        "player_name": "Mst Asma Khatun"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "status": "Finished",
+    "score_summary": "3-0",
+    "participants": [
+     {
+      "participant_name": "Avraam Georgia",
+      "organization_name": "Cyprus",
+      "score": 3,
+      "segments": [
+       11,
+       11,
+       11
+      ],
+      "status": null,
+      "is_winner": true,
+      "players": [
+       {
+        "player_name": "Avraam Georgia"
+       }
+      ]
+     },
+     {
+      "participant_name": "Mst Rafia Chowdhury",
+      "organization_name": "Bangladesh",
+      "score": 0,
+      "segments": [
+       2,
+       5,
+       2
+      ],
+      "status": null,
+      "is_winner": false,
+      "players": [
+       {
+        "player_name": "Mst Rafia Chowdhury"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "team_str_scores_26": {
+  "event_name": "Men's Team",
+  "round_name": "Pool",
+  "status": "Finished",
+  "score_summary": "0-3",
+  "participants": [
+   {
+    "participant_name": "Zimbabwe MT",
+    "organization_name": "Zimbabwe",
+    "score": 0,
+    "segments": [],
+    "status": null,
+    "is_winner": false,
+    "players": []
+   },
+   {
+    "participant_name": "India MT",
+    "organization_name": "India",
+    "score": 3,
+    "segments": [],
+    "status": null,
+    "is_winner": true,
+    "players": []
+   }
+  ],
+  "sub_matches": [
+   {
+    "status": "Finished",
+    "score_summary": "0-3",
+    "participants": [
+     {
+      "participant_name": "Tatenda Mumvuma",
+      "organization_name": "Zimbabwe",
+      "score": 0,
+      "segments": [
+       "3",
+       "2",
+       "6",
+       "",
+       ""
+      ],
+      "status": null,
+      "is_winner": false,
+      "players": [
+       {
+        "player_name": "Tatenda Mumvuma"
+       }
+      ]
+     },
+     {
+      "participant_name": "Manav Vikash Thakkar",
+      "organization_name": "India",
+      "score": 3,
+      "segments": [
+       "11",
+       "11",
+       "11",
+       "",
+       ""
+      ],
+      "status": null,
+      "is_winner": true,
+      "players": [
+       {
+        "player_name": "Manav Vikash Thakkar"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "status": "Finished",
+    "score_summary": "0-3",
+    "participants": [
+     {
+      "participant_name": "Tapiwa Musarurwa",
+      "organization_name": "Zimbabwe",
+      "score": 0,
+      "segments": [
+       "5",
+       "4",
+       "5",
+       "",
+       ""
+      ],
+      "status": null,
+      "is_winner": false,
+      "players": [
+       {
+        "player_name": "Tapiwa Musarurwa"
+       }
+      ]
+     },
+     {
+      "participant_name": "Harmeet Rajul Desai",
+      "organization_name": "India",
+      "score": 3,
+      "segments": [
+       "11",
+       "11",
+       "11",
+       "",
+       ""
+      ],
+      "status": null,
+      "is_winner": true,
+      "players": [
+       {
+        "player_name": "Harmeet Rajul Desai"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "status": "Finished",
+    "score_summary": "0-3",
+    "participants": [
+     {
+      "participant_name": "Vikram Singh",
+      "organization_name": "Zimbabwe",
+      "score": 0,
+      "segments": [
+       "3",
+       "3",
+       "8",
+       "",
+       ""
+      ],
+      "status": null,
+      "is_winner": false,
+      "players": [
+       {
+        "player_name": "Vikram Singh"
+       }
+      ]
+     },
+     {
+      "participant_name": "Payas Jain",
+      "organization_name": "India",
+      "score": 3,
+      "segments": [
+       "011",
+       "11",
+       "11",
+       "",
+       ""
+      ],
+      "status": null,
+      "is_winner": true,
+      "players": [
+       {
+        "player_name": "Payas Jain"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "no_details_262": {
+  "status": "success",
+  "data": []
+ },
+ "schedule_html": "<div class=\"tab-pane fade\" id=\"tab-2026-07-27\" role=\"tabpanel\">\n<div class=\"fx-card status-result \" data-cat=\"women-team\" data-fx=\"5\">\n                                    \n                                    <div class=\"fx-head\">\n                                        <div class=\"fx-tags\">\n                                            <span class=\"fx-tag\">Women&#039;s Team</span>\n                                                                                    </div>\n                                    </div>\n            \n                                    <div class=\"fx-body\">\n                                        \n                                        <!-- Team A / Team 1 -->\n                                        <div class=\"fx-team a  winner\">\n                                            <span class=\"fx-tname\">\n                                                SGP\n                                                                                                    <i class=\"bi bi-trophy-fill text-warning ms-1\" title=\"Winner\"></i>\n                                                                                            </span>\n                                                                                            <img class=\"fx-flag\" src=\"https://cwttc2026.com/cttc/images/flags/singapore.jpg\" alt=\"Singapore\">\n                                                                                    </div>\n            \n                                        <!-- Middle Score Area -->\n                                        <div class=\"fx-score\">\n                                                                                            <div class=\"sc\">\n                                                    <span>3</span>\n                                                    <span class=\"sep\">–</span>\n                                                    <span>2</span>\n                                                </div>\n                                                <div class=\"sc-lbl\">Final Score</div>\n                                                                                    </div>\n            \n                                        <!-- Team B / Team 2 -->\n                                        <div class=\"fx-team b  \">\n                                                                                            <img class=\"fx-flag\" src=\"https://cwttc2026.com/cttc/images/flags/srilanka.jpg\" alt=\"Sri Lanka\">\n                                                                                        <span class=\"fx-tname\">\n                                                                                                SRL\n                                            </span>\n                                        </div>\n                                    </div>\n                                    <div class=\"fx-foot py-2 px-4\">\n                                        <div class=\"fx-info\">\n                                            <span><i class=\"bi bi-geo-alt\"></i> Table 2</span>\n                                            <span><i class=\"bi bi-clock\"></i> Jul 27, 14:00</span>\n                                            \n                                                                                            <a href=\"https://cwttc2026.com/tsr/5\" target=\"_blank\" class=\"fx-status upcoming\">View Result</a>\n                                                                                    </div>\n                                    </div>\n                                    \n                                </div>\n                            </div>\n                                                                        \n                                <!-- Dynamic FX Card -->\n<div class=\"fx-card status-result \" data-cat=\"women-team\" data-fx=\"8\">\n                                    \n                                    <div class=\"fx-head\">\n                                        <div class=\"fx-tags\">\n                                            <span class=\"fx-tag\">Women&#039;s Team</span>\n                                                                                    </div>\n                                    </div>\n            \n                                    <div class=\"fx-body\">\n                                        \n                                        <!-- Team A / Team 1 -->\n                                        <div class=\"fx-team a  winner\">\n                                            <span class=\"fx-tname\">\n                                                IND\n                                                                                                    <i class=\"bi bi-trophy-fill text-warning ms-1\" title=\"Winner\"></i>\n                                                                                            </span>\n                                                                                            <img class=\"fx-flag\" src=\"https://cwttc2026.com/cttc/images/flags/india.jpg\" alt=\"India\">\n                                                                                    </div>\n            \n                                        <!-- Middle Score Area -->\n                                        <div class=\"fx-score\">\n                                                                                            <div class=\"sc\">\n                                                    <span>3</span>\n                                                    <span class=\"sep\">–</span>\n                                                    <span>0</span>\n                                                </div>\n                                                <div class=\"sc-lbl\">Final Score</div>\n                                                                                    </div>\n            \n                                        <!-- Team B / Team 2 -->\n                                        <div class=\"fx-team b  \">\n                                                                                            <img class=\"fx-flag\" src=\"https://cwttc2026.com/cttc/images/flags/maldives.jpg\" alt=\"Maldives\">\n                                                                                        <span class=\"fx-tname\">\n                                                                                                MDV\n                                            </span>\n                                        </div>\n                                    </div>\n                                    <div class=\"fx-foot py-2 px-4\">\n                                        <div class=\"fx-info\">\n                                            <span><i class=\"bi bi-geo-alt\"></i> Table 1</span>\n                                            <span><i class=\"bi bi-clock\"></i> Jul 27, 14:00</span>\n                                            \n                                                                                            <a href=\"https://cwttc2026.com/tsr/8\" target=\"_blank\" class=\"fx-status upcoming\">View Result</a>\n                                                                                    </div>\n                                    </div>\n                                    \n                                </div>\n                            </div>\n                                                                        \n                                <!-- Dynamic FX Card -->\n</div>\n<div class=\"tab-pane fade\" id=\"tab-2026-07-30\" role=\"tabpanel\">\n<div class=\"fx-card status-result \" data-cat=\"women-singles\" data-fx=\"262\">\n                                    \n                                    <div class=\"fx-head\">\n                                        <div class=\"fx-tags\">\n                                            <span class=\"fx-tag\">Women&#039;s Singles</span>\n                                                                                    </div>\n                                    </div>\n            \n                                    <div class=\"fx-body\">\n                                        \n                                        <!-- Team A / Team 1 -->\n                                        <div class=\"fx-team a  winner\">\n                                            <span class=\"fx-tname\">\n                                                MAS\n                                                                                                    <i class=\"bi bi-trophy-fill text-warning ms-1\" title=\"Winner\"></i>\n                                                                                            </span>\n                                                                                            <img class=\"fx-flag\" src=\"https://cwttc2026.com/cttc/images/flags/malaysia.jpg\" alt=\"Malaysia\">\n                                                                                    </div>\n            \n                                        <!-- Middle Score Area -->\n                                        <div class=\"fx-score\">\n                                                                                            <div class=\"sc\">\n                                                    <span>3</span>\n                                                    <span class=\"sep\">–</span>\n                                                    <span>0</span>\n                                                </div>\n                                                <div class=\"sc-lbl\">Final Score</div>\n                                                                                    </div>\n            \n                                        <!-- Team B / Team 2 -->\n                                        <div class=\"fx-team b  \">\n                                                                                            <img class=\"fx-flag\" src=\"https://cwttc2026.com/cttc/images/flags/northern-islands.jpg\" alt=\"Northern Ireland\">\n                                                                                        <span class=\"fx-tname\">\n                                                                                                IRL\n                                            </span>\n                                        </div>\n                                    </div>\n                                    <div class=\"fx-foot py-2 px-4\">\n                                        <div class=\"fx-info\">\n                                            <span><i class=\"bi bi-geo-alt\"></i> Table 1</span>\n                                            <span><i class=\"bi bi-clock\"></i> Jul 30, 10:30</span>\n                                            \n                                                                                            <a href=\"https://cwttc2026.com/tsr/262\" target=\"_blank\" class=\"fx-status upcoming\">View Result</a>\n                                                                                    </div>\n                                    </div>\n                                    \n                                </div>\n                            </div>\n                                                                        \n                                <!-- Dynamic FX Card -->\n</div>\n<div class=\"tab-pane fade\" id=\"tab-2026-07-31\" role=\"tabpanel\">\n<div class=\"fx-card status-upcoming \" data-cat=\"men-singles\" data-fx=\"515\">\n                                    \n                                    <div class=\"fx-head\">\n                                        <div class=\"fx-tags\">\n                                            <span class=\"fx-tag\">Men&#039;s Singles</span>\n                                                                                    </div>\n                                    </div>\n            \n                                    <div class=\"fx-body\">\n                                        \n                                        <!-- Team A / Team 1 -->\n                                        <div class=\"fx-team a  \">\n                                            <span class=\"fx-tname\">\n                                                AUS\n                                                                                            </span>\n                                                                                            <img class=\"fx-flag\" src=\"https://cwttc2026.com/cttc/images/flags/australia.jpg\" alt=\"Australia\">\n                                                                                    </div>\n            \n                                        <!-- Middle Score Area -->\n                                        <div class=\"fx-score\">\n                                                                                            <div class=\"sc\">\n                                                    <span class=\"sep\">VS</span>\n                                                </div>\n                                                <div class=\"sc-lbl\">Upcoming</div>\n                                                                                    </div>\n            \n                                        <!-- Team B / Team 2 -->\n                                        <div class=\"fx-team b  \">\n                                                                                            <img class=\"fx-flag\" src=\"https://cwttc2026.com/cttc/images/flags/maldives.jpg\" alt=\"Maldives\">\n                                                                                        <span class=\"fx-tname\">\n                                                                                                MDV\n                                            </span>\n                                        </div>\n                                    </div>\n                                    <div class=\"fx-foot py-2 px-4\">\n                                        <div class=\"fx-info\">\n                                            <span><i class=\"bi bi-geo-alt\"></i> </span>\n                                            <span><i class=\"bi bi-clock\"></i> Jul 31, 10:45</span>\n                                            \n                                                                                            <span class=\"fx-status upcoming\">Upcoming</span>\n                                                                                    </div>\n                                    </div>\n                                    \n                                </div>\n                            </div>\n                                                                        \n                                <!-- Dynamic FX Card -->\n</div>"
+}

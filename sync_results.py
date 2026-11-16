@@ -1,4 +1,4 @@
-"""Import every tracked player's results since Jan 2025 from WTT and ITTF.
+"""Import every tracked player's results since Jan 2025 from WTT, ITTF and CWTTC 2026.
 
     python3 sync_results.py            # dry run: list what would change
     python3 sync_results.py --write    # apply to data.json (what the tracker's Update button runs)
@@ -22,6 +22,7 @@ import match_import as mi
 
 SINCE = date(2025, 1, 1)
 STATE_FILE = Path(__file__).with_name("sync_state.json")
+CWTTC_END = date(2026, 8, 2)
 WTT_EVENTS = "https://wtt-website-api-vm-frontdoor-hhaec5epbhdyfugz.a01.azurefd.net/primary/api/cms/GetAllEventsOnlyWithEventName"
 
 
@@ -53,6 +54,27 @@ def wtt_events(today, roster):
                    lambda eid=e["eventId"], name=e["eventName"]: (mi.wtt_event_matches(eid, name, roster), True))
 
 
+def cwttc_events(today):
+    """CWTTC 2026 as one event, once it has ended."""
+    if today > CWTTC_END:
+        yield "cwttc:2026", mi.CWTTC_EVENT + " 2026", cwttc_fetch
+
+
+def cwttc_fetch():
+    matches, unreadable = mi.cwttc_event_matches()
+    if unreadable:
+        print(f"\nCWTTC 2026: skipped {len(unreadable)} results the site has no usable details for. "
+              "Enter tracked ones by hand; --full tries them again.")
+        by_reason = {}
+        for match_id, reason in unreadable:
+            by_reason.setdefault(reason, []).append(str(match_id))
+        for reason, ids in sorted(by_reason.items()):
+            print(f"  {reason}: match {', '.join(ids)}")
+    # Finished even with gaps: the event is over and its missing details have stayed missing,
+    # so re-reading all ~530 matches on every Update wouldn't bring them back.
+    return matches, True
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--write", action="store_true", help="apply the changes to data.json")
@@ -65,7 +87,7 @@ def main():
     today = date.today()
 
     totals, unrecognised, failed = {}, {}, []
-    events = list(ittf_events(today)) + list(wtt_events(today, roster))
+    events = list(ittf_events(today)) + list(wtt_events(today, roster)) + list(cwttc_events(today))
     todo = [e for e in events if e[0] not in done]
     print(f"{len(events)} events since {SINCE}; {len(events) - len(todo)} already scanned, {len(todo)} to scan.")
     for key, name, fetch in todo:

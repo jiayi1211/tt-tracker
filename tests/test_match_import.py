@@ -5,15 +5,20 @@ Fixtures are trimmed real responses:
   wtt_archived_3308_choo.json                    WTT archive card (no live card, no stats), Youth Contender Bangkok 2026
   ittf_matches.json                              ITTF day-file matches: a team tie with stats (Asian Team Champs 2025),
                                                  a tie stuck as "live", a walkover, a mixed doubles (Asian/SEA Youth 2026)
+  cwttc_matches.json                             CWTTC 2026 /match-details responses (XD final, team ties with string
+                                                 and number scores, a team walkover, a match with no details) and
+                                                 schedule-page cards (two days of results, one stale "upcoming")
 """
 import json
 import sys
 import unittest
+from unittest import mock
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from match_import import (assign_ids, build_records, event_label, find_known,  # noqa: E402
-                          ittf_expand, plan, wtt_match)
+import match_import  # noqa: E402
+from match_import import (assign_ids, build_records, cwttc_event_matches, cwttc_expand,  # noqa: E402
+                          cwttc_schedule, event_label, find_known, ittf_expand, plan, wtt_match)
 
 FIX = Path(__file__).parent / "fixtures"
 EVENT = "China Smash 2026 Presented by Beijing Shijingshan Culture & Tourism Group"
@@ -142,6 +147,93 @@ class PlanTest(unittest.TestCase):
         new = self.rec(player="Lee Hong An", partner="Tey Hong Yu", opponent="A B", oppPartner="C D")
         old = self.rec(player="Tey Hong Yu", partner="Lee Hong An", opponent="C D", oppPartner="A B")
         self.assertEqual(plan([new], [old])[0][0], "have")
+
+
+def cwttc(key, data, day="2026-08-02"):
+    return [r for m in cwttc_expand(load("cwttc_matches.json")[key], day) for r in build_records(m, data)]
+
+
+class CwttcTest(unittest.TestCase):
+    def test_mixed_doubles_final(self):
+        # Malaysia is the home side and lost 2-3; names come given-name first and still match.
+        [r] = cwttc("xd_final_701", [row("Tee Ai Xin")])
+        self.assertEqual((r["player"], r["partner"], r["opponent"], r["oppPartner"], r["oppInfo"]),
+                         ("Tee Ai Xin", "Richard Yap Rui Zhe", "Taneesha Sanjay Kotecha", "Manav Vikash Thakkar", "IND"))
+        self.assertEqual((r["result"], r["score"]), ("L", "2–3"))
+        self.assertEqual([(s["us"], s["them"]) for s in r["sets"]],
+                         [("8", "11"), ("12", "10"), ("12", "10"), ("9", "11"), ("5", "11")])
+        self.assertEqual((r["date"], r["year"], r["ev"], r["round"], r["type"]),
+                         ("2026-08-02", "2026", "Commonwealth Championships", "Final", "Mixed Doubles"))
+        self.assertEqual([r[f] for f in STATS], [""] * 5)  # the site has no Match Stats
+
+    def test_team_rubbers_string_scores(self):
+        # Scores like ["011", "11", "", ""]: blanks are unplayed games, "011" is 11.
+        [r] = cwttc("team_str_scores_26", [row("Payas Jain")])
+        self.assertEqual((r["round"], r["type"], r["oppInfo"], r["result"]), ("Team Match", "Singles", "ZIM", "W"))
+        self.assertEqual([(s["us"], s["them"]) for s in r["sets"]], [("11", "3"), ("11", "3"), ("11", "8")])
+
+    def test_team_rubbers_number_scores(self):
+        recs = cwttc("team_int_scores_17", [row("Laxmi Datta"), row("Konstantina Meletie")])
+        self.assertEqual([(r["player"], r["result"], r["score"], r["oppInfo"]) for r in recs],
+                         [("Konstantina Meletie", "W", "3–1", "BGD"), ("Laxmi Datta", "L", "1–3", "CYP")])
+
+    def test_team_walkover_gives_nothing(self):
+        self.assertEqual(cwttc_expand(load("cwttc_matches.json")["team_walkover_20"], "2026-07-27"), [])
+
+    def test_individual_walkover_is_unfinished(self):
+        m = load("cwttc_matches.json")["xd_final_701"]
+        for p in m["participants"]:
+            p["segments"] = ["", "", "", "", ""]
+        self.assertFalse(cwttc_expand(m, "2026-08-02")[0]["finished"])
+
+    def test_unknown_country_fails_loud(self):
+        m = load("cwttc_matches.json")["xd_final_701"]
+        m["participants"][1]["organization_name"] = "Atlantis"
+        with self.assertRaisesRegex(ValueError, "Atlantis"):
+            cwttc_expand(m, "2026-08-02")
+
+    def test_half_a_doubles_pair_fails_loud(self):
+        # Seen on the site: India's mixed pair listed as just "Taneesha Sanjay Kotecha".
+        m = load("cwttc_matches.json")["xd_final_701"]
+        m["participants"][1]["players"] = m["participants"][1]["players"][:1]
+        with self.assertRaisesRegex(ValueError, "1 player"):
+            cwttc_expand(m, "2026-08-02")
+
+    def test_schedule_dates_from_day_tabs(self):
+        # The stale "upcoming" card (no result link) is left out.
+        self.assertEqual(cwttc_schedule(load("cwttc_matches.json")["schedule_html"]),
+                         [(5, "2026-07-27"), (8, "2026-07-27"), (262, "2026-07-30")])
+        with self.assertRaises(ValueError):
+            cwttc_schedule("<html>new layout</html>")
+
+    def test_unreadable_match_skipped_alone(self):
+        fx = load("cwttc_matches.json")
+        pages = {"schedule": fx["schedule_html"], "match-details/5": json.dumps({"data": fx["team_int_scores_17"]}),
+                 "match-details/8": json.dumps({"data": fx["xd_final_701"]}),
+                 "match-details/262": json.dumps(fx["no_details_262"])}
+        with mock.patch.object(match_import, "cwttc_get", pages.__getitem__), \
+                mock.patch.object(match_import.time, "sleep"):
+            matches, unreadable = cwttc_event_matches()
+        self.assertEqual(len(matches), 4)  # 3 rubbers + the final
+        self.assertEqual(unreadable, [(262, "LookupError: no details")])
+        # The other shape the site sends for a match without details.
+        pages["match-details/262"] = json.dumps({"status": "success", "data": {"status": "error", "error": {
+            "code": 400, "message": "fixture_id must be a positive integer"}}})
+        with mock.patch.object(match_import, "cwttc_get", pages.__getitem__), \
+                mock.patch.object(match_import.time, "sleep"):
+            self.assertEqual(cwttc_event_matches()[1],
+                             [(262, "LookupError: fixture_id must be a positive integer")])
+
+    def test_rate_limited_match_retried_once(self):
+        fx = load("cwttc_matches.json")
+        limited = json.dumps({"status": "success", "data": {"status": "error", "error": {
+            "code": 429, "message": "Rate limit exceeded: 1 request per second"}}})
+        answers = [limited, json.dumps({"data": fx["xd_final_701"]}), limited, limited]
+        with mock.patch.object(match_import, "cwttc_get", lambda path: answers.pop(0)), \
+                mock.patch.object(match_import.time, "sleep"):
+            self.assertEqual(match_import.cwttc_details(701)["round_name"], "Final")  # second try works
+            with self.assertRaisesRegex(LookupError, "Rate limit"):
+                match_import.cwttc_details(701)  # still limited after one retry: fails loud
 
 
 class RosterTest(unittest.TestCase):

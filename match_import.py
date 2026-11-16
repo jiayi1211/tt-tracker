@@ -25,6 +25,7 @@ import json
 import re
 import sys
 import time
+import urllib.error
 import urllib.request
 from datetime import date
 from pathlib import Path
@@ -45,6 +46,7 @@ ROUNDS = {
     "semifinal": "Semifinal", "semifinals": "Semifinal",
     "quarterfinal": "Quarterfinal", "quarterfinals": "Quarterfinal",
     "qualification": "Qualifying", "qualifying": "Qualifying",
+    "pool": "Group Stage",  # CWTTC
 }
 # Orgs whose names the tracker writes family-name first ("Kim Minhyeok", "Liu Zitong").
 # Heuristic for names not already in data.json; fix odd ones in the tracker's edit form.
@@ -237,6 +239,102 @@ def ittf_match(m, day, ev, round_, type_):
         })
     return {"date": day, "ev": ev, "round": round_, "type": type_, "games": games, "sides": sides,
             "finished": max(wins) >= len(home["Splits"]) // 2 + 1}
+
+
+# ── CWTTC 2026 (Commonwealth Championships, New Delhi, 27 Jul – 2 Aug 2026) ──
+# One event on its own site. Its schedule page lists every match by day; each match's
+# result is JSON at /match-details/<id> (scores only, no Match Stats). Its date can be
+# null there, so the date comes from the schedule's day tab instead.
+# Simplification: hard-wired to this one edition; another edition means a new site and
+# its own entry here.
+
+CWTTC = "https://cwttc2026.com/"
+CWTTC_EVENT = "Commonwealth Championships"
+CWTTC_DELAY = 1.2  # seconds between requests: the site answers "Rate limit exceeded: 1 request per second"
+# The site's country names -> the codes data.json already uses (it has SRI, BGD; the site's
+# own "IRL" for Northern Ireland would read as Ireland).
+CWTTC_ORGS = {
+    "Australia": "AUS", "Bangladesh": "BGD", "Barbados": "BRB", "Botswana": "BOT", "Canada": "CAN",
+    "Cyprus": "CYP", "England": "ENG", "Falkland Islands": "FLK", "India": "IND", "Jamaica": "JAM",
+    "Kenya": "KEN", "Malawi": "MAW", "Malaysia": "MAS", "Maldives": "MDV", "Namibia": "NAM",
+    "New Zealand": "NZL", "Northern Ireland": "NIR", "Scotland": "SCO", "Singapore": "SGP",
+    "South Africa": "RSA", "Sri Lanka": "SRI", "Wales": "WAL", "Zambia": "ZAM", "Zimbabwe": "ZIM",
+}
+
+
+def cwttc_get(path):
+    req = urllib.request.Request(CWTTC + path, headers={"User-Agent": "Mozilla/5.0", "Accept": "application/json"})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return r.read().decode("utf-8")
+
+
+def cwttc_schedule(page):
+    """[(match id, "YYYY-MM-DD")] for every match on the schedule page that has a result."""
+    out = []
+    days = re.split(r'id="tab-(\d{4}-\d\d-\d\d)"', page)
+    for day, body in zip(days[1::2], days[2::2]):
+        out += [(int(i), day) for i in re.findall(r'href="https://cwttc2026\.com/tsr/(\d+)"', body)]
+    if not out:
+        raise ValueError("CWTTC schedule page has no results (layout changed?)")
+    return out
+
+
+def cwttc_event_matches():
+    """(source matches, ids of matches that couldn't be read). Each unreadable match is skipped alone.
+
+    About 200 of the 528 results (mostly 30-31 Jul singles) have no details on the site: their
+    /match-details answers [], a 400, or a 429 "Rate limit exceeded" that comes back for the same
+    7 matches however slowly they're asked for. The site's own result pages stay blank too.
+    """
+    out, unreadable = [], []
+    for match_id, day in cwttc_schedule(cwttc_get("schedule")):
+        try:
+            out += cwttc_expand(cwttc_details(match_id), day)
+        except (LookupError, ValueError, KeyError, urllib.error.URLError) as e:
+            unreadable.append((match_id, f"{type(e).__name__}: {e}"))
+    return out, unreadable
+
+
+def cwttc_details(match_id, retry=True):
+    time.sleep(CWTTC_DELAY)
+    data = json.loads(cwttc_get(f"match-details/{match_id}"))["data"]
+    if not data or not isinstance(data, dict):
+        raise LookupError("no details")
+    if data.get("status") == "error":  # e.g. {"code": 400, "message": "fixture_id must be ..."}
+        message = data["error"]["message"]
+        if retry and message.startswith("Rate limit"):
+            time.sleep(5)
+            return cwttc_details(match_id, retry=False)
+        raise LookupError(message)
+    return data
+
+
+def cwttc_expand(data, day):
+    """Source matches for one CWTTC fixture: itself, or a team tie's rubbers."""
+    if "Team" not in data["event_name"]:
+        return [cwttc_match(data, day, round_name(data["round_name"]), match_type(data["event_name"]))]
+    return [cwttc_match(sub, day, "Team Match",
+                        "Singles" if len(sub["participants"][0]["players"]) == 1 else match_type(data["event_name"]))
+            for sub in data.get("sub_matches") or []]  # a team walkover has no rubbers
+
+
+def cwttc_match(m, day, round_, type_):
+    home, away = m["participants"]
+    # Game scores come as ["11", "9", "", ""] or [11, 9]; blanks are games not played.
+    games = [(int(h), int(a)) for h, a in zip(home["segments"], away["segments"]) if h != "" and a != ""]
+    sides = []
+    for p in (home, away):
+        # The site sometimes lists one player of a doubles pair: don't write half a pair.
+        if len(p["players"]) != (1 if type_ == "Singles" else 2):
+            raise ValueError(f"{type_} side {p['participant_name']!r} has {len(p['players'])} player(s)")
+        org = CWTTC_ORGS.get(p["organization_name"])
+        if org is None:
+            raise ValueError(f"unknown country {p['organization_name']!r}: add it to CWTTC_ORGS")
+        sides.append({"players": [(x["player_name"], org) for x in p["players"]], "org": org,
+                      "won": bool(p["is_winner"]), "stats": {}})
+    return {"date": day, "ev": CWTTC_EVENT, "round": round_, "type": type_, "games": games, "sides": sides,
+            # Walkovers have no games: reported as unfinished, never written (same as ITTF).
+            "finished": m["status"] == "Finished" and bool(games)}
 
 
 # ── Names, labels ────────────────────────────────────────────────────────────
