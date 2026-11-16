@@ -11,14 +11,15 @@ function grab(name) {
   return html.slice(m.index, j + 1);
 }
 const names = ['cleanScore', 'n', 'getGithubPAT', 'githubRead', 'githubLoad', 'setSyncBase', 'mergeWithRemote',
-               'githubSave', 'loadFromGitHub', 'runResultsUpdate', 'loadShared', 'save'];
+               'githubSave', 'loadFromGitHub', 'runResultsUpdate', 'loadShared', 'save', 'byDate'];
 let src = names.map(grab).join('\n\n');
 src = `const GITHUB_USER='u', GITHUB_REPO='r', GITHUB_FILE='data.json', PAT_KEY='pat', STORAGE_KEY='k';
-const GITHUB_API='https://api.github.com/repos/u/r'; let _syncBase=null; let matches=[];
+const GITHUB_API='https://api.github.com/repos/u/r'; let _syncBase=null; let matches=[]; let dateSortAsc=false;
 const _SEED=[{ id: 42, player: 'Starter', score: '3–0' }];
 const UPDATE_WORKFLOW = GITHUB_API + '/actions/workflows/update-results.yml';
 ${src}
-globalThis.api = { mergeWithRemote, setSyncBase, githubSave, loadFromGitHub, runResultsUpdate, loadShared, save,
+globalThis.api = { mergeWithRemote, setSyncBase, githubSave, loadFromGitHub, runResultsUpdate, loadShared, save, byDate,
+  set dateSortAsc(v){dateSortAsc=v},
   get matches(){return matches}, set matches(v){matches=v}, get base(){return _syncBase} };`;
 
 // ---- fake environment ----
@@ -162,6 +163,14 @@ api.matches = [{ id: 100, player: 'New', score: '3–0' }, ...api.matches];
 api.save(); await new Promise(r => setTimeout(r, 20));
 eq(gh.puts, putsWithToken + 1, 'with a token: save writes to GitHub');
 eq(gh.data.map(m => m.id), [100, 1, 2], 'with a token: the new match is on GitHub');
+
+// 12. Results table order: data.json is in the order added, not played.
+const added = [{ id: 1, date: '2025-01-13' }, { id: 2, date: '' }, { id: 3, date: '2026-09-25' },
+               { id: 4, date: '2025-01-13' }, { id: 5, date: '2026-09-24' }];
+eq(ids([...added].sort(api.byDate)), [3, 5, 1, 4, 2], 'newest first; same day keeps data.json order; undated last');
+api.dateSortAsc = true;
+eq(ids([...added].sort(api.byDate)), [1, 4, 5, 3, 2], 'Date header flips to oldest first; undated still last');
+api.dateSortAsc = false;
 
 console.log(fails ? `${fails} FAILED` : 'all passed');
 process.exit(fails ? 1 : 0);

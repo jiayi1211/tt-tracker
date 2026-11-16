@@ -437,7 +437,7 @@
  <div class="table-wrap">
  <table>
  <thead><tr>
- <th>#</th><th>Date</th><th>Year</th><th>Competition</th><th>Tier</th>
+ <th>#</th><th id="date-sort-th" onclick="toggleDateSort()" style="cursor:pointer" title="Sort by date">Date ▼</th><th>Year</th><th>Competition</th><th>Tier</th>
  <th>Player</th><th>Partner</th><th>Opponent</th><th>Round</th><th>Type</th>
  <th>Sets Score</th><th>Set Detail</th><th>Pts Won</th><th>Own Srv</th><th>Opp Srv</th><th>Big Lead</th><th>Consec</th>
  <th>Result</th><th>Notes</th><th></th>
@@ -739,6 +739,7 @@ let pFilter = 'all', rFilter = 'all', resultsTypeFilter = 'all';
 let dashFilter = 'all', analyticsFilter = 'all';
 let dashTypeFilter = 'all', analyticsTypeFilter = 'all', h2hTypeFilter = 'all';
 let yearFilter = 'all'; // global year filter
+let dateSortAsc = false; // Results table: newest first; the Date header flips it
 let charts = {};
 
 const PLAYER_GENDER = {
@@ -998,7 +999,18 @@ function getFiltered() {
    (pFilter==='all'||m.player===pFilter||m.partner===pFilter) &&
    (rFilter==='all'||m.result===rFilter) &&
    (resultsTypeFilter==='all'||m.type===resultsTypeFilter)
- );
+ ).sort(byDate);
+}
+// data.json is in the order matches were added, not played, so sort here. Undated rows go last;
+// same-day rows keep their data.json order (sort is stable).
+function byDate(a,b) {
+ if (!a.date || !b.date) return !a.date - !b.date;
+ return dateSortAsc ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date);
+}
+function toggleDateSort() {
+ dateSortAsc=!dateSortAsc;
+ document.getElementById('date-sort-th').textContent='Date '+(dateSortAsc?'▲':'▼');
+ renderResultsTable();
 }
 
 function setDF(p) {
