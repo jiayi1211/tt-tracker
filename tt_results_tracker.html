@@ -401,7 +401,7 @@
  <button class="btn btn-export" onclick="exportExcel()"> Export Excel</button>
  <button class="btn" style="background:var(--gold);color:#000;font-weight:700" onclick="exportForGitHub()"> Export for GitHub Pages</button>
       <button class="btn" style="background:var(--surface);border:1px solid var(--border)" onclick="setupGitHub()">GitHub Sync</button>
-      <button class="btn" id="update-results-btn" style="background:var(--surface);border:1px solid var(--accent)" onclick="runResultsUpdate()">Update from WTT/ITTF</button>
+      <button class="btn" id="update-results-btn" style="background:var(--surface);border:1px solid var(--accent)" onclick="runResultsUpdate()">Update from WTT/ITTF/CWTTC</button>
       <span id="sync-status" style="font-size:12px;color:var(--muted);transition:opacity 1s;opacity:0;align-self:center;margin-left:8px;"></span>
  </div>
  </div>
@@ -437,7 +437,7 @@
  <div class="table-wrap">
  <table>
  <thead><tr>
- <th>#</th><th>Date</th><th>Year</th><th>Competition</th><th>Tier</th>
+ <th>#</th><th id="date-sort-th" onclick="toggleDateSort()" style="cursor:pointer" title="Sort by date">Date ▼</th><th>Year</th><th>Competition</th><th>Tier</th>
  <th>Player</th><th>Partner</th><th>Opponent</th><th>Round</th><th>Type</th>
  <th>Sets Score</th><th>Set Detail</th><th>Pts Won</th><th>Own Srv</th><th>Opp Srv</th><th>Big Lead</th><th>Consec</th>
  <th>Result</th><th>Notes</th><th></th>
@@ -698,7 +698,7 @@ async function githubLoad() {
 
 // What GitHub held when this tab last loaded or saved: id -> JSON. Lets a save send only this
 // tab's own adds/edits/deletes, so rows added elsewhere meanwhile (another device, the
-// "Update from WTT/ITTF" job) are kept instead of overwritten.
+// "Update from WTT/ITTF/CWTTC" job) are kept instead of overwritten.
 let _syncBase = null;
 function setSyncBase(list) { _syncBase = new Map(list.map(m => [m.id, JSON.stringify(m)])); }
 
@@ -756,6 +756,7 @@ let pFilter = 'all', rFilter = 'all', resultsTypeFilter = 'all';
 let dashFilter = 'all', analyticsFilter = 'all';
 let dashTypeFilter = 'all', analyticsTypeFilter = 'all', h2hTypeFilter = 'all';
 let yearFilter = 'all'; // global year filter
+let dateSortAsc = false; // Results table: newest first; the Date header flips it
 let charts = {};
 
 const PLAYER_GENDER = {
@@ -1027,7 +1028,18 @@ function getFiltered() {
    (pFilter==='all'||m.player===pFilter||m.partner===pFilter) &&
    (rFilter==='all'||m.result===rFilter) &&
    (resultsTypeFilter==='all'||m.type===resultsTypeFilter)
- );
+ ).sort(byDate);
+}
+// data.json is in the order matches were added, not played, so sort here. Undated rows go last;
+// same-day rows keep their data.json order (sort is stable).
+function byDate(a,b) {
+ if (!a.date || !b.date) return !a.date - !b.date;
+ return dateSortAsc ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date);
+}
+function toggleDateSort() {
+ dateSortAsc=!dateSortAsc;
+ document.getElementById('date-sort-th').textContent='Date '+(dateSortAsc?'▲':'▼');
+ renderResultsTable();
 }
 
 function setDF(p) {
@@ -2674,7 +2686,7 @@ async function loadFromGitHub() {
   document.getElementById('sync-status').style.opacity = '1';
 }
 
-// "Update from WTT/ITTF": runs the update-results GitHub Action (sync_results.py), which adds
+// "Update from WTT/ITTF/CWTTC": runs the update-results GitHub Action (sync_results.py), which adds
 // tracked players' matches and missing Match Stats to data.json, then reloads from GitHub.
 // The browser can't do this itself: WTT only answers requests coming from its own site.
 const UPDATE_WORKFLOW = GITHUB_API + '/actions/workflows/update-results.yml';
